@@ -1,0 +1,87 @@
+\section{Introduzione}
+Un algoritmo è una strategia o un procedimento per risolvere un problema,
+uno schema o un procedimento sistematico di calcolo. Formalmente:
+\begin{center} 
+    {\textbf{Un algoritmo è un insieme ordinato e finito di passi eseguibili e 
+    non ambigui che definiscono un procedimento che termina}}
+\end{center}
+Matematicamente un algoritmo può essere visto come una funzione
+\begin{center}
+    $f_a:D_I \to D_S $
+\end{center}
+dove $D_I$ rappresenta il {\textbf{dominio delle istanze}} e $D_S$ il {\textbf{dominio delle soluzioni}}. \\
+
+
+\subsection{Algoritmica}
+
+L'algoritmica si occupa di:
+\begin{itemize}
+    \item Risoluzione di problemi $\rightarrow$ \textbf{Sintesi}
+    \item Trovare una strategia buona per risolvere i problemi $\rightarrow$ \textbf{Analisi} efficienza
+    \item Stabilire se un problema è facile o difficile $\rightarrow$ \textbf{Classificazione} della complessità dei problemi
+    \item Studio delle strutture dati utilizzate
+    \item Definizione di nuovi modelli di calcolo
+\end{itemize}
+
+
+\noindent L'algoritmica viene studiata per scrivere programmi. Ha due aspetti:
+\begin{itemize}
+    \item \textbf{Pratico:} un computer è inutile senza algoritmi e programmi
+    \item \textbf{Teorico:} gli algoritmi sono la base dell'informatica, sono uno strumento 
+    mentale e metodologico per risolvere i problemi.
+\end{itemize}
+
+\subsection{Pseudocodice}
+Per scrivere gli algoritmi useremo uno pseudocodice con strutture di controllo "Algol-like"
+
+\begin{algorithm}
+    \caption{$moltiplicazione$}
+    {\textbf{Algoritmo}} {\emph{moltiplicazione}} (intero $a$, intero $b$) $\rightarrow$ intero\\
+        \Return{a $\cdot$ b}
+\end{algorithm}
+
+\subsection{Analisi e progettazione di algoritmi}
+Esistono varie metodologie per progettare algoritmi. In base al tipo di utilizzo e
+alle operazioni che dovrò effettuare utilizzo strutture dati differenti.
+L'analisi e la progettazione di algoritmi si basano fondamentalmente su due fattori:
+\begin{itemize}
+    \item {\textbf{Correttezza}}: dato un algoritmo $a$ e un problema $P$, dimostrare che $a$ risolve $P$
+    \item {\textbf{Efficienza}}: valutare la complessità di un algoritmo e la quantità di risorse
+    utilizzate(tempo, spazio, energia, rete, ecc...)
+\end{itemize}
+
+\noindent Per eseguire l'analisi di un algoritmo posso:
+\begin{enumerate}
+    \item Far girare il programma ($testing$) $\rightarrow$ {\textbf{valutazione a posteriori}}\\
+    Questo approccio ha alcuni problemi:
+    \begin{itemize}
+        \item Possono esistere infiniti ingressi possibili
+        \item costo della codifica elevato
+    \end{itemize}
+    \item Stima in fase di progettazione $\rightarrow$ {\textbf{valutazione a priori}}\\
+    Per stimare il consumo di tempo di un programma assumo che ogni linea di codice
+    costi tempo unitario.
+\end{enumerate}
+
+\subsection{Notazioni asintotiche}
+Siano $f$ e $g$ due funzioni:
+\begin{center}
+    $f,g: \mathbb{N} \to \mathbb{R^+}$
+\end{center}
+
+\subsubsection{Limitazione superiore}
+\begin{center}
+    $f(n)$ è O-grande di $g(n)$ se $\exists c > 0$, $n_0 \in \mathbb{N}$ $|$ $\forall n > n_0$: $f(n) \le c \cdot g(n)$   
+\end{center}
+
+\subsubsection{Limitazione inferiore}
+\begin{center}
+    $f(n)$ è $\Omega$-grande di $g(n)$ se $\exists c > 0$, $n_0 \in \mathbb{N}$ $|$ $\forall n > n_0$: $f(n) \ge c \cdot g(n)$ 
+\end{center}
+
+\subsubsection{Stesso ordine di grandezza}
+\begin{center}
+    $f(n)$ è $\Theta$-grande di $g(n)$ se $\exists c, d > 0$, $n_0 \in \mathbb{N}$ $|$ $\forall n > n_0$: $c \cdot g(n) \le f(n) \le d \cdot g(n)$ 
+\end{center}
+
+\clearpage

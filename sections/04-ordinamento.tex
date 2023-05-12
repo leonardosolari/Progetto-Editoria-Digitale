@@ -1,0 +1,43 @@
+\section{Algoritmi di ordinamento o sorting}
+
+In questa sezione vediamo alcuni algoritmi che servono per ordinare
+vettori di strutture complesse come oggetti o record. Un particolare campo
+è scelto come {\textbf{chiave}} per l'ordinamento.
+Studieremo principalmente algoritmi di ordinamento basati su confronti
+tra chiavi e stimeremo la complessità di questi algoritmi in funzione della 
+lunghezza del vettore da ordinare, calcolando prima di tutto il numero di confronti eseguiti.\\
+Un algoritmo di ordinamento è detto {\textbf{stabile}} se preserva l'ordine 
+relativo tra record con la medesima chiave.
+Esistono due tipologie di ordinamento:
+\begin{enumerate}
+    \item {\emph{Ordinamento interno:}}\\
+    I dati da ordinare sono in memoria centrale $\rightarrow$ accesso diretto agli elementi
+
+    \item {\emph{Ordinamento esterno:}}\\
+    I dati da ordinare sono in memoria di massa $\rightarrow$ accesso ai blocchi
+    di dati con possibile lentezza dovuta dall'hardware dalle periferiche.
+
+\end{enumerate}
+
+\noindent Vedremo principalmente tecniche di ordinamento interno, tra cui troviamo tecniche
+\begin{enumerate}
+    \item {\textbf{Elementari}}\\
+    Utilizzano nel caso peggiore un numero quadratico di confronti
+    \begin{itemize}
+        \item Per selezione ({\emph{SelectionSort}})
+        \item Per inserimento ({\emph{InsertionSort}})
+        \item A bolle ({\emph{BubbleSort}})
+    \end{itemize}
+
+    \item {\textbf{Avanzate}}\\
+    Utilizzano un numero di confronti dell'ordine di $n \log n$ (tranne {\emph{QuickSort}}, il cui
+    caso peggiore risulta però molto raro)
+    \begin{itemize}
+        \item Per fusione ({\emph{MergeSort}})
+        \item Veloce ({\emph{QuickSort}})
+        \item Basato su heap ({\emph{HeapSort}})
+    \end{itemize}
+\end{enumerate}
+\clearpage
+
+

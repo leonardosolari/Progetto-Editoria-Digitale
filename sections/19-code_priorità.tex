@@ -1,0 +1,32 @@
+\section{Code con priorità}
+Utilizzando gli heap e le operazioni su di essi descritte in precedenza, si possono
+implementare delle strutture a coda in cui gli elementi vengono prelevati con un criterio di priorità. 
+Solitamente la priorità è indicata da una chiave numerica con la convenzione
+che \emph{Chiavi inferiori indicano priorità più alta}. Pertanto prelevare il primo elemento, cioè quello
+con priorità più alta, equivale a prelevare quello con chiave minima (numero più basso).\\
+Consideriamo le seguenti operazioni:
+\begin{itemize}
+    \item \texttt{findMin()}\\
+    Restituisce l'elemento minimo della coda (senza rimuoverlo)
+    \item \texttt{deleteMin()}\\
+    Rimuove l'elemento minimo della coda e lo restituisce.
+    \item \texttt{insert(elem $e$, chiave $k$)}\\
+    Inserisce nella coda un elemento $e$ con associata una chiave (priorità) $k$.
+    \item \texttt{delete(elem $e$)}\\
+    Cancella l'elemento $e$ dalla coda.
+    \item \texttt{changeKey(elem $e$, chiave $d$)}\\
+    Modifica la priorità dell'elemento $e$, assegnando come nuovo valore $d$.
+\end{itemize}
+
+\noindent Le code con priorità possono essere implementate utilizzando dei \emph{Min-heap}. Come nell'implementazione
+di \texttt{heapSort}, lo heap può essere rappresentato mediante un array (o meglio la prima parte 
+di un array, lasciando spazio nella seconda per eventuali inserimenti).
+Se la coda contiene $n$ elementi e assumendo il criterio di costo uniforme, 
+l'operazione di prelevare il primo elemento può essere effettuata in tempo costante,
+mentre le altre operazioni \texttt{deleteMin} e \texttt{insert} in tempo $O(\log n)$.
+Anche le operazioni \texttt{delete} e \texttt{changeKey} possono essere effettuate in
+$O(\log n)$, ma solo se è nota nello heap la posizione dell'elemento da cancellare o modificare.
+Per evitare di cercare tale posizione, si può tenere una struttura ausiliaria che fornisca,
+per ogni elemento, la sua posizione all'interno dello heap. Ogni volta che si
+manipola lo heap la struttura va aggiornata.
+\clearpage

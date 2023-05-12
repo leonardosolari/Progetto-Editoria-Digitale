@@ -1,0 +1,146 @@
+\section[Complessità Computazionale]{Classificazione dei problemi e complessità computazionale}
+Abbiamo un problema e vogliamo progettare uno o più algoritmi per risolverlo.
+Quando analizzo l'algoritmo e sono certo che funzioni vado a fare una stima delle risorse, solitamente tempo
+e spazio, ma non solo.
+Useremo il simbolo $\pi$ per riferirci ad un problema.\\
+\begin{itemize}
+\item \textbf{Limitazione superiore} (upper bound) f: $\mathbb{N} \rightarrow \mathbb{N}$\\
+$f(n)$ risorsa $r$ è \emph{sufficiente} per risolvere $\pi$ se esiste un algoritmo $\mathcal{A}$
+che risolve $\pi$ utilizzando su ogni input di lunghezza $n$ al più $f(n)$ risorsa $r$.\\
+\item \textbf{Limitazione inferiore} (lower bound) g: $\mathbb{N} \rightarrow \mathbb{N}$\\
+$g(n)$ risorsa $r$ è \emph{necessaria} per risolvere $\pi$ se per ogni algoritmo $\mathcal{A}$ che 
+risolve $\pi$ esiste un input di lunghezza $n$ su cui $\mathcal{A}$ utilizza almeno $g(n)$ risorsa $r$.\\
+\end{itemize}
+\noindent Per fare un esempio, tra gli algoritmi di ordinamento $\Theta(n^2)$ rappresenta un upper bound (\texttt{insertionSort})
+e $\Theta(n \log n)$ rappresenta un lower bound.
+
+
+Un algoritmo è ottimale quando lower bound ed upper bound coincidono.
+\subsection{Classi di complessità}
+Siano\\
+s,t : $\mathbb{N} \rightarrow \mathbb{N}$ due funzioni.\\
+Una \emph{classe di complessità} è l'insieme dei problemi che possono essere risolti utilizzando la
+"stessa" quantità di una determinata risorsa. (stessa è tra virgolette perchè non
+ci basiamo su un valore preciso ma su una categoria più ampia).
+Abbiamo innanzitutto la classe \textbf{P}, che è una classe di problemi 
+$\pi$ che ammettono un algoritmo risolutivo che utilizza tempo polinomiale ($n^{O(1)}$).
+Un esempio di un problema che non appartiene alla classe \textbf{P} è quello del commesso viaggiatore, ma
+la maggior parte di quelli che abbiamo visto appartiene a questa classe.
+Questo ci fa capire che una classe può contenere problemi di tipologie molto diverse.
+Troviamo per esempio problemi di ricerca (albero ricoprente), problemi di ottimizzazione (albero ricoprente minimo),
+e problemi di decisione. Un problema di decisione si può risolvere tramite un problema di ottimizzazione.
+I problemi di decisione ci permettono di confrontare in maniera molto semplice problemi apparentemente diversi.
+Spesso poi il problema di decisione ci permette di risolvere senza troppa fatica 
+il problema di ottimizzazione associato.\\
+Per esempio:
+\begin{itemize}
+    \item Ottimizzazione: dato un grafo trovare l'albero ricoprente minimo
+    \item Decisione: dato un grafo, esiste l'albero ricoprente del grafo di peso $\le K$? 
+\end{itemize}
+
+\noindent Se $\pi$ è un problema di decisione e $\mathcal{A}$ è un algoritmo, $\mathcal{A}$ risolve $\pi$ quando
+su input $x$ $\mathcal{A}$ restituisce 1 se e solo se $\pi(x) = 1$.\\
+$\mathcal{A}$ risolve $\pi$ in tempo $t(n)$ e spazio $s(n)$ se e solo se 
+$\mathcal{A}$ risolve $\pi$ utilizzando al più tempo $t(n)$ e al più spazio $s(n)$ su 
+ogni input di lunghezza $n$.\\
+Possiamo formalizzare questi concetti e vedere alcune classi di complessità:
+\begin{itemize}
+    \item \textbf{TIME}($t(n)$) = classe di problemi di decisione risolvibili in tempo $O(t(n))$
+    \item \textbf{SPACE}($t(n)$) = classe di problemi di decisione risolvibili in spazio $O(s(n))$
+    \item \textbf{CLASSE P} = $U_{c = 0}^{\infty}$ \textbf{TIME}($n^c$) (classe considerata risolvibile a tutti gli effetti)
+    \item \textbf{PSPACE} = $U_{c = 0}^{\infty}$ \textbf{SPACE}($n^c$) spazio polinomiale
+    \item \textbf{EXPTIME} = $U_{c = 0}^{\infty}$ \textbf{TIME}($2^{n^c}$) tempo esponenziale
+\end{itemize}
+
+\noindent Esistono alcune relazioni tra lo spazio utilizzato ed il tempo utilizzato da un algoritmo:
+\begin{itemize}
+    \item tempo polinomiale $\Rightarrow$ spazio polinomiale, quindi \textbf{P} $\subseteq$ \textbf{PSPACE}
+    \item spazio polinomiale $\Rightarrow$ tempo esponenziale, quindi \textbf{PSPACE} $\subseteq$ \textbf{EXPTIME}
+\end{itemize}
+
+\noindent Da queste due considerazioni deduco che \textbf{P} $\subseteq$ \textbf{PSPACE} $\subseteq$ \textbf{EXPTIME}
+
+\subsection{Problemi NP-completi}
+Sono i problemi più difficili nella classe \textbf{NP} (problemi non deterministici in tempo polinomiale).
+Vediamo alcuni esempi:
+\subsubsection*{Problema delle partizioni}
+Dato un insieme finito di oggetti, trovare due sottoinsiemi tali che la somma degli elementi dei due sottoinsiemi
+sia uguale. Il tempo necessario per il calcolo delle partizioni è circa $2^n$ quindi ricade
+in \textbf{EXPTIME}
+
+\subsubsection*{Problema delle cricche}
+Dato un grafo non orientato e un intero $k$, stabilire se esiste un sottografo completo
+con $k$ vertici. La verifica avviene in tempo polinomiale, ma il costo della ricerca effettiva è
+$\binom{n}{k}$ che può essere anche esponenziale.
+
+\subsubsection{Problema soddisfacibilità (SODD)}
+Istanza: Formula booleana $\Phi$ in forma normale congiuntiva con insieme di variabili $V$.\\
+Questione: Esiste un assegnamento alle variabili in $V$ che rende vera $\Phi$, cioè tale che $\Phi(f) = 1$.\\
+Per decidere se $\Phi$ è soddisfacibile proviamo tutti i possibili assegnamenti di valori alle variabili.
+Quando si dice che la questione è vera e la clausola è soddisfacibile, bisogna portare il 
+certificato, cioè la soluzione che risolve la formula.
+Anche in questo caso verificare il problema è piuttosto semplice ma trovare la soluzione 
+richiede tempo esponenziale.
+Introduciamo il termine \emph{non deterministico}, ovvero un concetto utilizzato 
+negli automi per definire la scelta di soluzione "indovinata".\\
+\begin{algorithm}
+    \caption{Problema di soddisfacibilità}
+    \Indm\textbf{Algoritmo} \emph{sodd}($\Phi(x_1...x_n)$)\\
+    \Indp\For{$i \leftarrow 1$ \textbf{to} $n$}{
+        $z \leftarrow$ indovina un valore in $\lbrace 0,1 \rbrace$\\
+    }
+    $r \leftarrow$ valore della formula $\Phi(z_0...z_n)$ \texttt{/* verifica */}\\
+    \Return{$r$}
+\end{algorithm}\\
+La verifica è polinomiale, ma cosa possiamo dire della computazione non deterministica di \emph{indovina}? 
+Introduciamo la classe \textbf{NP} in cui abbiamo certificati verificabili 
+in tempo polinomiale (ricordiamo che stiamo sempre parlando di problemi di decisione).\\
+Chiamiamo \textbf{NTIME} di $f(n)$ la classe dei problemi che possono essere 
+risolti da algoritmi non deterministici in tempo $V(f(n))$.\\
+(\textbf{NP} sta per "Non Deterministic P" e \textbf{NON} "Non Polinomiale"!)\\
+\textbf{NP} = $U^{\infty}_{c = 0}$ \textbf{NTIME}($n^c$)\\
+
+\subsection{Relazioni tra classi di complessità}
+Anche i problemi della partizione e della cricca sono risolvibili con un algoritmo \textbf{NP} in tempo $O(n)$ e $O(n^2)$, hanno le stesse caratteristiche
+di SODD e quindi appartengono alla classe \textbf{NP}.\\
+Lo stesso discorso fatto per \textbf{NSPACE} potremmo riprenderlo per \textbf{NPSPACE}.
+\begin{center}
+    Ogni algoritmo deterministico è un caso particolare di un algoritmo non deterministico
+\end{center}
+Possiamo quindi concludere che 
+\begin{center}
+    \textbf{P} $\subseteq$ \textbf{NP} $\subseteq$ \textbf{PSPACE} $\subseteq$ \textbf{EXPTIME}
+\end{center}
+Vogliamo ora dimostrare che \textbf{P} $\neq$ \textbf{NP}. Esiste qualcosa che sta in \textbf{NP} ma non in \textbf{P}?
+Questi problemi sono detti NP-completi.\\
+Supponiamo di avere due problemi $\pi_1 : I_1 \rightarrow \lbrace 0,1 \rbrace$ e $\pi_2 : I_2 \rightarrow \lbrace 0,1 \rbrace$.\\
+$\pi_1$ è \emph{riconducibile} a $\pi_2$ se esiste f: $I_1 \rightarrow I_2$ tale che:
+\begin{itemize}
+    \item Per ogni $x \in I_1$ $\pi_1(x) = 1$ se e solo se $\pi_2(f(x)) = 1$
+    \item $F$ è calcolabile in tempo polinomiale (nella lunghezza dell'input) da un algoritmo deterministico
+\end{itemize}
+
+La funzione $f$ è detta \emph{riduzione polinomiale}.\\
+La riduzione trasforma un problema in un problema di un altro tipo, purchè 
+se la risposta a $\pi_1$ è 1 anche la risposta a $\pi_2$ è 1, in tempo di soluzione polinomiale.\\
+\textbf{Proprietà fondamentale}:
+\begin{center}
+    Se $\pi_1 \le \pi_2$ (è riduzione polinomiale) e $\pi_2 \in P$ allora $\pi_1 \in P$.
+\end{center}
+
+\noindent Ora possiamo definire formalmente i problemi NP-completi:
+\begin{enumerate}
+    \item $\pi$ problema di decisione è \textbf{NP-HARD} se per ogni $\pi' \in NP \rightarrow \pi' \le_p \pi$
+    \item $\pi$ è NP-completo se è \textbf{NP-HARD} e $\in$ \textbf{NP} 
+\end{enumerate}
+
+\noindent Qualcuno è riuscito a dimostrare che SODD non è NP-completo.\\
+Alcuni esempi di problemi NP-completi sono:
+\begin{itemize}
+    \item Cammino Hamiltoniano
+    \item SODD3 (clausole grandi solo 3)
+    \item Partizione
+    \item Commesso viaggiatore
+    \item Cammino massimo
+\end{itemize}
+\clearpage

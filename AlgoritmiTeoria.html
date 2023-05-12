@@ -1,0 +1,3573 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Leonardo Solari" />
+  <title>Algoritmi e Strutture Dati</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 40em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Algoritmi e Strutture Dati</h1>
+<h2>Dispense non ufficiali</h2>
+<p class="author">Leonardo Solari</p>
+<img src="images/unimi.png" width="100" height="100"/>
+</figure>
+<h3>Università degli Studi di Milano</h3>
+<h3>Dipartimento di Informatica</h3>
+</header>
+
+
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#prefazione" id="toc-prefazione">Prefazione</a></li>
+<li><a href="#introduzione" id="toc-introduzione"><span
+class="toc-section-number">1</span> Introduzione</a>
+<ul>
+<li><a href="#algoritmica" id="toc-algoritmica"><span
+class="toc-section-number">1.1</span> Algoritmica</a></li>
+<li><a href="#pseudocodice" id="toc-pseudocodice"><span
+class="toc-section-number">1.2</span> Pseudocodice</a></li>
+<li><a href="#analisi-e-progettazione-di-algoritmi"
+id="toc-analisi-e-progettazione-di-algoritmi"><span
+class="toc-section-number">1.3</span> Analisi e progettazione di
+algoritmi</a></li>
+<li><a href="#notazioni-asintotiche"
+id="toc-notazioni-asintotiche"><span
+class="toc-section-number">1.4</span> Notazioni asintotiche</a>
+<ul>
+<li><a href="#limitazione-superiore"
+id="toc-limitazione-superiore"><span
+class="toc-section-number">1.4.1</span> Limitazione superiore</a></li>
+<li><a href="#limitazione-inferiore"
+id="toc-limitazione-inferiore"><span
+class="toc-section-number">1.4.2</span> Limitazione inferiore</a></li>
+<li><a href="#stesso-ordine-di-grandezza"
+id="toc-stesso-ordine-di-grandezza"><span
+class="toc-section-number">1.4.3</span> Stesso ordine di
+grandezza</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#criterio-di-costo" id="toc-criterio-di-costo"><span
+class="toc-section-number">2</span> Criterio di costo</a>
+<ul>
+<li><a href="#costo-uniforme" id="toc-costo-uniforme"><span
+class="toc-section-number">2.1</span> Costo uniforme</a></li>
+<li><a href="#costo-logaritmico" id="toc-costo-logaritmico"><span
+class="toc-section-number">2.2</span> Costo logaritmico</a></li>
+</ul></li>
+<li><a href="#ricerca-in-un-array" id="toc-ricerca-in-un-array"><span
+class="toc-section-number">3</span> Ricerca in un array</a>
+<ul>
+<li><a href="#ricerca-sequenziale" id="toc-ricerca-sequenziale"><span
+class="toc-section-number">3.1</span> Ricerca sequenziale</a></li>
+<li><a href="#ricerca-binaria-o-dicotomica"
+id="toc-ricerca-binaria-o-dicotomica"><span
+class="toc-section-number">3.2</span> Ricerca binaria o dicotomica</a>
+<ul>
+<li><a href="#alcune-note-sullo-pseudocodice"
+id="toc-alcune-note-sullo-pseudocodice"><span
+class="toc-section-number">3.2.1</span> Alcune note sullo
+pseudocodice</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#algoritmi-di-ordinamento-o-sorting"
+id="toc-algoritmi-di-ordinamento-o-sorting"><span
+class="toc-section-number">4</span> Algoritmi di ordinamento o
+sorting</a></li>
+<li><a href="#selection-sort" id="toc-selection-sort"><span
+class="toc-section-number">5</span> Selection Sort</a>
+<ul>
+<li><a href="#numero-di-confronti" id="toc-numero-di-confronti">Numero
+di confronti</a></li>
+<li><a href="#spazio" id="toc-spazio">Spazio</a></li>
+</ul></li>
+<li><a href="#insertion-sort" id="toc-insertion-sort"><span
+class="toc-section-number">6</span> Insertion Sort</a>
+<ul>
+<li><a href="#numero-di-confronti-1"
+id="toc-numero-di-confronti-1">Numero di confronti</a></li>
+<li><a href="#spazio-1" id="toc-spazio-1">Spazio</a></li>
+</ul></li>
+<li><a href="#bubble-sort" id="toc-bubble-sort"><span
+class="toc-section-number">7</span> Bubble Sort</a>
+<ul>
+<li><a href="#esempio-di-esecuzione-versione-base"
+id="toc-esempio-di-esecuzione-versione-base">Esempio di esecuzione
+versione base</a></li>
+<li><a href="#versione-migliorata" id="toc-versione-migliorata">Versione
+migliorata</a></li>
+<li><a href="#esempio-di-esecuzione-versione-migliorata"
+id="toc-esempio-di-esecuzione-versione-migliorata">Esempio di esecuzione
+versione migliorata</a></li>
+<li><a href="#numero-di-confronti-2"
+id="toc-numero-di-confronti-2">Numero di confronti</a></li>
+<li><a href="#spazio-2" id="toc-spazio-2">Spazio</a></li>
+<li><a href="#una-considerazione-su-confronti-e-spostamenti"
+id="toc-una-considerazione-su-confronti-e-spostamenti"><span
+class="toc-section-number">7.1</span> Una considerazione su confronti e
+spostamenti</a></li>
+</ul></li>
+<li><a href="#merge-sort" id="toc-merge-sort"><span
+class="toc-section-number">8</span> Merge Sort</a>
+<ul>
+<li><a href="#numero-di-confronti-3"
+id="toc-numero-di-confronti-3">Numero di confronti</a></li>
+<li><a href="#tempo-di-calcolo" id="toc-tempo-di-calcolo">Tempo di
+calcolo</a></li>
+<li><a href="#implementazione"
+id="toc-implementazione">Implementazione</a></li>
+<li><a href="#spazio-3" id="toc-spazio-3">Spazio</a></li>
+</ul></li>
+<li><a href="#quick-sort" id="toc-quick-sort"><span
+class="toc-section-number">9</span> Quick Sort</a>
+<ul>
+<li><a href="#partiziona" id="toc-partiziona"><span
+class="toc-section-number">9.1</span> Partiziona</a></li>
+<li><a href="#numero-di-confronti-4"
+id="toc-numero-di-confronti-4">Numero di confronti</a>
+<ul>
+<li><a href="#caso-peggiore" id="toc-caso-peggiore">Caso
+peggiore</a></li>
+<li><a href="#caso-migliore" id="toc-caso-migliore">Caso
+migliore</a></li>
+<li><a href="#caso-medio" id="toc-caso-medio">Caso medio</a></li>
+<li><a href="#spazio-di-lavoro" id="toc-spazio-di-lavoro">Spazio di
+lavoro</a></li>
+<li><a href="#alcune-osservazioni" id="toc-alcune-osservazioni">Alcune
+osservazioni</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#strutture-dati" id="toc-strutture-dati"><span
+class="toc-section-number">10</span> Strutture dati</a></li>
+<li><a href="#liste-concatenate-lineari"
+id="toc-liste-concatenate-lineari"><span
+class="toc-section-number">11</span> Liste concatenate lineari</a>
+<ul>
+<li><a href="#operazioni" id="toc-operazioni"><span
+class="toc-section-number">11.1</span> Operazioni</a></li>
+</ul></li>
+<li><a href="#stack-pila" id="toc-stack-pila"><span
+class="toc-section-number">12</span> Stack (Pila)</a></li>
+<li><a href="#queue-coda" id="toc-queue-coda"><span
+class="toc-section-number">13</span> Queue (Coda)</a></li>
+<li><a href="#alberi" id="toc-alberi"><span
+class="toc-section-number">14</span> Alberi</a>
+<ul>
+<li><a href="#rappresentazione-di-alberi"
+id="toc-rappresentazione-di-alberi"><span
+class="toc-section-number">14.1</span> Rappresentazione di alberi</a>
+<ul>
+<li><a href="#vettore-dei-padri" id="toc-vettore-dei-padri"><span
+class="toc-section-number">14.1.1</span> Vettore dei padri</a></li>
+<li><a
+href="#rappresentazioni-collegate-puntatori-ai-figli-e-lista-dei-fratelli"
+id="toc-rappresentazioni-collegate-puntatori-ai-figli-e-lista-dei-fratelli"><span
+class="toc-section-number">14.1.2</span> Rappresentazioni collegate:
+puntatori ai figli e lista dei fratelli</a></li>
+</ul></li>
+<li><a href="#visite-di-alberi" id="toc-visite-di-alberi"><span
+class="toc-section-number">14.2</span> Visite di alberi</a></li>
+</ul></li>
+<li><a href="#alberi-binari-di-ricerca"
+id="toc-alberi-binari-di-ricerca"><span
+class="toc-section-number">15</span> Alberi binari di ricerca</a>
+<ul>
+<li><a href="#operazioni-1" id="toc-operazioni-1"><span
+class="toc-section-number">15.1</span> Operazioni</a></li>
+</ul></li>
+<li><a href="#altri-tipi-di-alberi" id="toc-altri-tipi-di-alberi"><span
+class="toc-section-number">16</span> Altri tipi di alberi</a>
+<ul>
+<li><a href="#alberi-perfettamente-bilanciati"
+id="toc-alberi-perfettamente-bilanciati"><span
+class="toc-section-number">16.1</span> Alberi perfettamente
+bilanciati</a></li>
+<li><a href="#alberi-bilanciati-in-altezza-o-avl"
+id="toc-alberi-bilanciati-in-altezza-o-avl"><span
+class="toc-section-number">16.2</span> Alberi bilanciati in altezza o
+AVL</a>
+<ul>
+<li><a href="#costo-operazioni" id="toc-costo-operazioni">Costo
+operazioni</a></li>
+</ul></li>
+<li><a href="#alberi-2-3" id="toc-alberi-2-3"><span
+class="toc-section-number">16.3</span> Alberi 2-3</a>
+<ul>
+<li><a href="#operazioni-2" id="toc-operazioni-2"><span
+class="toc-section-number">16.3.1</span> Operazioni</a></li>
+<li><a href="#costo-operazioni-1" id="toc-costo-operazioni-1"><span
+class="toc-section-number">16.3.2</span> Costo operazioni</a></li>
+</ul></li>
+<li><a href="#b-alberi" id="toc-b-alberi"><span
+class="toc-section-number">16.4</span> B-Alberi</a>
+<ul>
+<li><a href="#costo-operazioni-2" id="toc-costo-operazioni-2">Costo
+operazioni</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#heapsort" id="toc-heapsort"><span
+class="toc-section-number">17</span> Heapsort</a>
+<ul>
+<li><a href="#la-struttura-dati-heap"
+id="toc-la-struttura-dati-heap"><span
+class="toc-section-number">17.1</span> La struttura dati
+<em>Heap</em></a></li>
+<li><a href="#sistemare-uno-heap" id="toc-sistemare-uno-heap"><span
+class="toc-section-number">17.2</span> Sistemare uno heap</a>
+<ul>
+<li><a href="#numero-di-confronti-5"
+id="toc-numero-di-confronti-5">Numero di confronti</a></li>
+</ul></li>
+<li><a href="#creazione-di-uno-heap"
+id="toc-creazione-di-uno-heap"><span
+class="toc-section-number">17.3</span> Creazione di uno heap</a>
+<ul>
+<li><a href="#soluzione-ricorsiva"
+id="toc-soluzione-ricorsiva">Soluzione ricorsiva</a></li>
+<li><a href="#soluzione-iterativa"
+id="toc-soluzione-iterativa">Soluzione iterativa</a></li>
+<li><a href="#numero-di-confronti-6"
+id="toc-numero-di-confronti-6">Numero di confronti</a></li>
+</ul></li>
+<li><a href="#schema-di-heapsort" id="toc-schema-di-heapsort"><span
+class="toc-section-number">17.4</span> Schema di
+<code>heapSort</code></a>
+<ul>
+<li><a href="#numero-di-confronti-7"
+id="toc-numero-di-confronti-7">Numero di confronti</a></li>
+</ul></li>
+<li><a href="#ordinamento-in-loco-di-array-tramite-heapsort"
+id="toc-ordinamento-in-loco-di-array-tramite-heapsort"><span
+class="toc-section-number">17.5</span> Ordinamento in loco di array
+tramite <code>heapSort</code></a></li>
+<li><a href="#spazio-4" id="toc-spazio-4"><span
+class="toc-section-number">17.6</span> Spazio</a></li>
+<li><a href="#costo-operazioni-su-heap"
+id="toc-costo-operazioni-su-heap"><span
+class="toc-section-number">17.7</span> Costo operazioni su heap</a></li>
+<li><a href="#riassumendo" id="toc-riassumendo"><span
+class="toc-section-number">17.8</span> Riassumendo</a></li>
+</ul></li>
+<li><a href="#riassunto-ordinamento"
+id="toc-riassunto-ordinamento"><span
+class="toc-section-number">18</span> Riassunto ordinamento</a>
+<ul>
+<li><a href="#numero-minimo-di-confronti"
+id="toc-numero-minimo-di-confronti"><span
+class="toc-section-number">18.1</span> Numero minimo di
+confronti</a></li>
+</ul></li>
+<li><a href="#code-con-priorità" id="toc-code-con-priorità"><span
+class="toc-section-number">19</span> Code con priorità</a></li>
+<li><a href="#algoritmi-di-ordinamento-non-basati-su-confronti"
+id="toc-algoritmi-di-ordinamento-non-basati-su-confronti"><span
+class="toc-section-number">20</span> Algoritmi di ordinamento non basati
+su confronti</a>
+<ul>
+<li><a href="#integersort" id="toc-integersort"><span
+class="toc-section-number">20.1</span> IntegerSort</a>
+<ul>
+<li><a href="#complessità" id="toc-complessità">Complessità</a></li>
+</ul></li>
+<li><a href="#bucketsort" id="toc-bucketsort"><span
+class="toc-section-number">20.2</span> BucketSort</a>
+<ul>
+<li><a href="#complessità-1" id="toc-complessità-1">Complessità</a></li>
+</ul></li>
+<li><a href="#radixsort" id="toc-radixsort"><span
+class="toc-section-number">20.3</span> RadixSort</a>
+<ul>
+<li><a href="#complessità-2" id="toc-complessità-2">Complessità</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#rappresentazione-di-partizioni-union-find"
+id="toc-rappresentazione-di-partizioni-union-find"><span
+class="toc-section-number">21</span> Rappresentazione di partizioni
+(UNION-FIND)</a>
+<ul>
+<li><a href="#operazioni-quickfind" id="toc-operazioni-quickfind"><span
+class="toc-section-number">21.1</span> Operazioni QUICKFIND</a></li>
+<li><a href="#operazioni-quickunion"
+id="toc-operazioni-quickunion"><span
+class="toc-section-number">21.2</span> Operazioni QUICKUNION</a></li>
+<li><a href="#algoritmo-quickfind-bilanciato"
+id="toc-algoritmo-quickfind-bilanciato"><span
+class="toc-section-number">21.3</span> Algoritmo QUICKFIND
+bilanciato</a></li>
+<li><a href="#algoritmo-quickunion-bilanciato"
+id="toc-algoritmo-quickunion-bilanciato"><span
+class="toc-section-number">21.4</span> Algoritmo QUICKUNION
+bilanciato</a>
+<ul>
+<li><a href="#union-by-rank" id="toc-union-by-rank">Union by
+rank</a></li>
+</ul></li>
+<li><a href="#compressione-di-cammino"
+id="toc-compressione-di-cammino"><span
+class="toc-section-number">21.5</span> Compressione di cammino</a></li>
+<li><a href="#riepilogo-costi-operazioni"
+id="toc-riepilogo-costi-operazioni"><span
+class="toc-section-number">21.6</span> Riepilogo costi
+operazioni</a></li>
+</ul></li>
+<li><a href="#grafi" id="toc-grafi"><span
+class="toc-section-number">22</span> Grafi</a>
+<ul>
+<li><a href="#albero-di-supporto-o-ricoprente-spanning-tree"
+id="toc-albero-di-supporto-o-ricoprente-spanning-tree">Albero di
+supporto o ricoprente (Spanning tree)</a></li>
+<li><a href="#rappresentazione-di-grafi"
+id="toc-rappresentazione-di-grafi"><span
+class="toc-section-number">22.1</span> Rappresentazione di grafi</a>
+<ul>
+<li><a href="#lista-di-archi" id="toc-lista-di-archi"><span
+class="toc-section-number">22.1.1</span> Lista di archi</a></li>
+<li><a href="#lista-di-adiacenza" id="toc-lista-di-adiacenza"><span
+class="toc-section-number">22.1.2</span> Lista di adiacenza</a></li>
+<li><a href="#lista-di-incidenza" id="toc-lista-di-incidenza"><span
+class="toc-section-number">22.1.3</span> Lista di incidenza</a></li>
+<li><a href="#matrice-di-adiacenza" id="toc-matrice-di-adiacenza"><span
+class="toc-section-number">22.1.4</span> Matrice di adiacenza</a></li>
+<li><a href="#matrice-di-incidenza" id="toc-matrice-di-incidenza"><span
+class="toc-section-number">22.1.5</span> Matrice di incidenza</a></li>
+</ul></li>
+<li><a href="#attraversamento-di-grafi"
+id="toc-attraversamento-di-grafi"><span
+class="toc-section-number">22.2</span> Attraversamento di grafi</a>
+<ul>
+<li><a href="#visita-in-ampiezza" id="toc-visita-in-ampiezza"><span
+class="toc-section-number">22.2.1</span> Visita in ampiezza</a></li>
+<li><a href="#visita-in-profondità" id="toc-visita-in-profondità"><span
+class="toc-section-number">22.2.2</span> Visita in profondità</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#problemi-di-ottimizzazione-e-algoritmi-greedy"
+id="toc-problemi-di-ottimizzazione-e-algoritmi-greedy"><span
+class="toc-section-number">23</span> Problemi di ottimizzazione e
+algoritmi greedy</a>
+<ul>
+<li><a href="#grafi-pesati" id="toc-grafi-pesati"><span
+class="toc-section-number">23.0.1</span> Grafi pesati</a></li>
+<li><a href="#problemi-di-ottimizzazione"
+id="toc-problemi-di-ottimizzazione"><span
+class="toc-section-number">23.0.2</span> Problemi di
+ottimizzazione</a></li>
+<li><a href="#tecnica-greedy" id="toc-tecnica-greedy"><span
+class="toc-section-number">23.0.3</span> Tecnica greedy</a></li>
+<li><a href="#programmazione-dinamica"
+id="toc-programmazione-dinamica"><span
+class="toc-section-number">23.0.4</span> Programmazione
+dinamica</a></li>
+<li><a href="#albero-ricoprente-minimo"
+id="toc-albero-ricoprente-minimo"><span
+class="toc-section-number">23.1</span> Albero ricoprente minimo</a>
+<ul>
+<li><a href="#algoritmo-di-kruskal" id="toc-algoritmo-di-kruskal"><span
+class="toc-section-number">23.1.1</span> Algoritmo di Kruskal</a></li>
+<li><a href="#algoritmo-di-prim" id="toc-algoritmo-di-prim"><span
+class="toc-section-number">23.1.2</span> Algoritmo di Prim</a></li>
+<li><a href="#tempo-di-calcolo-1" id="toc-tempo-di-calcolo-1">Tempo di
+calcolo</a></li>
+</ul></li>
+<li><a href="#cammini-minimi" id="toc-cammini-minimi"><span
+class="toc-section-number">23.2</span> Cammini minimi</a>
+<ul>
+<li><a href="#algoritmo-di-floyd-warshall"
+id="toc-algoritmo-di-floyd-warshall"><span
+class="toc-section-number">23.2.1</span> Algoritmo di
+Floyd-Warshall</a></li>
+<li><a href="#algoritmo-di-bellman-e-ford"
+id="toc-algoritmo-di-bellman-e-ford"><span
+class="toc-section-number">23.2.2</span> Algoritmo di Bellman e
+Ford</a></li>
+<li><a href="#algoritmo-di-dijsktra"
+id="toc-algoritmo-di-dijsktra"><span
+class="toc-section-number">23.2.3</span> Algoritmo di Dijsktra</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#dizionari-e-tabelle-hash"
+id="toc-dizionari-e-tabelle-hash"><span
+class="toc-section-number">24</span> Dizionari e tabelle hash</a>
+<ul>
+<li><a href="#funzioni-hash" id="toc-funzioni-hash"><span
+class="toc-section-number">24.1</span> Funzioni hash</a></li>
+<li><a href="#fattore-di-carico" id="toc-fattore-di-carico"><span
+class="toc-section-number">24.2</span> Fattore di carico</a></li>
+<li><a href="#gestione-delle-collisioni"
+id="toc-gestione-delle-collisioni"><span
+class="toc-section-number">24.3</span> Gestione delle
+collisioni</a></li>
+<li><a href="#gestione-esterna" id="toc-gestione-esterna"><span
+class="toc-section-number">24.4</span> Gestione esterna</a></li>
+<li><a href="#gestione-interna" id="toc-gestione-interna"><span
+class="toc-section-number">24.5</span> Gestione interna</a>
+<ul>
+<li><a href="#scansione-quadratica" id="toc-scansione-quadratica"><span
+class="toc-section-number">24.5.1</span> Scansione quadratica</a></li>
+<li><a href="#hashing-doppio" id="toc-hashing-doppio"><span
+class="toc-section-number">24.5.2</span> Hashing doppio</a></li>
+<li><a href="#operazioni-3" id="toc-operazioni-3"><span
+class="toc-section-number">24.5.3</span> Operazioni</a></li>
+<li><a href="#numero-di-confronti-8"
+id="toc-numero-di-confronti-8"><span
+class="toc-section-number">24.5.4</span> Numero di confronti</a></li>
+<li><a href="#re-hashing" id="toc-re-hashing"><span
+class="toc-section-number">24.5.5</span> Re-hashing</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#classificazione-dei-problemi-e-complessità-computazionale"
+id="toc-classificazione-dei-problemi-e-complessità-computazionale"><span
+class="toc-section-number">25</span> Classificazione dei problemi e
+complessità computazionale</a>
+<ul>
+<li><a href="#classi-di-complessità"
+id="toc-classi-di-complessità"><span
+class="toc-section-number">25.1</span> Classi di complessità</a></li>
+<li><a href="#problemi-np-completi" id="toc-problemi-np-completi"><span
+class="toc-section-number">25.2</span> Problemi NP-completi</a>
+<ul>
+<li><a href="#problema-delle-partizioni"
+id="toc-problema-delle-partizioni">Problema delle partizioni</a></li>
+<li><a href="#problema-delle-cricche"
+id="toc-problema-delle-cricche">Problema delle cricche</a></li>
+<li><a href="#problema-soddisfacibilità-sodd"
+id="toc-problema-soddisfacibilità-sodd"><span
+class="toc-section-number">25.2.1</span> Problema soddisfacibilità
+(SODD)</a></li>
+</ul></li>
+<li><a href="#relazioni-tra-classi-di-complessità"
+id="toc-relazioni-tra-classi-di-complessità"><span
+class="toc-section-number">25.3</span> Relazioni tra classi di
+complessità</a></li>
+</ul></li>
+</ul>
+</nav>
+<h1 class="unnumbered" id="prefazione">Prefazione</h1>
+<p>Le seguenti dispense nascono con lo scopo di fornire ai colleghi una
+fonte contenente un riassunto di tutti gli argomenti trattati nel corso
+di algoritmi e strutture dati tenuto dal professor Pighizzini. Per la
+creazione sono stati utilizzati i documenti PDF forniti dal professore
+dal quale sono stati estratti i frammenti di codice degli algoritmi e la
+loro spiegazione. Tali informazioni sono poi state integrate con appunti
+presi personalmente durante le lezioni e da materiale condiviso da altri
+colleghi.</p>
+<p>Queste dispense non sostituiscono il libro di testo e i materiali
+ufficiali forniti dal professore, bensì sono da considerarsi unicamente
+uno strumento integrativo.</p>
+<p>Parte del contenuto di queste dispense è stato riprodotto dai
+documenti del professor Pighizzini, che ne detiene la proprietà, per
+scopi istituzionali, come indicato dalla dicitura di copyrigth che viene
+qui riportata per intero.</p>
+<p>©2022 Giovanni Pighizzini</p>
+<p><span> Il contenuto di queste pagine è protetto dalle leggi sul
+copyright e dalle disposizioni dei trattati internazionali. Il titolo ed
+i copyright relativi alle pagine sono di proprietà dell’autore. Le
+pagine possono essere riprodotte ed utilizzate liberamente dagli
+studenti, dagli istituti di ricerca, scolastici e universitari afferenti
+al Ministero dell’Istruzione e al Ministero dell’Università e della
+Ricerca, per scopi istituzionali, non a fine di lucro. Ogni altro
+utilizzo o riproduzione (ivi incluse, ma non limitatamente a, le
+riproduzioni a mezzo stampa, su supporti magnetici o su reti di
+calcolatori) in toto o in parte è vietata, se non esplicitamente
+autorizzata per iscritto, a priori, da parte dell’autore. L’informazione
+contenuta in queste pagine è ritenuta essere accurata alla data della
+pubblicazione. Essa è fornita per scopi meramente didattici e non per
+essere utilizzata in progetti di impianti, prodotti, ecc. L’informazione
+contenuta in queste pagine è soggetta a cambiamenti senza preavviso.
+L’autore non si assume alcuna responsabilità per il contenuto di queste
+pagine (ivi incluse, ma non limitatamente a, la correttezza,
+completezza, applicabilità ed aggiornamento dell’informazione). In ogni
+caso non può essere dichiarata conformità all’informazione contenuta in
+queste pagine. In ogni caso questa nota di copyright non deve mai essere
+rimossa e deve essere riportata anche in utilizzi parziali. </span></p>
+<h1 data-number="1" id="introduzione"><span
+class="header-section-number">1</span> Introduzione</h1>
+<p>Un algoritmo è una strategia o un procedimento per risolvere un
+problema, uno schema o un procedimento sistematico di calcolo.
+Formalmente:</p>
+<div class="center">
+<p><span><strong>Un algoritmo è un insieme ordinato e finito di passi
+eseguibili e non ambigui che definiscono un procedimento che
+termina</strong></span></p>
+</div>
+<p>Matematicamente un algoritmo può essere visto come una funzione</p>
+<div class="center">
+<p><span class="math inline">\(f_a:D_I \to D_S\)</span></p>
+</div>
+<p>dove <span class="math inline">\(D_I\)</span> rappresenta il
+<span><strong>dominio delle istanze</strong></span> e <span
+class="math inline">\(D_S\)</span> il <span><strong>dominio delle
+soluzioni</strong></span>.<br />
+</p>
+<h2 data-number="1.1" id="algoritmica"><span
+class="header-section-number">1.1</span> Algoritmica</h2>
+<p>L’algoritmica si occupa di:</p>
+<ul>
+<li><p>Risoluzione di problemi <span
+class="math inline">\(\rightarrow\)</span>
+<strong>Sintesi</strong></p></li>
+<li><p>Trovare una strategia buona per risolvere i problemi <span
+class="math inline">\(\rightarrow\)</span> <strong>Analisi</strong>
+efficienza</p></li>
+<li><p>Stabilire se un problema è facile o difficile <span
+class="math inline">\(\rightarrow\)</span>
+<strong>Classificazione</strong> della complessità dei problemi</p></li>
+<li><p>Studio delle strutture dati utilizzate</p></li>
+<li><p>Definizione di nuovi modelli di calcolo</p></li>
+</ul>
+<p>L’algoritmica viene studiata per scrivere programmi. Ha due
+aspetti:</p>
+<ul>
+<li><p><strong>Pratico:</strong> un computer è inutile senza algoritmi e
+programmi</p></li>
+<li><p><strong>Teorico:</strong> gli algoritmi sono la base
+dell’informatica, sono uno strumento mentale e metodologico per
+risolvere i problemi.</p></li>
+</ul>
+<h2 data-number="1.2" id="pseudocodice"><span
+class="header-section-number">1.2</span> Pseudocodice</h2>
+<p>Per scrivere gli algoritmi useremo uno pseudocodice con strutture di
+controllo "Algol-like"</p>
+<img src="images/moltiplicazione.png" />
+</figure>
+<h2 data-number="1.3" id="analisi-e-progettazione-di-algoritmi"><span
+class="header-section-number">1.3</span> Analisi e progettazione di
+algoritmi</h2>
+<p>Esistono varie metodologie per progettare algoritmi. In base al tipo
+di utilizzo e alle operazioni che dovrò effettuare utilizzo strutture
+dati differenti. L’analisi e la progettazione di algoritmi si basano
+fondamentalmente su due fattori:</p>
+<ul>
+<li><p><span><strong>Correttezza</strong></span>: dato un algoritmo
+<span class="math inline">\(a\)</span> e un problema <span
+class="math inline">\(P\)</span>, dimostrare che <span
+class="math inline">\(a\)</span> risolve <span
+class="math inline">\(P\)</span></p></li>
+<li><p><span><strong>Efficienza</strong></span>: valutare la complessità
+di un algoritmo e la quantità di risorse utilizzate(tempo, spazio,
+energia, rete, ecc...)</p></li>
+</ul>
+<p>Per eseguire l’analisi di un algoritmo posso:</p>
+<ol>
+<li><p>Far girare il programma (<span
+class="math inline">\(testing\)</span>) <span
+class="math inline">\(\rightarrow\)</span> <span><strong>valutazione a
+posteriori</strong></span><br />
+Questo approccio ha alcuni problemi:</p>
+<ul>
+<li><p>Possono esistere infiniti ingressi possibili</p></li>
+<li><p>costo della codifica elevato</p></li>
+</ul></li>
+<li><p>Stima in fase di progettazione <span
+class="math inline">\(\rightarrow\)</span> <span><strong>valutazione a
+priori</strong></span><br />
+Per stimare il consumo di tempo di un programma assumo che ogni linea di
+codice costi tempo unitario.</p></li>
+</ol>
+<h2 data-number="1.4" id="notazioni-asintotiche"><span
+class="header-section-number">1.4</span> Notazioni asintotiche</h2>
+<p>Siano <span class="math inline">\(f\)</span> e <span
+class="math inline">\(g\)</span> due funzioni:</p>
+<div class="center">
+<p><span class="math inline">\(f,g: \mathbb{N} \to
+\mathbb{R^+}\)</span></p>
+</div>
+<h3 data-number="1.4.1" id="limitazione-superiore"><span
+class="header-section-number">1.4.1</span> Limitazione superiore</h3>
+<div class="center">
+<p><span class="math inline">\(f(n)\)</span> è O-grande di <span
+class="math inline">\(g(n)\)</span> se <span
+class="math inline">\(\exists c &gt; 0\)</span>, <span
+class="math inline">\(n_0 \in \mathbb{N}\)</span> <span
+class="math inline">\(|\)</span> <span class="math inline">\(\forall n
+&gt; n_0\)</span>: <span class="math inline">\(f(n) \le c \cdot
+g(n)\)</span></p>
+</div>
+<h3 data-number="1.4.2" id="limitazione-inferiore"><span
+class="header-section-number">1.4.2</span> Limitazione inferiore</h3>
+<div class="center">
+<p><span class="math inline">\(f(n)\)</span> è <span
+class="math inline">\(\Omega\)</span>-grande di <span
+class="math inline">\(g(n)\)</span> se <span
+class="math inline">\(\exists c &gt; 0\)</span>, <span
+class="math inline">\(n_0 \in \mathbb{N}\)</span> <span
+class="math inline">\(|\)</span> <span class="math inline">\(\forall n
+&gt; n_0\)</span>: <span class="math inline">\(f(n) \ge c \cdot
+g(n)\)</span></p>
+</div>
+<h3 data-number="1.4.3" id="stesso-ordine-di-grandezza"><span
+class="header-section-number">1.4.3</span> Stesso ordine di
+grandezza</h3>
+<div class="center">
+<p><span class="math inline">\(f(n)\)</span> è <span
+class="math inline">\(\Theta\)</span>-grande di <span
+class="math inline">\(g(n)\)</span> se <span
+class="math inline">\(\exists c, d &gt; 0\)</span>, <span
+class="math inline">\(n_0 \in \mathbb{N}\)</span> <span
+class="math inline">\(|\)</span> <span class="math inline">\(\forall n
+&gt; n_0\)</span>: <span class="math inline">\(c \cdot g(n) \le f(n) \le
+d \cdot g(n)\)</span></p>
+</div>
+<h1 data-number="2" id="criterio-di-costo"><span
+class="header-section-number">2</span> Criterio di costo</h1>
+<p>Suppongo di avere un algoritmo che trova il minimo in una sequenza di
+dati.</p>
+<p>Se la sequenza è lunga <span><em>n</em></span> elementi allora
+vengono fatti <span><em>n-1</em></span> confronti ed un numero di
+assegnamenti compreso tra <span><em>n</em></span> e
+<span><em>2n</em></span>.<br />
+Assumendo che queste operazioni vengano effettuate in tempo costante il
+tempo è <span class="math inline">\(O(n)\)</span>, quindi posso dire che
+è <span class="math inline">\(\Theta(n)\)</span>.<br />
+</p>
+<h2 data-number="2.1" id="costo-uniforme"><span
+class="header-section-number">2.1</span> Costo uniforme</h2>
+<p>Ogni istruzione elementare utilizza un’unità di tempo
+indipendentemente dalla grandezza degli operandi.</p>
+<p>Ogni variabile elementare utilizza un’unità di spazio
+indipendentemente dal valore contenuto.</p>
+<h2 data-number="2.2" id="costo-logaritmico"><span
+class="header-section-number">2.2</span> Costo logaritmico</h2>
+<p>Il tempo di calcolo di ciascuna operazione è proporzionale alla
+lunghezza dei valori coinvolti.</p>
+<h1 data-number="3" id="ricerca-in-un-array"><span
+class="header-section-number">3</span> Ricerca in un array</h1>
+<p><span><strong>Input:</strong></span> array <span
+class="math inline">\(A\)</span>, elemento <span
+class="math inline">\(x\)</span><br />
+<span><strong>Output:</strong></span></p>
+<ul>
+<li><p>indice <span class="math inline">\(i\)</span> t.c. <span
+class="math inline">\(A[i]\)</span> = <span
+class="math inline">\(x\)</span></p></li>
+<li><p>-1 se <span class="math inline">\(A\)</span> non contiene <span
+class="math inline">\(x\)</span></p></li>
+</ul>
+<h2 data-number="3.1" id="ricerca-sequenziale"><span
+class="header-section-number">3.1</span> Ricerca sequenziale</h2>
+<figure>
+<img src="images/1-1.png" />
+</figure>
+<p>Posso rendere l’algoritmo più "intelligente" cercando a partire dal
+fondo. In questo modo se l’elemento non è nell’array l’indice diventa
+automaticamente -1.</p>
+<figure>
+<img src="images/1-2.png" />
+</figure>
+<p>Tempo: <span class="math inline">\(\Theta(n)\)</span></p>
+<h2 data-number="3.2" id="ricerca-binaria-o-dicotomica"><span
+class="header-section-number">3.2</span> Ricerca binaria o
+dicotomica</h2>
+<p>Se ho un array ordinato posso usare un algoritmo di ricerca
+binaria.</p>
+<figure>
+<img src="images/1-3.png" />
+</figure>
+<figure>
+<img src="images/1-4.png" />
+</figure>
+<h3 data-number="3.2.1" id="alcune-note-sullo-pseudocodice"><span
+class="header-section-number">3.2.1</span> Alcune note sullo
+pseudocodice</h3>
+<ul>
+<li><p><span><em>Indici degli array</em></span><br />
+Quando si definisce un array (in questo caso nei parametri degli
+algoritmi o della funzione), il range di indici viene indicato qualora
+sia rilevante per la scrittura dell’algoritmo. Quando non sia rilevante
+o sia chiaro dal contesto, il range viene omesso (come, in questo
+esempio, per il parametro A della funzione ricercaRic).</p></li>
+<li><p><span><em>Operatori logici</em></span><br />
+Assumiamo che per congiunzione (<span><em>and</em></span>) e
+disgiunzione (<span><em>or</em></span>) sia utilizzata la
+<span><em>lazy-evaluation</em></span>. Pertanto in una condizione della
+forma <span class="math inline">\(a\)</span>
+<span><strong>and</strong></span> <span class="math inline">\(b\)</span>
+la condizione <span class="math inline">\(b\)</span> viene valutata solo
+se <span class="math inline">\(a\)</span> è vera, mentre in una
+condizione della forma <span class="math inline">\(a\)</span>
+<span><strong>or</strong></span> <span class="math inline">\(b\)</span>
+la seconda viene valutata solo se <span class="math inline">\(a\)</span>
+è falsa.</p></li>
+<li><p><span><em>Passaggio di parametri</em></span><br />
+Assumiamo che per i tipi semplici il passaggio di parametro avvenga
+sempre <span><em>per valore</em></span> mentre per i tipi strutturati
+avvenga il passaggio <span><em>per riferimento</em></span>.</p></li>
+</ul>
+<h1 data-number="4" id="algoritmi-di-ordinamento-o-sorting"><span
+class="header-section-number">4</span> Algoritmi di ordinamento o
+sorting</h1>
+<p>In questa sezione vediamo alcuni algoritmi che servono per ordinare
+vettori di strutture complesse come oggetti o record. Un particolare
+campo è scelto come <span><strong>chiave</strong></span> per
+l’ordinamento. Studieremo principalmente algoritmi di ordinamento basati
+su confronti tra chiavi e stimeremo la complessità di questi algoritmi
+in funzione della lunghezza del vettore da ordinare, calcolando prima di
+tutto il numero di confronti eseguiti.<br />
+Un algoritmo di ordinamento è detto
+<span><strong>stabile</strong></span> se preserva l’ordine relativo tra
+record con la medesima chiave. Esistono due tipologie di
+ordinamento:</p>
+<ol>
+<li><p><span><em>Ordinamento interno:</em></span><br />
+I dati da ordinare sono in memoria centrale <span
+class="math inline">\(\rightarrow\)</span> accesso diretto agli
+elementi</p></li>
+<li><p><span><em>Ordinamento esterno:</em></span><br />
+I dati da ordinare sono in memoria di massa <span
+class="math inline">\(\rightarrow\)</span> accesso ai blocchi di dati
+con possibile lentezza dovuta dall’hardware dalle periferiche.</p></li>
+</ol>
+<p>Vedremo principalmente tecniche di ordinamento interno, tra cui
+troviamo tecniche</p>
+<ol>
+<li><p><span><strong>Elementari</strong></span><br />
+Utilizzano nel caso peggiore un numero quadratico di confronti</p>
+<ul>
+<li><p>Per selezione (<span><em>SelectionSort</em></span>)</p></li>
+<li><p>Per inserimento (<span><em>InsertionSort</em></span>)</p></li>
+<li><p>A bolle (<span><em>BubbleSort</em></span>)</p></li>
+</ul></li>
+<li><p><span><strong>Avanzate</strong></span><br />
+Utilizzano un numero di confronti dell’ordine di <span
+class="math inline">\(n \log n\)</span> (tranne
+<span><em>QuickSort</em></span>, il cui caso peggiore risulta però molto
+raro)</p>
+<ul>
+<li><p>Per fusione (<span><em>MergeSort</em></span>)</p></li>
+<li><p>Veloce (<span><em>QuickSort</em></span>)</p></li>
+<li><p>Basato su heap (<span><em>HeapSort</em></span>)</p></li>
+</ul></li>
+</ol>
+<h1 data-number="5" id="selection-sort"><span
+class="header-section-number">5</span> Selection Sort</h1>
+<ol>
+<li><p>Prima del passo principale <span
+class="math inline">\(k\)</span>, con <span class="math inline">\(k =
+0,\dots, n - 1\)</span>, i primi <span class="math inline">\(k\)</span>
+elementi dell’array sono al loro posto definitivo, cioè sono ordinati
+tra loro e sono minori o uguali degli elementi successivi</p></li>
+<li><p>Si seleziona l’elemento che andrà collocato in posizione <span
+class="math inline">\(k\)</span>, cioè il minimo della parte non
+ordinata (quindi il minimo tra <span
+class="math inline">\(A[k],\dots,A[n-1]\)</span>)</p></li>
+<li><p>Lo si colloca in posizione <span
+class="math inline">\(k\)</span>, scambiandolo con l’elemento ivi
+presente</p></li>
+<li><p>In questo modo, dopo il passo principale <span
+class="math inline">\(k\)</span>, i primi <span
+class="math inline">\(k\)</span> elementi risultano collocati nella loro
+posizione definitiva.</p></li>
+</ol>
+<p>Dopo il passo <span class="math inline">\(n - 2\)</span> la parte non
+ordinata contiene solo un elemento e, in base al punto 1, questo è
+maggiore o uguale dei precedenti, e dunque si trova nella sua posizione
+definitiva. Pertanto non è necessario eseguire il passo <span
+class="math inline">\(n - 1\)</span></p>
+<figure>
+<img src="images/selectionsort.png" />
+</figure>
+<h3 class="unnumbered" id="numero-di-confronti">Numero di confronti</h3>
+<p>Nell’iterazione <span class="math inline">\(k\)</span> del ciclo
+principale viene ricercato il minimo della porzione di vettore da
+posizione <span class="math inline">\(k\)</span> a posizione <span
+class="math inline">\(n - 1\)</span>, effettuando quindi <span
+class="math inline">\(n-k-1\)</span> confronti. Sommando su tutte le
+iterazioni <span class="math inline">\(k\)</span> del ciclo principale
+otteniamo il numero totale di confronti <span
+class="math inline">\(\frac{n(n-1)}{2} = \Theta(n^2)\)</span>, che
+vengono eseguiti sempre indipendentemente dal contenuto dell’array.</p>
+<h3 class="unnumbered" id="spazio">Spazio</h3>
+<p>L’algoritmo, oltre all’array da ordinare, utilizza un numero costante
+di variabili. Pertanto la quantità di spazio aggiuntivo è costante.</p>
+<h1 data-number="6" id="insertion-sort"><span
+class="header-section-number">6</span> Insertion Sort</h1>
+<ol>
+<li><p>Si memorizza l’elemento <span class="math inline">\(A[k]\)</span>
+da sistemare in una variabile <span
+class="math inline">\(x\)</span></p></li>
+<li><p>Si ispeziona la porzione di array <span
+class="math inline">\(A[0..k-1]\)</span> <span><em>da destra verso
+sinistra</em></span>, spostando avanti di una posizione ogni elemento
+maggiore di <span class="math inline">\(x\)</span>, in modo da "fare
+posto" all’elemento da inserire</p></li>
+<li><p>Individuata la posizione in cui inserire <span
+class="math inline">\(x\)</span> (quindi quando si raggiunge un elemento
+che non è maggiore di <span class="math inline">\(x\)</span> o quando si
+è ispezionata tutta la porzione iniziale di array), si inserisce <span
+class="math inline">\(x\)</span> (gli elementi successivi sono già stati
+spostati durante il passo 3)</p></li>
+</ol>
+<figure>
+<img src="images/insertionsort.png" />
+</figure>
+<h3 class="unnumbered" id="numero-di-confronti-1">Numero di
+confronti</h3>
+<p>Nel caso peggiore ogni elemento dell’array viene confrontato con ogni
+altro elemento dell’array. Pertanto vengono effettuati <span
+class="math inline">\(\frac{n(n-1)}{2} = \Theta(n^2)\)</span> confronti.
+Il caso peggiore si verifica nel caso in cui l’array sia ordinato al
+contrario, mentre nel caso migliore, ovvero quello in cui l’array è già
+ordinato, vengono effettuati <span class="math inline">\(n - 1\)</span>
+confronti.</p>
+<h3 class="unnumbered" id="spazio-1">Spazio</h3>
+<p>L’algoritmo, oltre all’array da ordinare, utilizza un numero costante
+di variabili. Pertanto la quantità di spazio aggiuntivo è costante.</p>
+<h1 data-number="7" id="bubble-sort"><span
+class="header-section-number">7</span> Bubble Sort</h1>
+<p>L’idea di base è quella di scandire ripetutamente l’array dal primo
+all’ultimo elemento scambiando tra loro gli elementi adiacenti che non
+risultino ordinati. L’array sarà ordinato quando si riuscirà ad
+effettuare una scansione senza alcuno scambio.</p>
+<figure>
+<img src="images/bubblesortbase.png" />
+</figure>
+<h3 class="unnumbered" id="esempio-di-esecuzione-versione-base">Esempio
+di esecuzione versione base</h3>
+<figure>
+<img src="images/bubblesortexbase.png" />
+</figure>
+<p>Dopo la <span class="math inline">\(i\)</span>-esima iterazione, gli
+ultimi <span class="math inline">\(i\)</span> elementi dell’array sono
+al loro posto definitivo e dunque non è più necessario esaminarli. Per
+la stessa ragione dopo <span class="math inline">\(n - 1\)</span>
+scansioni, gli <span class="math inline">\(n - 1\)</span> elementi più
+grandi hanno raggiunto la loro posizione e di conseguenza l’elemento più
+piccolo deve trovarsi nell’unica posizione che resta, ovvero quella di
+indice 0. Pertanto, dopo aver effettuato <span class="math inline">\(n -
+1\)</span> iterazioni l’algoritmo si può fermare anche se nell’ultima
+scansione ci sono stati scambi. Possiamo quindi scrivere una versione
+migliorata dell’algoritmo.</p>
+<h3 class="unnumbered" id="versione-migliorata">Versione migliorata</h3>
+<figure>
+<img src="images/bubblesortmigliorato.png" />
+</figure>
+<h3 class="unnumbered"
+id="esempio-di-esecuzione-versione-migliorata">Esempio di esecuzione
+versione migliorata</h3>
+<figure>
+<img src="images/bubblesortexmigliorato.png" />
+</figure>
+<h3 class="unnumbered" id="numero-di-confronti-2">Numero di
+confronti</h3>
+<p>Nell’iterazione <span class="math inline">\(i\)</span> del ciclo
+principale si effettuano esattamente <span class="math inline">\(n -
+1\)</span> confronti. Il ciclo principale viene eseguito a partire da
+<span class="math inline">\(i = 1\)</span>, incrementando fino al più a
+<span class="math inline">\(n - 1\)</span>. Pertanto sommando su tutte
+le iterazioni il numero di confronti è al massimo <span
+class="math inline">\(\frac{n(n-1)}{2} = \Theta(n^2)\)</span> nel caso
+peggiore, che si ha quando l’array è ordinato al contrario. Se invece
+l’array è già ordinato il numero di confronti è <span
+class="math inline">\(n - 1\)</span></p>
+<h3 class="unnumbered" id="spazio-2">Spazio</h3>
+<p>L’algoritmo, oltre all’array da ordinare, utilizza un numero costante
+di variabili. Pertanto la quantità di spazio aggiuntivo è costante.</p>
+<h2 data-number="7.1"
+id="una-considerazione-su-confronti-e-spostamenti"><span
+class="header-section-number">7.1</span> Una considerazione su confronti
+e spostamenti</h2>
+<p>Abbiamo detto che la stima del tempo di calcolo di questi algoritmi
+può avvenire a partire da quella del numero di confronti, moltiplicando
+il numero di confronti per il tempo necessario per effettuare ciascun
+confronto. Questo è vero a patto che i confronti tra chiavi siano le
+operazioni più costose effettuate dagli algoritmi. Potremmo calcolare
+anche il numero di spostamenti di elementi. Da questo calcolo possiamo
+scoprire che tra i tre algoritmi presentati sopra, l’ordinamento per
+selezione è quello che effettua un numero di spostamenti più basso. Ma
+quanto costano gli spostamenti in termini di tempo? Come per i
+confronti, se stiamo ordinando numeri interi di grandezza fissata, come
+i valori dei tipi <span><code>int</code></span> e
+<span><code>long</code></span>, gli spostamenti sono effettuati mediante
+assegnamenti che copiano un numero fissato di bit, e quindi avvengono in
+tempo costante. Se tuttavia, come avviene nella pratica, stiamo
+ordinando rispetto a un campo chiave dei record di grandi dimensioni, la
+copia di interi record diventa costosa in termini di tempo e il numero
+di spostamenti può essere un parametro critico, anche più importante del
+numero di confronti, per valutare il tempo impiegato da un algoritmo.
+Questo problema può essere evitato utilizzando i puntatori: anzichè
+memorizzare negli elementi dell’array i record da ordinare, possiamo
+memorizzare i puntatori ad essi. Quindi, ogni cella dell’array conterrà
+il puntatore a un record, memorizzato altrove. In questo modo, per
+effettuare uno spostamento, non è necessario copiare l’intero record, ma
+solo copiare dei puntatori ai record. La dimensione dei puntatori può
+essere considerata costante (dipende dalla grandezza delle memoria che
+può essere indirizzata).</p>
+<h1 data-number="8" id="merge-sort"><span
+class="header-section-number">8</span> Merge Sort</h1>
+<p>L’algoritmo di ordinamento per fusione si basa sul seguente
+schema:</p>
+<ul>
+<li><p>Un array di un solo elemento è già ordinato (<em>caso
+base</em>)</p></li>
+<li><p>Per ordinare un array <span class="math inline">\(A\)</span>
+contenente <span class="math inline">\(n &gt; 1\)</span> elementi
+possiamo:</p>
+<ol>
+<li><p>suddividere <span class="math inline">\(A\)</span> in due array
+<span class="math inline">\(B\)</span> e <span
+class="math inline">\(C\)</span> di <span
+class="math inline">\(n/2\)</span> elementi ciascuno, corrispondenti
+alla prima e alla seconda metà dell’array <span
+class="math inline">\(A\)</span> (Nel caso <span
+class="math inline">\(n\)</span> sia dispari le due metà saranno di
+<span class="math inline">\(\lfloor n/2 \rfloor\)</span> e <span
+class="math inline">\(\lceil n/2 \rceil\)</span> )</p></li>
+<li><p>ordinare separatamente gli array</p></li>
+<li><p>"fondere" gli array ordinati <span
+class="math inline">\(B\)</span> e <span
+class="math inline">\(C\)</span> nell’array <span
+class="math inline">\(A\)</span>, in modo da ottenere un array ordinato
+contenente gli elementi di <span class="math inline">\(B\)</span> e
+<span class="math inline">\(C\)</span>.</p></li>
+</ol></li>
+</ul>
+<p>L’operazione di fusione (<span><code>merge</code></span>) di due
+array ordinati in un array ordinato è più semplice rispetto
+all’ordinamento di un array.</p>
+<p>Studiamo come effettuare il merge. Disponiamo di due vettori <span
+class="math inline">\(B\)</span> e <span
+class="math inline">\(C\)</span> ordinati in modo non decrescente, e
+vogliamo ottenere un vettore <span class="math inline">\(X\)</span>
+ordinato che contenga gli stessi elementi di <span
+class="math inline">\(B\)</span> e <span
+class="math inline">\(C\)</span>.</p>
+<ol>
+<li><p>Creiamo un vettore <span class="math inline">\(X\)</span> la cui
+lunghezza sia la somma delle lunghezze di <span
+class="math inline">\(B\)</span> e <span
+class="math inline">\(C\)</span></p></li>
+<li><p>Ispezioniamo <span class="math inline">\(B\)</span> e <span
+class="math inline">\(C\)</span> iniziando a considerare gli elementi
+minimi, ovvero quelli nella prima posizione dei due vettori</p></li>
+<li><p>Confrontiamo i due elementi e scegliamo il minimo, copiandolo
+nella prima posizione libera di <span class="math inline">\(X\)</span>.
+Inoltre, nel vettore da cui abbiamo preso l’elemento, possiamo
+considerare quello di posizione successiva.</p></li>
+<li><p>Ripetiamo le operazioni precedenti fino a raggiungere la fine di
+uno dei due array</p></li>
+<li><p>Copiamo in <span class="math inline">\(X\)</span> tutti gli
+elementi rimanenti dell’altro array</p></li>
+</ol>
+<h3 class="unnumbered" id="numero-di-confronti-3">Numero di
+confronti</h3>
+<p>Indicando con <span class="math inline">\(C(n)\)</span> il numero di
+confronti effettuato da <span><code>mergeSort</code></span> possiamo
+scrivere la seguente equazione di ricorrenza.</p>
+<p><span class="math display">\[C(n)=\begin{cases}
+        C(\lfloor n/2 \rfloor) + C(\lceil n/2 \rceil) +
+C_{\texttt{merge}}(n) &amp; \text{se $n &gt; 1$}\\
+        0 &amp; \text{altrimenti}
+    \end{cases}\]</span></p>
+<p>Nel caso peggiore <span class="math inline">\(C_{\texttt{merge}}(n) =
+n - 1\)</span>. Risolvendo per sostituzione otteniamo <span
+class="math inline">\(C(n) = \Theta(n \log n)\)</span></p>
+<h3 class="unnumbered" id="tempo-di-calcolo">Tempo di calcolo</h3>
+<p>Ci sono varie operazioni costose sia in termini di tempo che in
+termini di spazio: dobbiamo creare due array <span
+class="math inline">\(B\)</span> e <span
+class="math inline">\(C\)</span>, copiarvi gli elementi di <span
+class="math inline">\(A\)</span> e, dopo il merge, ricopiare tutti gli
+elementi nell’array iniziale. Indicando con <span
+class="math inline">\(T(n)\)</span> il tempo utilizzato dall’algoritmo
+per ordinare un array di lunghezza <span
+class="math inline">\(n\)</span> osserviamo che:</p>
+<ul>
+<li><p>Se l’array contiene al più 1 elemento, l’algoritmo usa tempo
+costante. Indichiamo tale tempo con <span
+class="math inline">\(a\)</span></p></li>
+<li><p>Se l’array contiene <span class="math inline">\(n &gt; 1\)</span>
+elementi, allora <span class="math inline">\(T(n)\)</span> è la somma
+dei seguenti tempi:</p>
+<ul>
+<li><p>Tempo per la creazione dei due array: <span
+class="math inline">\(\Theta(n)\)</span></p></li>
+<li><p>Tempo per ordinare i due array: <span
+class="math inline">\(T(\lfloor n/2 \rfloor) + T(\lceil n/2
+\rceil)\)</span></p></li>
+<li><p>Tempo per il merge: <span
+class="math inline">\(\Theta(n)\)</span></p></li>
+</ul></li>
+</ul>
+<p>Possiamo quindi scrivere l’equazione di ricorrenza <span
+class="math display">\[T(n)=\begin{cases}
+        2T(n/2) + bn + c &amp; \text{se $n &gt; 1$}\\
+        a &amp; \text{altrimenti}
+    \end{cases}\]</span> dove <span class="math inline">\(b\)</span> e
+<span class="math inline">\(c\)</span> sono due costanti.<br />
+Risolvendo per sostituzione ottengo <span class="math inline">\(T(n) =
+\Theta(n \log n)\)</span></p>
+<h3 class="unnumbered" id="implementazione">Implementazione</h3>
+<p>Come abbiamo visto, l’implementazione di una versione base di
+<span><code>mergeSort</code></span> richiede l’uso di tempo e spazio per
+gli array <span class="math inline">\(B\)</span> e <span
+class="math inline">\(C\)</span>. Possiamo implementare l’algoritmo in
+maniera differente, servendoci direttamente dell’array <span
+class="math inline">\(A\)</span> da ordinare e di due indici che
+delimitano la parte da ordinare. Al contrario, per effettuare la
+procedura <span><code>merge</code></span> ci serviremo di un array
+ausiliario, che per evitare sprechi verrà creato preliminarmente e verrà
+usato da tutte le chiamate di <span><code>merge</code></span>. La
+precedente analisi relativa al numero di confronti non cambia e il tempo
+rimane dell’ordine di <span class="math inline">\(n \log n\)</span>.</p>
+<figure>
+<img src="images/mergesort.png" />
+</figure>
+<h3 class="unnumbered" id="spazio-3">Spazio</h3>
+<p>L’algoritmo non è in loco, in quanto utilizza un array ausiliario per
+effettuare il merge. L’array è di <span class="math inline">\(n\)</span>
+elementi, quindi usa spazio <span
+class="math inline">\(\Theta(n)\)</span>. Dobbiamo inoltre considerare
+lo spazio utilizzato dallo stack per gestire la ricorsione. In ciascun
+record di attivazione di <span><code>mergeSort</code></span> devono
+essere memorizzati gli indici <span class="math inline">\(i\)</span> ed
+<span class="math inline">\(f\)</span> che servono a delimitare la
+porzione di array da delimitare e la variabile <span
+class="math inline">\(m\)</span>. Pertanto la dimensione di ogni record
+è costante. Per calcolare l’altezza dello stack utilizziamo un’equazione
+di ricorrenza.</p>
+<ul>
+<li><p>Se <span class="math inline">\(n \le 1\)</span> (caso base) non
+viene effettuata alcuna chiamata ricorsiva. Pertanto viene utilizzato
+solo il record di attivazione corrente e <span
+class="math inline">\(H(n) = 1\)</span></p></li>
+<li><p>Se <span class="math inline">\(n &gt; 1\)</span> viene effettuata
+una prima chiamata ricorsiva su un array di lunghezza <span
+class="math inline">\(\lfloor n/2 \rfloor\)</span>, che dunque
+utilizzerà altezza <span class="math inline">\(H(\lfloor n/2
+\rfloor)\)</span>. terminata tale chiamata si effettua una seconda
+chiamata sull’altra parte di array, quindi con altezza <span
+class="math inline">\(H(\lceil n/2 \rceil)\)</span>. Poichè al termine
+di ciascuna chiamata ricorsiva lo stack viene riportato all’altezza che
+aveva prima della chiamata, la parte di stack utilizzata dalla prima
+chiamata viene riutilizzata per la seconda. Pertanto l’altezza dello
+stack utilizzata dalle due chiamate è il massimo tra <span
+class="math inline">\(H(\lfloor n/2 \rfloor)\)</span> e <span
+class="math inline">\(H(\lceil n/2 \rceil)\)</span>.</p></li>
+</ul>
+<p>Otteniamo dunque <span class="math display">\[H(n) = \begin{cases}
+        max(H(\lfloor n/2 \rfloor), H(\lceil n/2 \rceil)) + 1 &amp;
+\text{se $n &gt; 1$}\\
+        1 &amp; \text{altrimenti}
+    \end{cases}\]</span></p>
+<p>Questo ci permette di concludere che l’altezza dello stack è
+logaritmica rispetto a n, ed è in particolare <span
+class="math inline">\(\Theta(\log n)\)</span>.</p>
+<h1 data-number="9" id="quick-sort"><span
+class="header-section-number">9</span> Quick Sort</h1>
+<p>Supponiamo di dover ordinare la sequenza di numeri<br />
+<span><code>44 55 12 42 94 6 18 67</code></span><br />
+Scegliamo all’interno di essa un qualunque elemento, ad esempio
+<span><code>42</code></span> (che chiameremo <span><em>perno</em></span>
+o <span><em>pivot</em></span>), e costruiamo due sequenze nelle quali
+collochiamo rispettivamente tutti gli elementi minori o uguali al perno
+e tutti quelli maggiori, in qualunque ordine:<br />
+<span><code>12 42 6 18 </code><span
+class="math inline">\(\quad\)</span><code> 44 55 94 67</code></span><br />
+Ordinando separatamente le due sequenze e concatenandole otteniamo la
+sequenza ordinata:<br />
+<span><code>6 12 18 42 44 55 67 94</code></span><br />
+</p>
+<figure>
+<img src="images/quicksortal.png" />
+</figure>
+<h2 data-number="9.1" id="partiziona"><span
+class="header-section-number">9.1</span> Partiziona</h2>
+<p>Per creare la partizione dell’array procediamo nel seguente modo:</p>
+<ol>
+<li><p>Scegliamo come perno l’elemento più a sinistra
+dell’array</p></li>
+<li><p>Scansioniamo l’array da destra verso sinistra fino al primo
+elemento minore o uguale al perno</p></li>
+<li><p>Scansioniamo l’array da sinistra verso destra fino al primo
+elemento maggiore del perno</p></li>
+<li><p>Se le due scansioni non si sono incontrate, scambiamo i due
+elementi individuati e proseguiamo le scansioni ai passi 2 e 3</p></li>
+<li><p>Quando ogni elemento è stato confrontato con il perno, scambiamo
+il perno con l’elemento su cui si è arrestata la scansione da
+destra</p></li>
+</ol>
+<p>Per le scansioni da destra e da sinistra utilizziamo due indici di
+nome <span class="math inline">\(dx\)</span> e <span
+class="math inline">\(sx\)</span>, che indicano gli elementi
+correntemente ispezionati dalle due scansioni. Ad ogni passo tutti gli
+elementi a sinistra dell’indice <span class="math inline">\(sx\)</span>
+risultano minori o uguali al perno, mentre quelli a destra di <span
+class="math inline">\(dx\)</span> maggiori del perno. Quando i due
+indici si incontrano o <span class="math inline">\(sx \ge dx\)</span>
+tutti gli elementi sono stati ispezionati. Inoltre, l’elemento di indice
+<span class="math inline">\(dx\)</span> è minore o uguale al perno. A
+questo punto è sufficiente scambiare questo elemento con il perno per
+ottenere la partizione.</p>
+<figure>
+<img src="images/espartizione.png" />
+</figure>
+<figure>
+<img src="images/partiziona.png" />
+</figure>
+<h2 class="unnumbered" id="numero-di-confronti-4">Numero di
+confronti</h2>
+<figure>
+<img src="images/quicksort.png" />
+</figure>
+<p>Per effettuare la partizione ogni elemento dell’array deve essere
+confrontato con il perno (eccetto il perno stesso). Pertanto vi sono
+almeno <span class="math inline">\(n - 1\)</span> confronti. Per
+semplicità di calcolo utilizzeremo solo <span
+class="math inline">\(n\)</span><br />
+</p>
+<h3 class="unnumbered" id="caso-peggiore">Caso peggiore</h3>
+<p>Nel caso peggiore <span class="math inline">\(C_{w}(n)\)</span>
+<span><code>quickSort</code></span> esegue il seguente numero di
+confronti: <span class="math display">\[C_{w}(n) = \begin{cases}
+        n + max{C_{w}(n) + C_{w}(n-k-1) | 0 \le k \le n} &amp; \text{se
+$n &gt; 1$}\\
+        0 &amp; \text{altrimenti}
+    \end{cases}\]</span> Il secondo addendo della somma rappresenta il
+numero di confronti nelle chiamate ricorsive nell’ipotesi che, dopo la
+partizione, vi siano <span class="math inline">\(k\)</span> elementi a
+sinistra del perno e <span class="math inline">\(n-k-1\)</span> a
+destra. Dato che stiamo studiando il caso peggiore consideriamo il
+valore di <span class="math inline">\(k\)</span> che massimizza la
+somma. Svolgendo i calcoli otteniamo <span
+class="math inline">\(C_{w}(n) = \Theta(n^2)\)</span>. Pertanto nel caso
+peggiore (molto raro) <span><code>quickSort</code></span> effettua lo
+stesso numero di confronti degli algoritmi elementari che abbiamo
+studiato.</p>
+<h3 class="unnumbered" id="caso-migliore">Caso migliore</h3>
+<p>Abbiamo visto che il caso peggiore si ottiene quando ad ogni livello
+della ricorsione la partizione risulta sbilanciata. Se, al contrario,
+l’array viene sempre suddiviso in due parti circa della stessa
+lunghezza, il numero di confronti diminuisce drasticamente. <span
+class="math display">\[C_{b}(n) = \begin{cases}
+        n + 2C_{b}(n/2) &amp; \text{se $n &gt; 1$}\\
+        0 &amp; \text{altrimenti}
+    \end{cases}\]</span></p>
+<p>Svolgendo i calcoli otteniamo <span class="math inline">\(C_{b}(n) =
+n \log_2 n\)</span></p>
+<h3 class="unnumbered" id="caso-medio">Caso medio</h3>
+<p>Il numero di confronti effettuato da
+<span><code>quickSort</code></span> dipende dalla distribuzione dei
+valori all’interno dell’array. Si può calcolare che il caso medio <span
+class="math inline">\(C(n) \le 1.39n \log_2 n\)</span>, molto vicino al
+caso migliore e a <span><code>mergeSort</code></span>, motivo per cui
+<span><code>quickSort</code></span> viene utilizzato molto spesso.</p>
+<h3 class="unnumbered" id="spazio-di-lavoro">Spazio di lavoro</h3>
+<p>L’algoritmo è in loco ma utilizza spazio aggiuntivo per la
+ricorsione. Ogni record di attivazione deve contenere i parametri <span
+class="math inline">\(i\)</span> ed <span
+class="math inline">\(f\)</span> che delimitano la parte di array da
+ordinare, oltre alla variabile <span class="math inline">\(m\)</span>.
+Dunque la grandezza di ciascun record di attivazione è costante. La
+quantità di memoria utilizzata è proporzionale all’altezza raggiunta
+dallo stack, che nel caso peggiore è <span
+class="math inline">\(n\)</span>. Si può modificare l’algoritmo in modo
+che l’altezza dello stack sia sempre <span class="math inline">\(O(\log
+n)\)</span> eliminando una chiamata ricorsiva e ordinando prima la parte
+destra dell’array e poi la sinistra.</p>
+<h3 class="unnumbered" id="alcune-osservazioni">Alcune osservazioni</h3>
+<p>Possiamo osservare che le prestazioni di
+<span><code>quickSort</code></span>, su uno stesso array possono variare
+notevolmente in base alla strategia utilizzata per scegliere il perno.
+Spesso, per evitare il caso peggiore (array già ordinato), si utilizzano
+strategie "randomizzate". Una possibilità è quella di disordinare in
+modo casuale gli elementi dell’array prima di eseguire l’algoritmo,
+un’altra può essere scegliere un elemento casuale dell’array da usare
+come perno e scambiarlo con il primo elemento, applicando poi la
+strategia di partizione che abbiamo visto. Si può osservare che questo
+metodo di ordinamento non è stabile.</p>
+<h1 data-number="10" id="strutture-dati"><span
+class="header-section-number">10</span> Strutture dati</h1>
+<p>Le strutture dati consistono in una specifica organizzazione delle
+informazioni, che permette di realizzare ed implementare un determinato
+tipo di dati. La scelta della corretta struttura dati dipende
+dall’utilizzo che bisogna fare dei dati.</p>
+<p>Il tipo di una variabile stabilisce i valori e le operazioni che
+possono essere eseguite. In generale quando parliamo del tipo non
+parliamo della rappresentazione del dato ma del "cosa". La
+rappresentazione influisce però sull’efficienza delle operazioni.<br />
+Consideriamo un esempio classico: il dizionario. Si tratta di una
+collezione di elementi ciascuno dei quali è caratterizzato da una
+chiave. Un esempio particolare di dizionario può essere quello della
+lingua italiana in cui ogni elemento ha due campi,
+<span><em>parola</em></span> e <span><em>definizione</em></span>, oppure
+la registrazione di uno studente, in cui ogni elemento ha tanti campi e
+la chiave è la <span><em>matricola</em></span>. Le chiavi in genere sono
+valori ordinabili.<br />
+In un dizionario dobbiamo poter svolgere le operazioni di
+<span><strong>ricerca</strong></span>,
+<span><strong>inserimento</strong></span> e
+<span><strong>cancellazione</strong></span>.<br />
+A seconda del tipo di struttura dati e di implementazione che si sceglie
+alcune operazioni possono essere più facili da svolgere rispetto ad
+altre. Vediamo ora alcune strutture dati.</p>
+<h1 data-number="11" id="liste-concatenate-lineari"><span
+class="header-section-number">11</span> Liste concatenate lineari</h1>
+<p>Una lista concatenata lineare è una struttura composta da una
+collezione di nodi collegati linearmente tra loro tramite puntatori.
+Ogni <span><strong>nodo</strong></span> è contiene dei campi. Tra questi
+troviamo il campo <span><em>chiave</em></span>, rispetto al quale
+vengono effettuate le operazioni di ricerca, e il campo
+<span><em>pros</em></span>, che contiene un riferimento al nodo
+successivo. Nel caso delle liste ordinate, il campo
+<span><em>chiave</em></span> viene utilizzato per determinare l’ordine
+tra i nodi. Si accede alla lista tramite un riferimento al primo nodo.
+Le liste possono essere implementate tramite array o tramite strutture e
+puntatori. Noi studieremo il secondo tipo di implementazione.</p>
+<figure>
+<img src="images/lista.png" />
+</figure>
+<h2 data-number="11.1" id="operazioni"><span
+class="header-section-number">11.1</span> Operazioni</h2>
+<p>Vediamo ora l’implementazione di alcune operazioni che si possono
+effettuare sulle liste concatenate lineari ordinate e non.</p>
+<figure>
+<img src="images/ricerca_posizione_lista.png" />
+</figure>
+<figure>
+<img src="images/ricerca_chiave_lista.png" />
+</figure>
+<figure>
+<img src="images/ricerca_chiave_lista_ordinata.png" />
+</figure>
+<figure>
+<img src="images/inserimento_lista_ordinata.png" />
+</figure>
+<figure>
+<img src="images/cancellazione_lista_ordinata.png" />
+</figure>
+<h1 data-number="12" id="stack-pila"><span
+class="header-section-number">12</span> Stack (Pila)</h1>
+<p>Le pile sono delle strutture dati con organizzazione
+<span><strong>LIFO</strong></span> (Last-In-First-Out). Possono essere
+implementate tramite array o tramite liste lineari. Sono preferibili le
+liste concatenate singolarmente.<br />
+</p>
+<img src="images/stack.png" />
+</figure>
+<p>Le operazioni che possono essere eseguite su una pila sono:</p>
+<ul>
+<li><p><span><code>isEmpty() </code><span
+class="math inline">\(\rightarrow\)</span><code> boolean</code></span>
+restituisce <code>true</code> se la pila è vuota, <code>false</code>
+altrimenti</p></li>
+<li><p><span><code>push(elemento)</code></span> aggiunge un elemento
+alla pila</p></li>
+<li><p><span><code>pop() </code><span
+class="math inline">\(\rightarrow\)</span><code> elemento</code></span>
+rimuove il primo elemento dalla pila e lo restituisce</p></li>
+<li><p><span><code>top() </code><span
+class="math inline">\(\rightarrow\)</span><code> elemento</code></span>
+restituisce il primo elemento della pila</p></li>
+</ul>
+<img src="images/stack_isempty.png" />
+</figure>
+<img src="images/stack_push.png" />
+</figure>
+<img src="images/stack_top.png" />
+</figure>
+<img src="images/stack_pop.png" />
+</figure>
+<h1 data-number="13" id="queue-coda"><span
+class="header-section-number">13</span> Queue (Coda)</h1>
+<p>Le code sono delle strutture dati con organizzazione
+<span><strong>FIFO</strong></span> (First-In-First-Out). Possono essere
+implementate tramite array o tramite liste concatenate. Sono preferibili
+le liste doppiamente concatenate.</p>
+<img src="images/queue.png" />
+</figure>
+<p>Le operazioni che possono essere eseguite su una coda sono:</p>
+<ul>
+<li><p><span><code>isEmpty() </code><span
+class="math inline">\(\rightarrow\)</span><code> boolean</code></span>
+restituisce <code>true</code> se la coda è vuota, <code>false</code>
+altrimenti</p></li>
+<li><p><span><code>enqueue(elemento)</code></span> aggiunge un elemento
+alla coda</p></li>
+<li><p><span><code>dequeue() </code><span
+class="math inline">\(\rightarrow\)</span><code> elemento</code></span>
+rimuove il primo elemento dalla coda e lo restituisce</p></li>
+<li><p><span><code>first() </code><span
+class="math inline">\(\rightarrow\)</span><code> elemento</code></span>
+restituisce il primo elemento della coda</p></li>
+</ul>
+<img src="images/queue_isempty.png" />
+</figure>
+<img src="images/queue_first.png" />
+</figure>
+<img src="images/queue_dequeue.png" />
+</figure>
+<img src="images/queue_enqueue.png" />
+</figure>
+<h1 data-number="14" id="alberi"><span
+class="header-section-number">14</span> Alberi</h1>
+<p>La definizione formale di albero sarà data quando tratteremo i grafi.
+Per ora diciamo che gli alberi sono strutture formate da nodi, simili
+alle liste, ma con una rappresentazione gerarchica dei dati.</p>
+<img src="images/albero.png" />
+</figure>
+<p>La <em>radice</em> è il nodo che sta in cima alla gerarchia. Ogni
+nodo ha un solo nodo <span><em>padre</em></span> ma può avere un
+qualsiasi numero di <em>figli</em>. La radice non ha un nodo padre. I
+nodi che si trovano al livello più basso della gerarchia (i nodi che non
+hanno figli) sono detti <em>foglie</em>. I collegamenti tra nodi sono
+detti <em>archi</em>.<br />
+Un albero in cui ogni nodo può avere al massimo due figli è detto
+<em>albero binario</em> Possiamo dare una definizione ricorsiva di
+albero:<br />
+Un <strong>albero binario</strong> è:</p>
+<ul>
+<li><p>una struttura vuota<br />
+oppure</p></li>
+<li><p>un nodo (radice) con associati due alberi binari detti
+<em>sottoalbero sinistro</em> e <em>sottoalbero destro</em>.</p></li>
+</ul>
+<p>La radice di un albero ha <em>profondità</em> pari a 0, i nodi di
+profondità <span class="math inline">\(k\)</span> hanno profondità <span
+class="math inline">\(k + 1\)</span>.<br />
+Si definisce <span><em>altezza</em></span> di un albero la massima
+profondità dei nodi.<br />
+Il <em>grado</em> di un nodo è il massimo di figli che può avere quel
+nodo.<br />
+Alcuni esempi di dati rappresentati tramite alberi possono essere
+l’indice di un libro, uno schema del regno animale ma anche operazioni
+aritmetiche e in informatica le chiamate ricorsive.</p>
+<h2 data-number="14.1" id="rappresentazione-di-alberi"><span
+class="header-section-number">14.1</span> Rappresentazione di
+alberi</h2>
+<h3 data-number="14.1.1" id="vettore-dei-padri"><span
+class="header-section-number">14.1.1</span> Vettore dei padri</h3>
+<figure>
+<img src="images/vettore_padri.png" />
+</figure>
+<h3 data-number="14.1.2"
+id="rappresentazioni-collegate-puntatori-ai-figli-e-lista-dei-fratelli"><span
+class="header-section-number">14.1.2</span> Rappresentazioni collegate:
+puntatori ai figli e lista dei fratelli</h3>
+<figure>
+<img src="images/lista_fratelli.png" />
+</figure>
+<h2 data-number="14.2" id="visite-di-alberi"><span
+class="header-section-number">14.2</span> Visite di alberi</h2>
+<p>Vediamo ora alcune strategie per attraversare tutti i nodi di un
+albero.</p>
+<img src="images/alberi_visita_generica.png" />
+</figure>
+<img src="images/alberi_ampiezza.png" />
+</figure>
+<img src="images/alberi_profondità.png" />
+</figure>
+<img src="images/alberi_preorder.png" />
+</figure>
+<img src="images/alberi_inorder.png" />
+</figure>
+<img src="images/alberi_postorder.png" />
+</figure>
+<img src="images/alberi_num_nodi.png" />
+</figure>
+<h1 data-number="15" id="alberi-binari-di-ricerca"><span
+class="header-section-number">15</span> Alberi binari di ricerca</h1>
+<p>Gli alberi binari di ricerca sono alberi in cui per ogni nodo <span
+class="math inline">\(n\)</span>:</p>
+<ol>
+<li><p>Il valore di ogni chiave contenuta nel sottoalbero sinistro di
+<span class="math inline">\(n\)</span> è minore o uguale alla chiave di
+<span class="math inline">\(n\)</span></p></li>
+<li><p>Il valore di ogni chiave contenuta nel sottoalbero destro di
+<span class="math inline">\(n\)</span> è maggiore della chiave di <span
+class="math inline">\(n\)</span></p></li>
+</ol>
+<p>Una visita in ordine simmetrico di un A.B.R. produce un elenco
+ordinato per chiave.<br />
+Se devo trovare il nodo con chiave massima scendo tutto a destra, per
+quello di chiave minima tutto a sinistra.<br />
+Il costo di inserimento, ricerca e cancellazione è <span
+class="math inline">\(O(altezza)\)</span>. Il massimo numero di nodi di
+un albero di altezza <span class="math inline">\(h\)</span> è <span
+class="math inline">\(2^{h+1}-1\)</span>, quindi:</p>
+<ul>
+<li><p><span class="math inline">\(h + 1 \le n \le
+2^{h+1}-1\)</span></p></li>
+<li><p><span class="math inline">\(\log_2(n+1) - 1 \le h \le n -
+1\)</span></p></li>
+</ul>
+<p>Vogliamo fare in modo che l’albero rimanga più bilanciato possibile
+in modo da evitare il caso peggiore.</p>
+<h2 data-number="15.1" id="operazioni-1"><span
+class="header-section-number">15.1</span> Operazioni</h2>
+<p>Vediamo ora l’implementazione di alcune operazioni eseguibili sugli
+alberi binari di ricerca.</p>
+<img src="images/abr_max.png" />
+</figure>
+<img src="images/abr_min.png" />
+</figure>
+<figure>
+<img src="images/ricerca_abr.png" />
+</figure>
+<figure>
+<img src="images/inserimento_ricorsivo_abr.png" />
+</figure>
+<figure>
+<img src="images/inserimento_iterativo_abr.png" />
+</figure>
+<figure>
+<img src="images/cancellazione_abr.png" />
+</figure>
+<h1 data-number="16" id="altri-tipi-di-alberi"><span
+class="header-section-number">16</span> Altri tipi di alberi</h1>
+<h2 data-number="16.1" id="alberi-perfettamente-bilanciati"><span
+class="header-section-number">16.1</span> Alberi perfettamente
+bilanciati</h2>
+<p>Un albero è <em>perfettamente bilanciato</em> quando per ogni nodo la
+differenza tra il numero di nodi del sottoalbero sinistro e il numero di
+nodi del sottoalbero destro è al massimo 1.</p>
+<h2 data-number="16.2" id="alberi-bilanciati-in-altezza-o-avl"><span
+class="header-section-number">16.2</span> Alberi bilanciati in altezza o
+AVL</h2>
+<p>Un albero è <em>bilanciato in altezza</em> o <em>AVL</em> quando per
+ogni nodo la differenza in valore assoluto tra l’altezza del sottoalbero
+destro e l’altezza del sottoalbero sinistro è al massimo 1.<br />
+<strong>N.B</strong> bilanciato in altezza <span
+class="math inline">\(\Rightarrow\)</span> bilanciato, ma non
+viceversa.<br />
+<strong>Numero massimo di nodi</strong>: <span
+class="math inline">\(2^{h+1} - 1\)</span><br />
+<strong>Numero minimo di nodi</strong>: <span
+class="math display">\[\begin{cases}
+        1 &amp; \text{se h = 0}\\
+        2 &amp; \text{se h = 1}\\
+        1 + n_{h-1}+n_{h-2} &amp; \text{se h $&gt;$ 1}
+    \end{cases}\]</span></p>
+    <img src="images/albero_sbilanciato.png" />
+  </figure>
+<p>Un albero AVL con il minimo numero di nodi è detto <em>albero di
+Fibonacci</em> Nel caso l’albero risulti sbilanciato devo eseguire delle
+operazioni per sistemarlo.</p>
+<h3 class="unnumbered" id="costo-operazioni">Costo operazioni</h3>
+<p>Dato un albero di ricerca di <span class="math inline">\(n\)</span>
+nodi</p>
+<ul>
+<li><p>Ricerca <span class="math inline">\(O(\log_2 n)\)</span></p></li>
+<li><p>Inserimento <span class="math inline">\(O(\log_2
+n)\)</span></p></li>
+<li><p>Cancellazione <span class="math inline">\(O(\log_2
+n)\)</span></p></li>
+</ul>
+<p>Questa per ora è la struttura con prestazioni migliori per i
+dizionari, almeno finchè non vedremo le tabelle hash più avanti.</p>
+<h2 data-number="16.3" id="alberi-2-3"><span
+class="header-section-number">16.3</span> Alberi 2-3</h2>
+<p>Gli <em>alberi 2-3</em> sono alberi in cui ogni nodo interno ha 2 o 3
+figli e le foglie sono tutte allo stesso livello. I dati sono
+memorizzati solo nelle foglie e i nodi interni contengono solo
+informazioni di instradamento.</p>
+<ul>
+<li><p>Se la chiave di un nodo interno contiene solo un valore,
+significa che il nodo ha 2 figli, e quel valore è il maggiore del
+sottoalbero sinistro</p></li>
+<li><p>Se la la chiave di un nodo interno contiene 2 valori significa
+che il nodo ha 3 figli, e i due valori corrispondono rispettivamente al
+massimo valore contenuto nel sottoalbero sinistro e al massimo valore
+contenuto nel sottoalbero centrale</p></li>
+</ul>
+<figure>
+<img src="images/albero_2-3.png" />
+</figure>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;"><strong>min</strong></th>
+<th style="text-align: center;"><strong>max</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Numero nodi</strong></td>
+<td style="text-align: center;"><span
+class="math inline">\(2^{h+1}-1\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\frac{3^{h+1}-1}{2}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Numero foglie</strong></td>
+<td style="text-align: center;"><span
+class="math inline">\(2^{h}\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(3^{h}\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 data-number="16.3.1" id="operazioni-2"><span
+class="header-section-number">16.3.1</span> Operazioni</h3>
+<img src="images/a23_ricerca.png" />
+</figure>
+<p>Per inserimenti e cancellazioni è utile tenere in ogni nodo un
+puntatore al nodo padre. Quando un nodo ha già 3 figli e devo inserirne
+un altro, faccio uno <em>split</em>.</p>
+<figure>
+<img src="images/albero_2-3_split.png" />
+</figure>
+<h3 data-number="16.3.2" id="costo-operazioni-1"><span
+class="header-section-number">16.3.2</span> Costo operazioni</h3>
+<ul>
+<li><p><strong>Ricerca</strong>: <span class="math inline">\(O(\log
+n)\)</span></p></li>
+<li><p><strong>Inserimento</strong>: <span class="math inline">\(O(\log
+n)\)</span></p></li>
+<li><p><strong>Cancellazione</strong>: <span
+class="math inline">\(O(\log n)\)</span></p></li>
+</ul>
+<p>Come gli alberi AVL.</p>
+<h2 data-number="16.4" id="b-alberi"><span
+class="header-section-number">16.4</span> B-Alberi</h2>
+<p>Sono un modello nato per rappresentare gli indici delle basi di dati,
+quando i dati sono troppo grandi per stare in memoria centrale.
+L’obiettivo non è più quello di fare l’albero più basso possibile, ma
+quello di fare il minor numero possibile di accessi al disco. A
+differenza degli alberi 2-3 le informazioni non sono solo nelle foglie
+ma anche nei nodi interni. Diamo una definizione formale di
+<em>B-albero</em> di ordine <span class="math inline">\(t\)</span> (dove
+<span class="math inline">\(t\)</span>) è il grado minimo:</p>
+<ul>
+<li><p>Ogni nodo interno ha al massimo <span
+class="math inline">\(2t\)</span> figli</p></li>
+<li><p>Ogni nodo interno diverso dalla radice ha almeno <span
+class="math inline">\(t\)</span> figli</p></li>
+<li><p>La radice ha almeno 2 figli</p></li>
+<li><p>Tutte le foglie hanno la stessa profondità</p></li>
+<li><p>Ogni foglia contiene <span class="math inline">\(k\)</span>
+chiavi ordinate dove <span class="math inline">\(t - 1 \le k \le 2t -
+1\)</span></p></li>
+<li><p>Ogni nodo interno con <span class="math inline">\(k + 1\)</span>
+figli e sottoalberi <span class="math inline">\(T_0...T_k\)</span>
+contiene <span class="math inline">\(k\)</span> chiavi ordinate tali che
+per ogni chiave <span class="math inline">\(c_i\)</span> nell’albero
+<span class="math inline">\(T_i\)</span> (con <span
+class="math inline">\(i=0...k\)</span>) si ha:</p>
+<div class="center">
+<p><span class="math inline">\(c_0 \le a_1 \le c_1 \le a_2 \le ... \le
+a_{k-1} \le c_{k-1} \le a_k \le c_k\)</span></p>
+</div></li>
+</ul>
+<p><strong>Numero minimo di chiavi in un albero di altezza <span
+class="math inline">\(h\)</span></strong>: <span
+class="math inline">\(2t^{h}-1\)</span><br />
+<strong>Altezza massima <span class="math inline">\(n\)</span>
+chiavi</strong>: <span class="math inline">\(2t^{h}-1\)</span><br />
+<strong>Passi totali ricerca</strong>: <span
+class="math inline">\(\Theta(h \cdot \log t)\)</span><br />
+</p>
+<h3 class="unnumbered" id="costo-operazioni-2">Costo operazioni</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;"><strong>Passi di
+calcolo(tempo)</strong></th>
+<th style="text-align: center;"><strong>Accessi a memoria di
+massa</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Ricerca</strong></td>
+<td style="text-align: center;"><span class="math inline">\(\Theta(\log
+n)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\log_t
+n\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Inserimento</strong></td>
+<td style="text-align: center;"><span class="math inline">\(\Theta(t
+\cdot \log n)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(c \cdot
+\log_t n\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Cancellazione</strong></td>
+<td style="text-align: center;"><span class="math inline">\(\Theta(t
+\cdot \log n)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(c \cdot
+\log_t n\)</span></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p><span class="math inline">\(n\)</span> = numero di
+chiavi</p></li>
+<li><p><span class="math inline">\(c\)</span> = costante piccola
+(dipende dall’implementazione, di solito è circa 4)</p></li>
+</ul>
+<h1 data-number="17" id="heapsort"><span
+class="header-section-number">17</span> Heapsort</h1>
+<p>HeapSort è un algoritmo di ordinamento che utilizza la struttura dati
+<em>heap</em>. Vedremo innanzitutto in cosa consiste uno heap, per poi
+trattare l’algoritmo e la sua complessità in termini di numero di
+confronti. Vedremo poi come uno heap possa essere rappresentato
+nell’array stesso da ordinare, in modo tale da avere un implementazione
+in loco.</p>
+<h2 data-number="17.1" id="la-struttura-dati-heap"><span
+class="header-section-number">17.1</span> La struttura dati
+<em>Heap</em></h2>
+<p>Uno <em>heap</em> è un <em>albero binario quasi completo</em>, ovvero
+completo almeno fino al penultimo livello, tale che la chiave contenuta
+in ogni suo nodo è maggiore o uguale alla chiave contenuta nei
+figli.<br />
+Poichè un albero binario di altezza <span
+class="math inline">\(h\)</span> contiene <span
+class="math inline">\(2^{h+1} - 1\)</span> nodi, possiamo affermare che
+in uno heap di altezza <span class="math inline">\(h\)</span> il numero
+<span class="math inline">\(n\)</span> di nodi soddisfa <span
+class="math inline">\(2^h \le n \le 2^{h + 1}\)</span>, da cui otteniamo
+<span class="math inline">\(h \le \log_2 n \le h + 1\)</span> e dunque
+<span class="math inline">\(h = \lfloor \log_2 n \rfloor\)</span>.<br />
+</p>
+<img src="images/heap.png" />
+</figure>
+<p>La radice di uno heap contiene sempre la chiave maggiore. Pertanto,
+disponendo di uno heap contente le chiavi che dobbiamo ordinare,
+possiamo prelevare l’elemento che si trova nella radice e collocarlo,
+come unico elemento, nella sequenza ordinata che dobbiamo produrre come
+risultato, che costruiremo a partire dal fondo. Una volta fatto ciò
+possiamo modificare la struttura in modo da riottenere uno heap ed
+applicare lo stesso procedimento.</p>
+<h2 data-number="17.2" id="sistemare-uno-heap"><span
+class="header-section-number">17.2</span> Sistemare uno heap</h2>
+<p>Per risistemare uno heap applichiamo la seguente strategia.<br />
+Sostituiamo la chiave contenuta nella radice con quella contenuta
+nell’ultima delle foglie, cioè quella che si trova più a destra
+nell’ultimo livello, rimuovendo tale foglia. Tutti i nodi rispettano la
+condizione di heap, tranne la radice che potrebbe contenere una chiave
+inferiore rispetto a uno o entrambi i figli. In questo caso facciamo
+"scendere" il dato presente nella radice, scambiandolo con quello di
+chiave maggiore tra i figli. Se la condizione di heap non è rispettata
+dal figlio in cui abbiamo spostato il dato, iteriamo lo stesso
+procedimento su di esso.</p>
+<figure>
+<img src="images/risistema.png" />
+</figure>
+<h3 class="unnumbered" id="numero-di-confronti-5">Numero di
+confronti</h3>
+<p>Il numero di confronti usato da <code>risistema</code>, nel caso
+peggiore, <span class="math inline">\(\Theta(h)\)</span>, dove <span
+class="math inline">\(h\)</span> è l’altezza dello heap. Infatti il
+valore presente nella radice viene fatto scendere lungo un cammino fino
+a raggiungere la posizione corretta che, nel caso peggiore, potrebbe
+essere una foglia a distanza massima dalla radice. In questo processo,
+ad ogni passo viene ispezionato un nodo lungo il cammino, determinando
+la chiave massima tra i figli e confrontandola con la chiave
+ispezionata. Pertanto per ogni nodo del cammino ho 2 confronti.</p>
+<h2 data-number="17.3" id="creazione-di-uno-heap"><span
+class="header-section-number">17.3</span> Creazione di uno heap</h2>
+<p>Supponiamo di disponere di un albero binario quasi completo le cui
+chiavi non rispettino però la condizione di heap. Studieremo due
+soluzioni per trasformarlo in uno heap. La seconda soluzione è meno
+dispendiosa in termini di memoria.</p>
+<h3 class="unnumbered" id="soluzione-ricorsiva">Soluzione ricorsiva</h3>
+<p>Strategia <em>divide-et-impera</em>:</p>
+<ul>
+<li><p>Se l’albero è vuoto non devo fare nulla</p></li>
+<li><p>Se l’albero non è vuoto trasformiamo ricorsivamente ciascuno dei
+due sottoalberi sinistro e destro in heap; a questo punto tutti i nodi,
+eccetto la radice, soddisfano la condizione di heap. Applicando la
+procedura <code>risistema</code> possiamo trasformare l’albero in uno
+heap</p></li>
+</ul>
+<figure>
+<img src="images/crea_heap_ricorsivo.png" />
+</figure>
+<h3 class="unnumbered" id="soluzione-iterativa">Soluzione iterativa</h3>
+<p>Anzichè costruire lo heap in maniera top-down, possiamo procedere in
+maniera bottom-up partendo dalle foglie dell’albero. Ispezioniamo cioè
+l’albero a partire dall’ultima foglia, trasformando ogni sottoalbero in
+uno heap. Quindi:</p>
+<ul>
+<li><p>Iniziamo a considerare ciascun nodo di profondità <span
+class="math inline">\(h\)</span>, da destra verso sinistra, e
+trasformiamo in heap il sottoalbero che ha tale nodo come radice (questi
+nodi sono foglie, quindi i relativi sottoalberi sono già heap e per essi
+non occorre fare nulla).</p></li>
+<li><p>Passiamo a considerare ciascun nodo di profondità <span
+class="math inline">\(h - 1\)</span> (sempre da destra verso sinistra) e
+trasformiamo in heap il sottoalbero che ha radice in esso.</p></li>
+<li><p>Ripetiamo lo stesso procedimento considerando man mano profondità
+inferiori sino ad arrivare alla radice. A questo punto l’intero albero è
+uno heap.</p></li>
+</ul>
+<p>Poichè i sottoalberi sono trasformati in heap a partire dal basso,
+quando in questo procedimento dobbiamo trasformare in heap il
+sottoalbero <span class="math inline">\(T_{x}\)</span> che ha come
+radice un nodo <span class="math inline">\(x\)</span> di profondità
+<span class="math inline">\(p\)</span>, i sottoalberi di <span
+class="math inline">\(x\)</span>, avendo profondità <span
+class="math inline">\(p-1\)</span>, sono già stati trasformati in heap
+in passi precedenti. Dunque l’unico nodo di <span
+class="math inline">\(T_{x}\)</span> che potrebbe non rispettare la
+condizione di heap è radice <span class="math inline">\(x\)</span>.
+Quindi è sufficiente applicare <code>risistema</code> per trasformare
+<span class="math inline">\(T_{x}\)</span> in uno heap.</p>
+<figure>
+<img src="images/crea_heap_iterativo.png" />
+</figure>
+<h3 class="unnumbered" id="numero-di-confronti-6">Numero di
+confronti</h3>
+<p><code>creaHeap</code> chiama <code>risitema</code> un certo numero di
+volte, per sottoalberi di altezze differenti. Il numero di confronti per
+trasformare in heap tutti i sottoalberi di profondità <span
+class="math inline">\(p\)</span> è <span
+class="math inline">\(\Theta(h-p)2^p\)</span>. Nel ciclo esterno <span
+class="math inline">\(p\)</span> varia su tutte le profondità, cioè da 0
+ad <span class="math inline">\(h\)</span>. Sommando su di esse otteniamo
+che il numero di confronti è <span class="math inline">\(2^{h+1} - 2 -
+h\)</span>.<br />
+Essendo l’albero completo la sua altezza è logaritmica rispetto al
+numero di nodi. Questo permette di concludere che il numero di confronti
+di <code>creaHeap</code> è <span
+class="math inline">\(\Theta(n)\)</span>, cioè lineare rispetto al
+numero di chiavi.</p>
+<h2 data-number="17.4" id="schema-di-heapsort"><span
+class="header-section-number">17.4</span> Schema di
+<code>heapSort</code></h2>
+<figure>
+<img src="images/schema_heapsort.png" />
+</figure>
+<h3 class="unnumbered" id="numero-di-confronti-7">Numero di
+confronti</h3>
+<p><code>creaHeap</code> effettua <span
+class="math inline">\(\Theta(n)\)</span> confronti. Segue poi la parte
+iterativa in cui, ad ogni passo, si preleva la radice e si risistema lo
+heap. Queste operazioni vengono ripetute fino a svuotare lo heap, quindi
+<span class="math inline">\(n\)</span> volte. Risistemare lo heap
+utilizza, nel caso peggiore, un numero di confronti proporzionale alla
+sua altezza, che è logaritmica. Dunque il numero di confronti, nel caso
+peggiore, è <span class="math inline">\(\Theta(n\log n)\)</span>.</p>
+<h2 data-number="17.5"
+id="ordinamento-in-loco-di-array-tramite-heapsort"><span
+class="header-section-number">17.5</span> Ordinamento in loco di array
+tramite <code>heapSort</code></h2>
+<p>Si può implementare l’algoritmo in modo semplice senza ricorrere a
+strutture aggiuntive, servendosi di una corrispondenza tra alberi binari
+quasi completi e array. Supponiamo di disporre del seguente array:</p>
+<figure>
+<img src="images/heap_array.png" style="width:10cm" />
+</figure>
+<p>Immaginiamo di collocare gli elementi dell’array nell’ordine in cui
+compaiono in un albero binario, riempiendo ciascun livello da sinistra
+verso destra a partire dalla radice, come in una visita in ampiezza.
+L’albero che otteniamo è il seguente:</p>
+<figure>
+<img src="images/heap_albero_binario.png" style="width:7cm" />
+</figure>
+<p>L’albero è quasi completo, con le foglie dell’ultimo livello più a
+sinistra possibile.<br />
+Osserviamo che i figli del nodo che nell’array ha indice <span
+class="math inline">\(i\)</span> hanno, se esistono, indice <span
+class="math inline">\(2i + 1\)</span> e <span class="math inline">\(2i +
+2\)</span>.<br />
+L’array che rappresenta un albero binario quasi completo è detto
+<em>vettore posizionale</em>.<br />
+</p>
+<figure>
+<img src="images/heapsort_array.png" />
+</figure>
+<p>Si possono modificare anche <code>creaHeap</code> e
+<code>risistema</code> affinchè lavorino direttamente con l’array.</p>
+<figure>
+<img src="images/creaheap_array.png" />
+</figure>
+<figure>
+<img src="images/risistema_array.png" />
+</figure>
+<h2 data-number="17.6" id="spazio-4"><span
+class="header-section-number">17.6</span> Spazio</h2>
+<p>Utilizzando la versione iterativa di <code>creaHeap</code> e
+l’implementazione in loco, l’algoritmo utilizza spazio costante oltre
+all’array da ordinare.</p>
+<h2 data-number="17.7" id="costo-operazioni-su-heap"><span
+class="header-section-number">17.7</span> Costo operazioni su heap</h2>
+<ul>
+<li><p>Trovare elemento di chiave massima <span
+class="math inline">\(\rightarrow\)</span> <span
+class="math inline">\(O(1)\)</span> passi</p></li>
+<li><p>Cancellare elemento di chiave massima <span
+class="math inline">\(\rightarrow\)</span> <span
+class="math inline">\(\Theta(\log 1)\)</span> passi</p></li>
+<li><p>Inserire un nuovo elemento <span
+class="math inline">\(\rightarrow\)</span> <span
+class="math inline">\(\Theta(\log n)\)</span> passi</p></li>
+<li><p>Cancellare elemento di chiave <span
+class="math inline">\(x\)</span> <span
+class="math inline">\(\rightarrow\)</span> <span
+class="math inline">\(\Theta(\log n)\)</span> passi</p></li>
+<li><p>Modificare la chiave di un elemento <span
+class="math inline">\(\rightarrow\)</span> <span
+class="math inline">\(\Theta(\log n)\)</span> passi</p></li>
+</ul>
+<h2 data-number="17.8" id="riassumendo"><span
+class="header-section-number">17.8</span> Riassumendo</h2>
+<p><code>HeapSort</code> è un algoritmo di ordinamento in loco che, per
+ordinare <span class="math inline">\(n\)</span> elementi effettua <span
+class="math inline">\(\Theta(n \log n)\)</span> confronti. Pertanto, se
+ciascun confronto viene effettuato in tempo <span
+class="math inline">\(O(1)\)</span>, il tempo complessivo è <span
+class="math inline">\(\Theta(n \log n)\)</span>.<br />
+Si può verificare che questo metodo non è stabile.</p>
+<h1 data-number="18" id="riassunto-ordinamento"><span
+class="header-section-number">18</span> Riassunto ordinamento</h1>
+<p>Il <em>problema dell’ordinamento</em> può essere definito in questo
+modo:</p>
+<p><strong>Input</strong>: <span class="math inline">\(n\)</span>
+elementi <span class="math inline">\(x_1, x_2, ... , x_n\)</span>
+appartenenti a un dominio <span class="math inline">\(D\)</span> su cui
+è definita una relazione <span class="math inline">\(\le\)</span> di
+<em>ordine totale</em>.<br />
+<strong>Output</strong>: Sequenza <span class="math inline">\(x_{j1},
+x_{j2}, ..., x_{jn}\)</span> dove (<span
+class="math inline">\(j_1...j_n\)</span>) è una permutazione di (1, 2,
+... <span class="math inline">\(n\)</span>) tale che<br />
+<span class="math inline">\(x_{j1} \le ... \le x_{jn}\)</span>.</p>
+<figure>
+<img src="images/riepilogo_ordinamento.png" />
+</figure>
+<h2 data-number="18.1" id="numero-minimo-di-confronti"><span
+class="header-section-number">18.1</span> Numero minimo di
+confronti</h2>
+<p>Dimostreremo ora che qualsiasi algoritmo di ordinamento basato su
+confronti richiede, nel caso peggiore, un numero di confronti almeno
+dell’ordine di <span class="math inline">\(n \log n\)</span>. Le
+possibili computazioni di un algoritmo di ordinamento su sequenze di
+<span class="math inline">\(n\)</span> elementi possono essere
+rappresentate mediante un <em>albero di decisione</em>, cioè un albero
+binario in cui ciascun nodo interno rappresenta un operazione di
+confronto, con associati due sottoalberi, che dipendono dall’esito di
+tale operazione, mentre ogni foglia rappresenta una risposta
+dell’algoritmo, cioè un possibile ordine tra le chiavi.</p>
+<div class="center">
+<p><img src="images/albero_decisione.png" alt="image" /></p>
+</div>
+<p>Indipendentemente dalla strategia utilizzata per eseguire i
+confronti, l’albero dovrà avere un numero di foglie pari almeno al
+numero dei possibili ordini tra le chiavi, cioè al numero di possibili
+permutazioni di <span class="math inline">\(n\)</span> elementi, che è
+<span class="math inline">\(n!\)</span>. Il numero massimo di confronti
+utilizzato da una strategia è pari alla profondità dell’albero. Si può
+verificare che la profondità di un albero binario con <span
+class="math inline">\(k\)</span> foglie è almeno logaritmica in <span
+class="math inline">\(k\)</span>.<br />
+Per trovare il numero di confronti necessari nel caso peggiore stimiamo
+quindi la profondità minima che deve avere un albero con <span
+class="math inline">\(n!\)</span> foglie, calcolando il logaritmo di
+<span class="math inline">\(n!\)</span>. Utilizzando l’approssimazione
+di Stirling <span class="math inline">\(n! \approx \sqrt{2 \pi n
+(\frac{n}{e})^n}\)</span> si ottiene <span
+class="math inline">\(\Theta(n \log n)\)</span>.<br />
+Possiamo concludere che <em>ogni</em> algoritmo di ordinamento basato su
+confronti richiede nel caso peggiore un numero di confronti tra chiavi
+dell’ordine di <span class="math inline">\(n \log n\)</span> per
+ordinare <span class="math inline">\(n\)</span> elementi.</p>
+<h1 data-number="19" id="code-con-priorità"><span
+class="header-section-number">19</span> Code con priorità</h1>
+<p>Utilizzando gli heap e le operazioni su di essi descritte in
+precedenza, si possono implementare delle strutture a coda in cui gli
+elementi vengono prelevati con un criterio di priorità. Solitamente la
+priorità è indicata da una chiave numerica con la convenzione che
+<em>Chiavi inferiori indicano priorità più alta</em>. Pertanto prelevare
+il primo elemento, cioè quello con priorità più alta, equivale a
+prelevare quello con chiave minima (numero più basso).<br />
+Consideriamo le seguenti operazioni:</p>
+<ul>
+<li><p><code>findMin()</code><br />
+Restituisce l’elemento minimo della coda (senza rimuoverlo)</p></li>
+<li><p><code>deleteMin()</code><br />
+Rimuove l’elemento minimo della coda e lo restituisce.</p></li>
+<li><p><code>insert(elem </code><span
+class="math inline">\(e\)</span><code>, chiave </code><span
+class="math inline">\(k\)</span><code>)</code><br />
+Inserisce nella coda un elemento <span class="math inline">\(e\)</span>
+con associata una chiave (priorità) <span
+class="math inline">\(k\)</span>.</p></li>
+<li><p><code>delete(elem </code><span
+class="math inline">\(e\)</span><code>)</code><br />
+Cancella l’elemento <span class="math inline">\(e\)</span> dalla
+coda.</p></li>
+<li><p><code>changeKey(elem </code><span
+class="math inline">\(e\)</span><code>, chiave </code><span
+class="math inline">\(d\)</span><code>)</code><br />
+Modifica la priorità dell’elemento <span
+class="math inline">\(e\)</span>, assegnando come nuovo valore <span
+class="math inline">\(d\)</span>.</p></li>
+</ul>
+<p>Le code con priorità possono essere implementate utilizzando dei
+<em>Min-heap</em>. Come nell’implementazione di <code>heapSort</code>,
+lo heap può essere rappresentato mediante un array (o meglio la prima
+parte di un array, lasciando spazio nella seconda per eventuali
+inserimenti). Se la coda contiene <span class="math inline">\(n\)</span>
+elementi e assumendo il criterio di costo uniforme, l’operazione di
+prelevare il primo elemento può essere effettuata in tempo costante,
+mentre le altre operazioni <code>deleteMin</code> e <code>insert</code>
+in tempo <span class="math inline">\(O(\log n)\)</span>. Anche le
+operazioni <code>delete</code> e <code>changeKey</code> possono essere
+effettuate in <span class="math inline">\(O(\log n)\)</span>, ma solo se
+è nota nello heap la posizione dell’elemento da cancellare o modificare.
+Per evitare di cercare tale posizione, si può tenere una struttura
+ausiliaria che fornisca, per ogni elemento, la sua posizione all’interno
+dello heap. Ogni volta che si manipola lo heap la struttura va
+aggiornata.</p>
+<h1 data-number="20"
+id="algoritmi-di-ordinamento-non-basati-su-confronti"><span
+class="header-section-number">20</span> Algoritmi di ordinamento non
+basati su confronti</h1>
+<h2 data-number="20.1" id="integersort"><span
+class="header-section-number">20.1</span> IntegerSort</h2>
+<p>È un algoritmo di ordinamento che si basa sulla conoscenza a priori
+dell’intervallo in cui sono compresi i valori da ordinare. L’algoritmo
+conta il numero di occorrenze di ciascun valore presente nell’array da
+ordinare, memorizzando questa informazione in un array temporaneo di
+dimensione pari all’intervallo di valori. Il numero di ripetizioni dei
+valori indica la posizione del valore immediatamente successivo.</p>
+<ul>
+<li><p>Si calcolano il valore massimo e il valore minimo, <span
+class="math inline">\(max(A)\)</span> e <span
+class="math inline">\(min(A)\)</span></p></li>
+<li><p>Si prepara un array ausiliario <span
+class="math inline">\(C\)</span> di dimensione pari all’intervallo di
+valori con entrate <span class="math inline">\(C[i]\)</span> che
+rappresentano la frequenza dell’elemento <span class="math inline">\(i +
+min(A)\)</span></p></li>
+<li><p>Si visita l’array <span class="math inline">\(A\)</span>
+aumentando l’elemento di <span class="math inline">\(C\)</span>
+corrispondente.</p></li>
+<li><p>Si visita l’array <span class="math inline">\(C\)</span> in
+ordine e si scrivono su <span class="math inline">\(A\)</span> <span
+class="math inline">\(C[i]\)</span> copie del valore <span
+class="math inline">\(i + min(A)\)</span></p></li>
+</ul>
+<h3 class="unnumbered" id="complessità">Complessità</h3>
+<p>L’algoritmo esegue 3 iterazioni, 2 di lunghezza <span
+class="math inline">\(n\)</span> per individuare massimo e minimo e per
+il calcolo delle occorrenze dei valori, e una di lunghezza <span
+class="math inline">\(k = (max(A)- min(A) - 1)\)</span>.<br />
+La complessità totale è quindi <span
+class="math inline">\(O(n+k)\)</span>.<br />
+Conviene utilizzarlo quando il valore di <span
+class="math inline">\(k\)</span> è <span
+class="math inline">\(O(n)\)</span>.</p>
+<figure>
+<img src="images/integerSort.png" />
+</figure>
+<h2 data-number="20.2" id="bucketsort"><span
+class="header-section-number">20.2</span> BucketSort</h2>
+<img src="images/bucketsort_es.png" />
+</figure>
+<p>È un algoritmo di ordinamento per valori numerici che si assume siano
+distribuiti uniformemente in un intervallo <span
+class="math inline">\([0,1)\)</span><br />
+Se <span class="math inline">\(n\)</span> è il numero di elementi da
+ordinare, l’intervallo <span class="math inline">\([0,1)\)</span> è
+diviso in <span class="math inline">\(n\)</span> intervalli di uguale
+lunghezza, detti <em>bucket</em>. Ciascun valore dell’array è quindi
+inserito nel bucket a cui appartiene, i valori all’interno di ogni
+bucket vengono ordinati e l’algoritmo di conclude con la concatenazione
+dei valori contenuti nei bucket.</p>
+<h3 class="unnumbered" id="complessità-1">Complessità</h3>
+<p>La complessità di <code>bucketSort</code> è <span
+class="math inline">\(O(n)\)</span> per tutti i cicli, a parte
+l’ordinamento dei singoli bucket. Date le premesse sull’input,
+utilizzando <code>insertionSort</code> l’ordinamento di ogni bucket è
+<span class="math inline">\(\Theta(1)\)</span>, quindi la complessità
+media è <span class="math inline">\(O(n)\)</span> per tutto l’algoritmo.
+La complessità complessiva nel caso migliore è <span
+class="math inline">\(O(n+m)\)</span> dove <span
+class="math inline">\(m\)</span> è il massimo valore nell’array.</p>
+<figure>
+<img src="images/bucketSort.png" />
+</figure>
+<h2 data-number="20.3" id="radixsort"><span
+class="header-section-number">20.3</span> RadixSort</h2>
+<p>È un algoritmo che esegue degli ordinamenti per posizione della
+cifra, partendo dalla cifra meno significativa. Questo affinchè
+l’algoritmo non si trovi a dovere operare ricorsivamente su
+sottoproblemi di dimensione non valutabile a priori.</p>
+<img src="images/radixsort_es.png" />
+</figure>
+<h3 class="unnumbered" id="complessità-2">Complessità</h3>
+<p>L’algoritmo ha complessità computazionale pari a <span
+class="math inline">\(O(n\cdot k)\)</span> dove <span
+class="math inline">\(n\)</span> è il numero di elementi da ordinare e
+<span class="math inline">\(k\)</span> è la media del numero di cifre
+degli <span class="math inline">\(n\)</span> elementi. Se <span
+class="math inline">\(k\)</span> risulta essere minore di <span
+class="math inline">\(n\)</span> non si ha guadagno rispetto a
+<code>integerSort</code> che opera in tempo lineare. Se <span
+class="math inline">\(k &gt; n\)</span> l’algoritmo può risultare
+peggiore anche rispetto agli algoritmi basati su confronti.</p>
+<figure>
+<img src="images/radixSort.png" />
+</figure>
+<h1 data-number="21"
+id="rappresentazione-di-partizioni-union-find"><span
+class="header-section-number">21</span> Rappresentazione di partizioni
+(UNION-FIND)</h1>
+<p>Dato un insieme <span class="math inline">\(\mathcal{A}\)</span>, una
+partizione è una famiglia di sottoinsiemi <span
+class="math inline">\(\mathcal{A}_{1...k}\)</span> tali che</p>
+<ul>
+<li><p><span class="math inline">\(\mathcal{A}_{i} \neq
+\emptyset\)</span></p></li>
+<li><p><span class="math inline">\(\mathcal{A}_{i} \cap \mathcal{A}_{j}
+= \emptyset\)</span></p></li>
+<li><p><span class="math inline">\(\mathcal{A}_{1} \cup ... \cup
+\mathcal{A}_{k} = \mathcal{A}\)</span></p></li>
+</ul>
+<p>Vogliamo rappresentare una collezione di insiemi disgiunti mediante
+le operazioni:</p>
+<ul>
+<li><p><code>UNION(A, B)</code> unisce gli insiemi <span
+class="math inline">\(A\)</span> e <span
+class="math inline">\(B\)</span> in un unico insieme <span
+class="math inline">\(A\)</span></p></li>
+<li><p><code>FIND(X)</code> restituisce il nome dell’insieme che
+contiene l’elemento <span class="math inline">\(x\)</span></p></li>
+<li><p><code>MAKESET(X)</code> crea un nuovo insieme <span
+class="math inline">\(\lbrace x \rbrace\)</span> di nome <span
+class="math inline">\(X\)</span> (<span class="math inline">\(x\)</span>
+nuovo elemento)</p></li>
+</ul>
+<p>Ogni insieme è rappresentato da un albero con radice con puntatori
+verso l’alto, dove i nodi sono gli elementi dell’insieme e la radice è
+il nome dell’insieme. Una partizione è quindi una foresta di alberi. In
+base a come impostiamo il nostro sistema di partizioni possiamo
+velocizzare le <code>UNION</code> oppure le <code>FIND</code>.</p>
+<h2 data-number="21.1" id="operazioni-quickfind"><span
+class="header-section-number">21.1</span> Operazioni QUICKFIND</h2>
+<img src="images/quickfind-union.png" />
+</figure>
+<p>Considero alberi di altezza 1 dove gli elementi dell’insieme sono le
+foglie e il nome dell’insieme è dato dalla radice. Quando <span
+class="math inline">\(n(A) &gt; n(B)\)</span> conviene spostare gli
+elementi di <span class="math inline">\(B\)</span> sotto ad <span
+class="math inline">\(A\)</span> e cambiare nome alla radice. Per
+ottimizzare, durante <code>Makeset</code> memorizzo nella radice il
+numero di elementi dell’insieme. Quando poi faccio union sommo il numero
+di elementi. Lo spazio è lineare rispetto a <span
+class="math inline">\(n\)</span> quindi è <span
+class="math inline">\(O(n)\)</span>.<br />
+Effettuando una sequenza di <span class="math inline">\(n\)</span>
+<code>makeset</code> e <span class="math inline">\(O(n)\)</span>
+<code>union</code> e <code>find</code> ottengo un costo ammortizzato
+<span class="math inline">\(O(\log n)\)</span></p>
+<h2 data-number="21.2" id="operazioni-quickunion"><span
+class="header-section-number">21.2</span> Operazioni QUICKUNION</h2>
+<p>Gli alberi non sono più vincolati ad avere altezza 1 e la radice
+contiene il nome dell’insieme. Al contrario delle operazioni QUICKFIND
+queste favoriscono in termini di complessità l’implementazione della
+funzione <code>UNION</code>.</p>
+<figure>
+<img src="images/quickunion.png" />
+</figure>
+<h2 data-number="21.3" id="algoritmo-quickfind-bilanciato"><span
+class="header-section-number">21.3</span> Algoritmo QUICKFIND
+bilanciato</h2>
+<p>L’utilizzo della rappresentazione QUICKFIND penalizza l’operazione di
+<code>UNION</code>. È possibile eseguire alcuni miglioramenti al fine di
+migliorare la complessità di tale operazione.<br />
+Gli accorgimenti che si possono introdurre sono:</p>
+<ol>
+<li><p>Memorizzare all’interno di ogni albero la cardinalità
+dell’insieme, ovvero il numero di foglie dell’albero.</p></li>
+<li><p>Nella realizzazione dell’operazione <code>UNION(A, B)</code>:</p>
+<ol>
+<li><p>Spostare le foglie dell’albero rappresentante l’insieme di
+cardinalità minore verso l’albero rappresentante l’insieme di
+cardinalità maggiore;</p></li>
+<li><p>Memorizzare l’etichetta da associare al nuovo insieme all’interno
+della radice dell’albero rappresentante l’insieme unione.</p></li>
+</ol></li>
+</ol>
+<p>Il tempo utilizzato dalla <code>UNION</code> di questo algoritmo
+bilanciato è logaritmico rispetto al numero di <code>MAKESET</code>
+effettuate, ovvero rispetto al numero di elementi contenuti nella
+foresta di alberi.</p>
+<h2 data-number="21.4" id="algoritmo-quickunion-bilanciato"><span
+class="header-section-number">21.4</span> Algoritmo QUICKUNION
+bilanciato</h2>
+<p>In maniera speculare rispetto al QUICKFIND bilanciato, è possibile
+adottare alcuni accorgimenti per controllare l’altezza dell’albero
+rappresentante l’insieme e quindi migliorare l’esecuzione di
+<code>FIND</code>.</p>
+<h3 class="unnumbered" id="union-by-rank">Union by rank</h3>
+<p>È una variante della rappresentazione QUICKUNION che, al fine di
+evitare che l’altezza dell’albero cresca senza alcun controllo, adotta i
+seguenti accorgimenti:</p>
+<ol>
+<li><p>Memorizza all’interno di ogni radice l’altezza
+dell’albero</p></li>
+<li><p>Nella realizzazione dell’operazione di
+<code>UNION(A, B)</code>:</p>
+<ol>
+<li><p>La radice dell’albero avente altezza maggiore diventa padre della
+radice dell’albero avente altezza minore</p></li>
+<li><p>memorizza l’etichetta da associare al nuovo insieme all’interno
+del nodo diventato radice dell’albero unione</p></li>
+</ol></li>
+</ol>
+<p><strong>Lemma:</strong></p>
+<div class="center">
+<p>Ogni albero QUICKUNION bilanciato in altezza con radice <span
+class="math inline">\(x\)</span> contiene almeno <span
+class="math inline">\(2^{rank(x)}\)</span> nodi.</p>
+</div>
+<h2 data-number="21.5" id="compressione-di-cammino"><span
+class="header-section-number">21.5</span> Compressione di cammino</h2>
+<p>Sempre nell’ambito della rappresentazione QUICKUNION è possibile
+introdurre ulteriori accorgimenti volti a migliorare la complessità
+dell’operazione di <code>FIND</code>. La compressione di cammino si
+serve dell’algoritmo di <code>FIND</code> facendo leva sul movimento che
+esso esegue nella ricerca dell’etichetta posta alla radice. L’idea della
+compressione di cammino è quella di assegnare un ulteriore compito al
+<code>FIND</code>, ovvero quello di ristrutturare l’albero ponendo il
+padre di ogni nodo incontrato uguale alla radice dell’albero. Eseguiamo
+in tal modo una compressione dell’altezza dell’albero lungo tutto il
+cammino che dal nodo contenente l’elemento da trovare termina nella
+radice.</p>
+<h2 data-number="21.6" id="riepilogo-costi-operazioni"><span
+class="header-section-number">21.6</span> Riepilogo costi
+operazioni</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;"><strong>MAKESET</strong></th>
+<th style="text-align: center;"><strong>UNION</strong></th>
+<th style="text-align: center;"><strong>FIND</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>QUICKFIND</strong></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(1)\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(n)\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(1)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>QUICKFIND bilanciato</strong></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(1)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(O(\log
+n)\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(1)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>QUICKUNION</strong></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(1)\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(1)\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(n)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>QUICKUNION
+bilanciato</strong></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(1)\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(1)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(O(\log
+n)\)</span></td>
+</tr>
+</tbody>
+</table>
+<h1 data-number="22" id="grafi"><span
+class="header-section-number">22</span> Grafi</h1>
+<p>I grafi sono una formalizzazione della connessione e relazione tra
+oggetti. Un grafo <span class="math inline">\(G\)</span> è una coppia
+<span class="math inline">\(V,E\)</span> dove <span
+class="math inline">\(V\)</span> è un insieme finito di <em>vertici (o
+nodi)</em> ed <span class="math inline">\(E\)</span> è un sottoinsieme
+di <span class="math inline">\(V \cdot V\)</span> segmenti detti
+<em>archi, lati o spigoli</em>. <span class="math display">\[G = (V, E)
+\quad \quad E \subseteq V \cdot V\]</span> I grafi possono essere
+<em>orientati</em> o <em>non orientati</em>. Nel primo caso gli archi
+rappresentano una relazione simmetrica, cioè valida tra due nodi in
+entrambe le direzioni, nel secondo caso solo in una direzione.<br />
+Vediamo ora una serie di termini legati ai grafi. Dato un generico arco
+<span class="math inline">\((x, y) \in E\)</span> in un grafo con
+vertici <span class="math inline">\(V\)</span>:</p>
+<ul>
+<li><p>Un arco è <strong><em>incidente</em></strong> su due
+vertici</p></li>
+<li><p>Se un arco <strong><em>esce</em></strong> da <span
+class="math inline">\(x\)</span> ed <strong><em>entra</em></strong> in
+<span class="math inline">\(y\)</span>, allora <span
+class="math inline">\(y\)</span> è <strong><em>adiacente</em></strong>
+ad <span class="math inline">\(x\)</span></p></li>
+<li><p>I <strong><em>vicini</em></strong> di un vertice sono i vertici
+adiacenti ad esso</p></li>
+<li><p>Il <strong><em>grado</em></strong> di un vertice è il numero di
+archi incidenti al vertice</p></li>
+<li><p>Un <strong><em>cammino</em></strong> da <span
+class="math inline">\(x\)</span> a <span
+class="math inline">\(y\)</span> è una sequenza di vertici collegati da
+archi appartenenti al grafo in cui il vertice di partenza è <span
+class="math inline">\(x\)</span> e quello di arrivo <span
+class="math inline">\(y\)</span></p></li>
+<li><p>La <strong><em>lunghezza del cammino</em></strong> è il numero di
+archi del cammino</p></li>
+<li><p><span class="math inline">\(y\)</span> è
+<strong><em>raggiungibile</em></strong> da <span
+class="math inline">\(x\)</span> se esiste un cammino da <span
+class="math inline">\(x\)</span> a <span
+class="math inline">\(y\)</span></p></li>
+<li><p>Un <strong><em>cammino semplice</em></strong> non contiene
+vertici ripetuti</p></li>
+<li><p>Un <strong><em>ciclo</em></strong> è un cammino da <span
+class="math inline">\(x\)</span> a <span
+class="math inline">\(x\)</span></p></li>
+<li><p>In un <strong><em>ciclo semplice</em></strong> è ripetuto solo il
+vertice iniziale, alla fine</p></li>
+<li><p>Una <strong><em>catena</em></strong> tra <span
+class="math inline">\(x\)</span> e <span
+class="math inline">\(y\)</span> è una sequenza in cui non rispetto
+l’orientamento degli archi</p></li>
+<li><p>Un <strong><em>circuito</em></strong> è una catena da <span
+class="math inline">\(x\)</span> a <span
+class="math inline">\(x\)</span></p></li>
+<li><p>Un grafo è <strong><em>connesso</em></strong> quando per ogni
+coppia di vertici esiste una catena</p></li>
+<li><p>Un grafo è <strong><em>fortemente connesso</em></strong> quando
+per ogni coppia di vertici esiste un cammino</p></li>
+<li><p>Un <strong><em>sottografo</em></strong> è un grafo in cui prendo
+solo alcuni vertici e alcuni archi</p></li>
+<li><p>Un <strong><em>sottografo indotto</em></strong> è un grafo in cui
+prendo solo alcuni vertici e tutti i loro archi incidenti</p></li>
+<li><p>Una <strong><em>componente fortemente connessa</em></strong> è un
+sottografo indotto fortemente connesso massimale</p></li>
+<li><p>Un <strong><em>circuito hamiltoniano</em></strong> è un circuito
+che passa per ogni vertice del grafo una e una sola volta</p></li>
+<li><p>Un <strong><em>circuito euleriano</em></strong> è un circuito che
+attraversa ogni arco del grafo una e una sola volta</p></li>
+<li><p>Un <strong><em>multigrafo</em></strong> è un grafo in cui 2
+vertici sono sollegati da più di un arco</p></li>
+</ul>
+<p>A questo punto possiamo dare la definizione formale di albero:</p>
+<div class="center">
+<p>Un albero è un grafo non orientato, connesso e privo di cicli.</p>
+</div>
+<p>Alcuni teoremi riguardanti i grafi:</p>
+<ol>
+<li><p>esiste un circuito euleriano se e solo se ogni vertice ha grado
+pari</p></li>
+<li><p>è sempre possibile suddividere un grafo in componenti fortemente
+connesse</p></li>
+<li><p>Se un grafo è un albero allora il numero di vertici è uguale al
+numero di archi +1</p></li>
+<li><p>Se un grafo è non orientato e connesso, allora, se il numero di
+vertici è = al numero di archi +1, è un albero</p></li>
+<li><p>Un albero</p></li>
+</ol>
+<h2 class="unnumbered"
+id="albero-di-supporto-o-ricoprente-spanning-tree">Albero di supporto o
+ricoprente (Spanning tree)</h2>
+<p>Dato un grafo <span class="math inline">\(G = (V,E)\)</span>
+orientato non connesso, un albero ricoprente di <span
+class="math inline">\(G\)</span> è un albero <span
+class="math inline">\(G&#39; = (V&#39;, E&#39;)\)</span> con <span
+class="math inline">\(V&#39; = V\)</span> ed <span
+class="math inline">\(E&#39; \subseteq E\)</span>.<br />
+Una <strong><em>cricca</em></strong> è un grafo non orientato completo,
+ovvero in cui c’è un arco per ogni coppia di vertici</p>
+<h2 data-number="22.1" id="rappresentazione-di-grafi"><span
+class="header-section-number">22.1</span> Rappresentazione di grafi</h2>
+<p>Vediamo ora alcuni metodi per rappresentare i grafi. La
+rappresentazione migliore dipende dai casi di utilizzo.</p>
+<h3 data-number="22.1.1" id="lista-di-archi"><span
+class="header-section-number">22.1.1</span> Lista di archi</h3>
+<p>Possiamo rappresentare gli archi come un elenco contenente le coppie
+di vertici che l’arco collega. Vale anche per i grafi orientati,
+ricordando che la posizione del nodo all’interno della coppia
+rappresenta l’orientamento dell’arco. Questa struttura è comoda per
+vedere i vertici di un arco ma è scomoda per ricostruire la forma del
+grafo, per seguire un cammino o se voglio sapere a cosa è collegato
+direttamente un vertice. In quest’ultimo caso infatti dovrei
+attraversare tutta la struttura. Lo spazio complessivo utilizzato è
+<span class="math inline">\(O(n+m)\)</span></p>
+<figure>
+<img src="images/lista_archi.png" />
+</figure>
+<h3 data-number="22.1.2" id="lista-di-adiacenza"><span
+class="header-section-number">22.1.2</span> Lista di adiacenza</h3>
+<p>Struttura principale basata sui vertici. Per ogni vertice esiste la
+lista dei vertici adiacenti. Ogni arco è rappresentato due volte, quindi
+lo spazio occupato è <span class="math inline">\(2m\)</span> (solo dai
+nodi). Questa struttura è comoda per gli archi uscenti da ogni nodo ma
+se devo trovare gli archi entranti ad un nodo devo passare tutta la
+struttura. Inoltre non abbiamo informazioni esplicite sugli archi. Lo
+spazio complessivo utilizzato è <span
+class="math inline">\(O(n+m)\)</span></p>
+<figure>
+<img src="images/lista_adiacenza.png" />
+</figure>
+<h3 data-number="22.1.3" id="lista-di-incidenza"><span
+class="header-section-number">22.1.3</span> Lista di incidenza</h3>
+<p>Rimpiazziamo le liste dei vertici delle liste di adiacenza con delle
+liste di archi, tornando a usare strutture come nella lista di archi.
+Rimane il problema citato precedentemente sugli archi entranti. Lo
+spazio complessivo utilizzato è <span
+class="math inline">\(O(n+m)\)</span></p>
+<figure>
+<img src="images/lista_incidenza.png" />
+</figure>
+<h3 data-number="22.1.4" id="matrice-di-adiacenza"><span
+class="header-section-number">22.1.4</span> Matrice di adiacenza</h3>
+<p>Si tratta di una matrice quadrata di 0 e 1 dove gli indici sono i
+vertici del grafo.<br />
+<span class="math inline">\(M[u,v] = 1\)</span> se e solo se <span
+class="math inline">\((u, v) \in E\)</span>. Un grafo non orientato
+genera una matrice simmetrica. Osservando la matrice è possibile notare
+che possiamo vedere anche gli archi entranti leggendo le colonne. Lo
+spazio complessivo utilizzato è <span
+class="math inline">\(O(n^2)\)</span>. Tale spazio è molto diverso da
+<span class="math inline">\(O(n+m)\)</span>? Dipende dal numero di
+archi. Si può dimostrare che, per ogni <span class="math inline">\(k
+&gt; 0\)</span>:</p>
+<div class="center">
+<p><span class="math inline">\(M^k[u,v] = 1\)</span> sse <span
+class="math inline">\(V^{n-1}_{k=0}M^k\)</span> "sommatoria" di OR</p>
+</div>
+<p>Nella matrice risultante, se c’è un 1 in una determinata posizione
+significa che esiste un cammino. Quindi, in un grafo fortemente
+connesso, la matrice risultante sarà composta solo da 1.</p>
+<figure>
+<img src="images/matrice_adiacenza.png" />
+</figure>
+<h3 data-number="22.1.5" id="matrice-di-incidenza"><span
+class="header-section-number">22.1.5</span> Matrice di incidenza</h3>
+<p>Abbiamo una riga per ogni vertice e una colonna per ogni arco. Nei
+grafi non orientati metto 1 quando c’è un collegamento diretto, nei
+grafi orientati ho 1 quando c’è un arco uscente e -1 quando c’è un arco
+entrante. Questo sistema ci permette di risparmiare un po’ di spazio
+mantenendo l’informazione su archi uscenti ed entranti per grafi
+orientati. Lo spazio complessivo è <span class="math inline">\(O(n \cdot
+m)\)</span><br />
+<strong>N.B.</strong> Ogni colonna contiene un 1 e un -1, quindi la
+somma algebrica di ogni colonna è pari a 0.</p>
+<figure>
+<img src="images/matrice_incidenza.png" />
+</figure>
+<h2 data-number="22.2" id="attraversamento-di-grafi"><span
+class="header-section-number">22.2</span> Attraversamento di grafi</h2>
+<p>Esistono diverse strategie per attraversare un grafo. Noi vedremo le
+visite in ampiezza e in profondità per grafi connessi e non orientati. I
+concetti di visità in ampiezza e in profondità sono gli stessi visti per
+gli alberi con radice. Il tempo impiegato dall’algoritmo dipende dalla
+struttura dati utilizzata per rappresentare il grafo.<br />
+<span class="math inline">\(G = (V,E)\)</span> grafo connesso non
+orientato,<br />
+<span class="math inline">\(s \in V\)</span> vertice di partenza.</p>
+<h3 data-number="22.2.1" id="visita-in-ampiezza"><span
+class="header-section-number">22.2.1</span> Visita in ampiezza</h3>
+<p>Questo algoritmo visita il grafo in ampiezza e crea un albero di
+supporto basato sul grafo dato in ingresso.<br />
+</p>
+<figure>
+<img src="images/visita_ampiezza_grafi.png" />
+</figure>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Lista di archi</strong></th>
+<th style="text-align: center;"><span class="math inline">\(O(n \cdot
+m)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Lista di adiacenza</strong></td>
+<td style="text-align: center;"><span class="math inline">\(O(n +
+m)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Lista di incidenza</strong></td>
+<td style="text-align: center;"><span class="math inline">\(O(n +
+m)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Matrice di adiacenza</strong></td>
+<td style="text-align: center;"><span
+class="math inline">\(O(n^2)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Matrice di incidenza</strong></td>
+<td style="text-align: center;"><span class="math inline">\(O(n \cdot
+m)\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 data-number="22.2.2" id="visita-in-profondità"><span
+class="header-section-number">22.2.2</span> Visita in profondità</h3>
+<p>Si parte da un vertice e si cerca di esplorare il più possibile
+partendo da ogni nodo in cui entriamo di volta in volta, finchè non
+posso più muovermi. A quel punto torno indietro finchè non trovo la
+prima strada che posso percorrere. Si va avanti fino a che non ho
+attraversato tutto il grafo. L’implementazione avviene tramite una pila
+o ricorsivamente (meglio la seconda alternativa). I tempi sono gli
+stessi visti per la visita in ampiezza.</p>
+<figure>
+<img src="images/visita_profondità_grafi.png" />
+</figure>
+<h1 data-number="23"
+id="problemi-di-ottimizzazione-e-algoritmi-greedy"><span
+class="header-section-number">23</span> Problemi di ottimizzazione e
+algoritmi greedy</h1>
+<h3 data-number="23.0.1" id="grafi-pesati"><span
+class="header-section-number">23.0.1</span> Grafi pesati</h3>
+<p>Sono grafi in cui associo delle informazioni agli archi o ai
+nodi.<br />
+<span class="math inline">\(G = (V, E)\)</span> grafo,<br />
+<span class="math inline">\(w: E \rightarrow \mathbb{R}\)</span>
+funzione peso.<br />
+Alcuni esempi di problemi che utilizzano i grafi pesati sono:</p>
+<ul>
+<li><p>Cammini minimi</p></li>
+<li><p>Commesso viaggiatore</p></li>
+<li><p>Albero ricoprente minimo</p></li>
+</ul>
+<h3 data-number="23.0.2" id="problemi-di-ottimizzazione"><span
+class="header-section-number">23.0.2</span> Problemi di
+ottimizzazione</h3>
+<p>Tra tutte le soluzioni <em>ammissibili</em> per un problema voglio
+determinarne una <em>ottima</em> rispetto ad un dato criterio.</p>
+<h3 data-number="23.0.3" id="tecnica-greedy"><span
+class="header-section-number">23.0.3</span> Tecnica greedy</h3>
+<p><span class="math inline">\(P\)</span> = problema di ottimizzazione
+<span class="math inline">\(C\)</span> = insieme di candidati Voglio
+trovare <span class="math inline">\(S^{*} \subseteq C\)</span>
+ottima.</p>
+<ul>
+<li><p>In una sequenza di passi costruisco, a partire dall’insieme
+vuoto, una soluzione ammissibile <span class="math inline">\(S \subseteq
+C\)</span></p></li>
+<li><p>Ad ogni passo si espande una soluzione parziale già
+ottenuta</p></li>
+<li><p>L’algoritmo termina quando non è più possibile espandere la
+soluzione parziale</p></li>
+</ul>
+<p>L’espansione della soluzione può essere vista in questo modo:</p>
+<ul>
+<li><p><strong>Soluzione ammissibile</strong><br />
+La soluzione parziale soddisfa i vincoli del problema</p></li>
+<li><p><strong>Scelta dell’ottimo locale</strong><br />
+Tra i candidati disponibili si sceglie quello che, al momento, appare
+migliore</p></li>
+<li><p><strong>Scelta irrevocabile</strong><br />
+Le scelte effettuate non vengono più messe in discussione</p></li>
+</ul>
+<img src="images/greedy.png" />
+</figure>
+<h3 data-number="23.0.4" id="programmazione-dinamica"><span
+class="header-section-number">23.0.4</span> Programmazione dinamica</h3>
+<p>Si tratta di un approccio bottom-up. A differenza del
+divide-et-impera i sottoproblemi vengono risolti prima e le soluzioni
+parziali vengono salvate. Vediamo alcuni esempi.<br />
+<strong>Esempio 1</strong>: Dato un vettore <span
+class="math inline">\(V\)</span> di interi in <span
+class="math inline">\(\mathbb{Z}\)</span> trovare un sottovettore di
+somma massima.<br />
+<span class="math inline">\(V[1...n]\)</span> vettore in input<br />
+Sottovettore con</p>
+<ul>
+<li><p>Indice di inizio <span class="math inline">\(i\)</span> con <span
+class="math inline">\(1 \le i \le n\)</span></p></li>
+<li><p>Indice di fine <span class="math inline">\(f\)</span> con <span
+class="math inline">\(1 \le f \le n\)</span></p></li>
+</ul>
+<img src="images/sottovettore_max.png" />
+</figure>
+<p><strong>Esempio 2</strong>: trovare il cammino di valore minimo in
+una matrice <span class="math inline">\(n \cdot n\)</span><br />
+<span class="math inline">\(C[i,j]\)</span> = costo cammino minimo che
+inizia nella colonna 1 e termina nella posizione (<span
+class="math inline">\(i, j\)</span>)<br />
+La prima colonna è uguale alla prima colonna della matrice di
+partenza.<br />
+Per le altre colonne <span class="math inline">\(C[i, j] = M[i,j] +
+min\lbrace C[i-1, j-1], C[i, j-1], C[i+1, j-1]\rbrace\)</span><br />
+Anche se mi fermo prima di risolvere il problema ho comunque una
+soluzione ottima per il sottoproblema.</p>
+<img src="images/cammino_min.png" />
+</figure>
+<h2 data-number="23.1" id="albero-ricoprente-minimo"><span
+class="header-section-number">23.1</span> Albero ricoprente minimo</h2>
+<p>Ricordiamo che dato un grafo non orientato e pesato, un <em>albero
+ricoprente minimo</em> del grafo è un albero ricoprente il cui peso sia
+minimo tra tutti gli alberi ricoprenti del grafo.</p>
+<figure>
+<img src="images/albero_ricoprente_minimo.png" />
+</figure>
+<p>Vediamo ora due algoritmi per trovare un albero ricoprente minimo di
+un grafo connesso, non orientato e pesato. In entrambi gli algoritmi
+viene costruito in modo incrementale utilizzando una strategia
+greedy.</p>
+<h3 data-number="23.1.1" id="algoritmo-di-kruskal"><span
+class="header-section-number">23.1.1</span> Algoritmo di Kruskal</h3>
+<p>Il primo algoritmo risolve il problema costruendo un grafo <span
+class="math inline">\(T\)</span> che ha gli stessi vertici di <span
+class="math inline">\(G\)</span> e, inizialmente, è privo di archi.
+L’algoritmo esamina <span class="math inline">\(G\)</span> in ordine di
+peso non decrescente. Un arco viene aggiunto a <span
+class="math inline">\(T\)</span> se, insieme a quelli già scelti, non
+forma cicli, altrimenti viene scartato e non sarà più considerato.
+Pertanto, ad ogni passo, il grafo <span class="math inline">\(T\)</span>
+è una foresta di alberi. Ogni volta che si aggiunge un arco si
+connettono tra loro due alberi della foresta che diventano, con l’arco
+aggiunto, un unico albero. Alla fine, quando sono stati esaminati tutti
+gli archi, <span class="math inline">\(T\)</span> è un unico albero
+ricoprente che, come dimostreremo, è di peso minimo per il grafo <span
+class="math inline">\(G\)</span> dato. Si può dimostrare che l’algoritmo
+trova sempre la soluzione ottima, cioè trova sempre un albero ricoprente
+di peso minimo.<br />
+</p>
+<figure>
+<img src="images/kruscal.png" />
+</figure>
+<p>Studiamo ora una possibile implementazione dell’algoritmo di Kruskal.
+È utile rappresentare il grafo come lista di archi. La lista può essere
+rappresentata direttamente in un array, sul quale applicare uno degli
+algoritmi di ordinamento (in base ai pesi degli archi). Insieme al grafo
+<span class="math inline">\(T\)</span> che viene costruito, utilizziamo
+una struttura che permetta, quando si ispeziona un arco <span
+class="math inline">\((x, y)\)</span>, di decidere facilmente se i
+vertici <span class="math inline">\(x\)</span> e <span
+class="math inline">\(y\)</span> sono già connessi in <span
+class="math inline">\(T\)</span>. A tale scopo possiamo considerare
+partizioni dell’insieme dei vertici <span
+class="math inline">\(V\)</span>, in cui due vertici appartengono allo
+stesso elemento della partizione se e solo se sono connessi in <span
+class="math inline">\(T\)</span>. In altre parole ogni elemento della
+partizione rappresenta una componente connessa di <span
+class="math inline">\(T\)</span>.</p>
+<ul>
+<li><p>Inizialmente ogni vertice di <span
+class="math inline">\(V\)</span> costituisce un singolo insieme della
+partizione (T non contiene archi e dunque non ci sono archi connessi tra
+loro).</p></li>
+<li><p>Quando esaminiamo un arco ci sono due possibilità:</p>
+<ul>
+<li><p>Se <span class="math inline">\(x\)</span> e <span
+class="math inline">\(y\)</span> appartengono allo stesso elemento della
+partizione significa che sono già connessi in <span
+class="math inline">\(T\)</span>. In tal caso l’arco <span
+class="math inline">\((x,y)\)</span> non viene aggiunto a <span
+class="math inline">\(T\)</span> perchè creerebbe un ciclo</p></li>
+<li><p>Se <span class="math inline">\(x\)</span> e <span
+class="math inline">\(y\)</span> appartengono ad elementi diversi della
+partizione allora non sono connessi: aggiungendo l’arco <span
+class="math inline">\((x,y)\)</span> a <span
+class="math inline">\(T\)</span> rendiamo ciascun vertice dell’elemento
+a cui appartiene <span class="math inline">\(x\)</span> connesso con
+ciascun vertice dell’elemento a cui appartiene <span
+class="math inline">\(y\)</span>, cioè rendiamo le due componenti
+connesse a cui appartengono <span class="math inline">\(x\)</span> e
+<span class="math inline">\(y\)</span> un’unica componente
+connessa.</p></li>
+</ul></li>
+</ul>
+<p>La partizione può essere rappresentata mediante le strutture
+Union-Find. Per verificare se <span class="math inline">\(x\)</span> e
+<span class="math inline">\(y\)</span> appartengono allo stesso insieme
+della partizione confronto i risultati di <code>FIND(x)</code> e
+<code>FIND(y)</code>. Per unire due elementi della partizione
+utilizziamo <code>UNION</code>.<br />
+Stimiamo ora il tempo di calcolo in funzione del numero <span
+class="math inline">\(n\)</span> di vertici e <span
+class="math inline">\(m\)</span> di archi del grafo <span
+class="math inline">\(G\)</span> in input. Assumendo il criterio di
+costo uniforme, supponiamo che i confronti tra i pesi degli archi
+avvengano in tempo costante. Dobbiamo tenere conto dei seguenti
+tempi:</p>
+<ul>
+<li><p>Ordinamento di <span class="math inline">\(E\)</span>:<br />
+Utilizziamo <code>heapSort</code> e ordiniamo in tempo <span
+class="math inline">\(O(m \log m)\)</span></p></li>
+<li><p>Operazioni Union/Find:<br />
+Supponiamo di usare QuickUnion con bilanciamento in altezza in cui
+ciascuna operazione <code>MAKESET</code> viene effettuata in tempo
+costante, <code>FIND</code> in tempo <span class="math inline">\(O(\log
+n)\)</span> e <code>UNION</code> in tempo costante, dove <span
+class="math inline">\(n\)</span> è il numero di elementi presenti
+complessivamente negli insiemi della partizione. L’algoritmo effettua
+queste operazioni:</p>
+<ul>
+<li><p><span class="math inline">\(n\)</span> operazioni di
+<code>MAKESET</code>: tempo <span
+class="math inline">\(O(n)\)</span></p></li>
+<li><p><span class="math inline">\(2m\)</span> operazioni di
+<code>FIND</code>: tempo <span class="math inline">\(O(m \log
+n)\)</span></p></li>
+<li><p><span class="math inline">\(n - 1\)</span> operazioni di
+<code>UNION</code>: tempo <span
+class="math inline">\(O(n)\)</span></p></li>
+</ul></li>
+</ul>
+<p>Sommando i vari tempi otteniamo <span class="math inline">\(O(m \log
+n)\)</span> approssimabile a <span class="math inline">\(O(m \log
+m)\)</span>. Se i pesi sono interi si potrebbe ridurre il costo
+dell’ordinamento usando <code>radixSort</code>.</p>
+<figure>
+<img src="images/kruscal_union_find.png" />
+</figure>
+<h3 data-number="23.1.2" id="algoritmo-di-prim"><span
+class="header-section-number">23.1.2</span> Algoritmo di Prim</h3>
+<p>Dato in ingresso un grafo connesso, non orientato con pesi sugli
+archi, l’algoritmo inizia costruendo un albero <span
+class="math inline">\(T\)</span> formato da un unico vertice <span
+class="math inline">\(s\)</span> qualsiasi del grafo. Ad ogni passo
+l’albero <span class="math inline">\(T\)</span> viene espanso scegliendo
+tra tutti gli archi che hanno un vertice in <span
+class="math inline">\(T\)</span> e l’altro non in <span
+class="math inline">\(T\)</span>, un arco di peso minimo. Tale arco
+viene aggiunto a <span class="math inline">\(T\)</span> (insieme al
+vertice che non era in <span class="math inline">\(T\)</span>). Si può
+dimostrare che, come l’algoritmo di Kruskal, anche questo trova sempre
+una soluzione ottima.<br />
+</p>
+<figure>
+<img src="images/prim_alto_livello.png" />
+</figure>
+<p>L’algoritmo di Prim può essere implementato ricorrendo ad una coda
+con priorità <span class="math inline">\(C\)</span>, contenente un
+elemento per ogni vertice che deve ancora essere inserito nell’albero,
+secondo la tecnica che descriviamo ora:</p>
+<ul>
+<li><p>Ad ogni passo, per ogni vertice <span
+class="math inline">\(v\)</span> non ancora in <span
+class="math inline">\(T\)</span> consideriamo le seguenti
+informazioni:</p>
+<ul>
+<li><p><span class="math inline">\(d[v]\)</span>: minimo peso di un arco
+tra un vertice appartenente all’albero <span
+class="math inline">\(T\)</span> già costruito e <span
+class="math inline">\(v\)</span>,</p></li>
+<li><p><span class="math inline">\(vicino[v]\)</span>: un vertice <span
+class="math inline">\(u\)</span> nell’albero <span
+class="math inline">\(T\)</span> già costruito con distanza minima da
+<span class="math inline">\(v\)</span></p></li>
+</ul></li>
+<li><p>La coda con priorità <span class="math inline">\(C\)</span>
+contiene ciascun vertice <span class="math inline">\(v\)</span> non
+ancora inserito in <span class="math inline">\(T\)</span> con priorità
+<span class="math inline">\(d[v]\)</span></p></li>
+<li><p>Inizialmente l’albero è vuoto. Pertanto, per ogni vertice <span
+class="math inline">\(v\)</span>, si pone <span
+class="math inline">\(d[v] = \infty\)</span>, mentre il valore di <span
+class="math inline">\(vicino[v]\)</span> non è definito. Ogni vertice
+viene inserito in <span class="math inline">\(C\)</span></p></li>
+<li><p>Ad ogni passo si sceglie un vertice <span
+class="math inline">\(y\)</span> corrispondente al minimo in <span
+class="math inline">\(C\)</span>. (Al primo passo se ne sceglie uno
+qualsiasi)</p></li>
+<li><p>Nei passi successivi al primo si considera il "vicino" <span
+class="math inline">\(x\)</span> in <span
+class="math inline">\(T\)</span> del vertice <span
+class="math inline">\(y\)</span> scelto. L’arco <span
+class="math inline">\((x,y)\)</span> è pertanto un arco di peso minimo
+con un vertice <span class="math inline">\(x\)</span> in <span
+class="math inline">\(T\)</span> e l’altro vertice <span
+class="math inline">\(y\)</span> non in <span
+class="math inline">\(T\)</span>. Il vertice <span
+class="math inline">\(y\)</span> e l’arco <span
+class="math inline">\((x,y)\)</span> vengono aggiunti
+all’albero.</p></li>
+<li><p>Si ricalcolano le priorità dei vertici, tenendo conto del nuovo
+vertice <span class="math inline">\(y\)</span> inserito in <span
+class="math inline">\(T\)</span>. Per ogni arco <span
+class="math inline">\((y,z)\)</span> uscente da <span
+class="math inline">\(y\)</span> con <span
+class="math inline">\(z\)</span> non in <span
+class="math inline">\(T\)</span>, nel caso il peso <span
+class="math inline">\(w(y,z)\)</span> risulti minore di <span
+class="math inline">\(d[z]\)</span>, si modifica <span
+class="math inline">\(d[z]\)</span> e si aggiorna la coda con priorità e
+l’informazione relativa al vicino di <span
+class="math inline">\(z\)</span>.</p></li>
+<li><p>Queste operazioni vengono ripetute fino a svuotare la coda. A
+quel punto si può restituire <span
+class="math inline">\(T\)</span></p></li>
+</ul>
+<h3 class="unnumbered" id="tempo-di-calcolo-1">Tempo di calcolo</h3>
+<p>Prima di tutto assumiamo che il grafo in ingresso sia rappresentato
+mediante liste di adiacenza o di incidenza. Questo permette di trovare
+facilmente tutti gli archi entranti incidenti su un vertice. La coda con
+priorità può essere rappresentata come un array di <span
+class="math inline">\(n\)</span> elementi e riempita in <span
+class="math inline">\(O(n)\)</span>. Verranno eseguite in totale <span
+class="math inline">\(n\)</span> operazioni <code>deleteMin()</code>,
+ciascuna delle quali impiega tempo al più <span
+class="math inline">\(O(\log n)\)</span>, per un tempo complessivo pari
+a <span class="math inline">\(O(n \log n)\)</span>. Anche tempo
+complessivo utilizzato dalle operazioni <code>changeKey</code> è <span
+class="math inline">\(O(m \log n)\)</span>. Sommando questi tempi
+otteniamo <span class="math inline">\(O(m \log n)\)</span>, come per
+Kruskal. Con una implementazione basata sugli <em>heap di Fibonacci</em>
+è possibile ottenere tempo <span class="math inline">\(O(m + n \log
+n)\)</span> che è meglio del precedente in quanto il numero di archi nel
+grafo è alto.</p>
+<figure>
+<img src="images/prim_1.png" />
+</figure>
+<figure>
+<img src="images/prim_2.png" />
+</figure>
+<h2 data-number="23.2" id="cammini-minimi"><span
+class="header-section-number">23.2</span> Cammini minimi</h2>
+<p>Siano:</p>
+<ul>
+<li><p><span class="math inline">\(G(V, E)\)</span> un grafo
+orientato</p></li>
+<li><p><span class="math inline">\(w\)</span> funzione peso</p></li>
+<li><p><span class="math inline">\(\pi = &lt;V_0...V_k&gt;\)</span> un
+cammino da <span class="math inline">\(V_0\)</span> a <span
+class="math inline">\(V_k\)</span></p></li>
+<li><p><span class="math inline">\(w(\pi)\)</span> peso del
+cammino</p></li>
+</ul>
+<p>Un cammino minimo tra due vertici è il cammino che ha peso minore tra
+tutti i cammini tra i due vertici.<br />
+Alcune proprietà dei cammini minimi:</p>
+<ol>
+<li><p>Se <span class="math inline">\(\pi\)</span> è un cammino minimo
+tra <span class="math inline">\(x\)</span> e <span
+class="math inline">\(y\)</span> che passa per un vertice <span
+class="math inline">\(v\)</span> allora:</p>
+<ul>
+<li><p>La parte da <span class="math inline">\(x\)</span> a <span
+class="math inline">\(v\)</span> è un cammino minimo</p></li>
+<li><p>La parte da <span class="math inline">\(v\)</span> a <span
+class="math inline">\(y\)</span> è un cammino minimo</p></li>
+</ul></li>
+<li><p>Se tutti i pesi sono positivi allora ogni cammino minimo è
+semplice</p></li>
+<li><p>Se ci sono pesi negativi ma non ci sono cicli di peso negativo
+allora tra ogni coppia di vertici esiste un cammino minimo
+semplice</p></li>
+</ol>
+<p>Per rappresentare grafi pesati posso usare liste di adiacenza con
+associate ad ogni arco le informazioni riguardanti il peso, oppure una
+matrice dei pesi in cui se tra due vertici c’è un arco scrivo il suo
+peso, altrimenti scrivo <span class="math inline">\(\infty\)</span>.</p>
+<h3 data-number="23.2.1" id="algoritmo-di-floyd-warshall"><span
+class="header-section-number">23.2.1</span> Algoritmo di
+Floyd-Warshall</h3>
+<p>Questo algoritmo calcola le lunghezze dei cammini minimi tra ogni
+coppia di vertici.<br />
+Gli elementi <span class="math inline">\(d_{ij}\)</span> sono uguali a:
+<span class="math inline">\(\begin{cases}
+    w(V_i, V_j) &amp; \text{se} \space (V_i, V_j) \in E \space \text{e}
+V_i \neq V_j\\
+    0 &amp; \text{se} \space V_i = V_j\\
+    \infty &amp; \text{altrimenti}
+\end{cases}\)</span> Lavora correttamente anche con pesi negativi purchè
+non ci siano cicli negativi.<br />
+</p>
+<figure>
+<img src="images/floydwarshall_1.png" />
+</figure>
+<p><br />
+Esiste anche un’altra versione in cui viene calcolata anche una matrice
+<span class="math inline">\(P\)</span> che può essere utilizzata per
+ricavare i cammini minimi. Dopo l’iterazione <span
+class="math inline">\(k\)</span>, l’elemento <span
+class="math inline">\(D[i,j]\)</span> contiene la lunghezza del cammino
+minimo i cui vertici intermedi hanno indice al più <span
+class="math inline">\(k\)</span>. L’elemento <span
+class="math inline">\(P[i,j]\)</span> contiene il massimo indice di tali
+vertici intermedi. Pertanto, se alla fine dell’esecuzione <span
+class="math inline">\(P[i,j]\)</span> è 0, significa che il cammino
+minimo da <span class="math inline">\(v_i\)</span> a <span
+class="math inline">\(v_j\)</span> non passa per vertici intermedi, se
+<span class="math inline">\(P[i,j] = h &gt; 0\)</span> significa che il
+cammino minimo da <span class="math inline">\(v_i\)</span> a <span
+class="math inline">\(v_j\)</span> passa per <span
+class="math inline">\(v_h\)</span> ed è costituito dal cammino da <span
+class="math inline">\(v_i\)</span> a <span
+class="math inline">\(v_h\)</span> seguito dal cammino da <span
+class="math inline">\(v_h\)</span> a <span
+class="math inline">\(v_j\)</span>.</p>
+<figure>
+<img src="images/floydwarshall_2.png" />
+</figure>
+<h3 data-number="23.2.2" id="algoritmo-di-bellman-e-ford"><span
+class="header-section-number">23.2.2</span> Algoritmo di Bellman e
+Ford</h3>
+<p>Supponiamo di avere un grafo privo di cicli negativi.<br />
+</p>
+<ul>
+<li><p><span class="math inline">\(d_{v}^{[k]}\)</span> = lunghezza del
+cammino minimo da <span class="math inline">\(s\)</span> a <span
+class="math inline">\(v\)</span> che visita al più <span
+class="math inline">\(k\)</span> archi.</p></li>
+<li><p>Allora la lunghezza del cammino minimo da <span
+class="math inline">\(s\)</span> a <span
+class="math inline">\(v\)</span> è <span
+class="math inline">\(d_{v}^{[n-1]}\)</span></p></li>
+<li><p><span class="math inline">\(d_{v}^{[0]}\)</span> = <span
+class="math inline">\(\begin{cases}
+        0 &amp; \text{se} \space v = s\\
+        \infty &amp; \text{altrimenti}
+    \end{cases}\)</span></p></li>
+<li><p><span class="math inline">\(d_{v}^{[k]}\)</span> = <span
+class="math inline">\(min(d_{v}^{[k-1]}, d_{u}^{[k-1]} + w(u, v) \space
+\text{t.c} \space u \in V)\)</span><br />
+</p></li>
+</ul>
+<figure>
+<img src="images/bellmanford.png" />
+</figure>
+<h3 data-number="23.2.3" id="algoritmo-di-dijsktra"><span
+class="header-section-number">23.2.3</span> Algoritmo di Dijsktra</h3>
+<p>Supponiamo di avere pesi non negativi.</p>
+<ul>
+<li><p><strong>Distanze provvisorie vettore <span
+class="math inline">\(d[v]\)</span></strong><br />
+Inizialmente <span class="math inline">\(d[v] = \begin{cases}
+        0 &amp; \text{se $v = s$}\\
+        \infty &amp; \text{altrimenti}
+    \end{cases}\)</span></p></li>
+<li><p><strong><span class="math inline">\(C \subseteq V\)</span>
+insieme dei vertici candidati</strong> Inizialmente <span
+class="math inline">\(c = V\)</span></p></li>
+<li><p><strong>Ad ogni passo strategia greedy</strong></p>
+<ol>
+<li><p>Preleva da <span class="math inline">\(C\)</span> il vertice
+<span class="math inline">\(u\)</span> con <span
+class="math inline">\(d[u]\)</span> minima</p></li>
+<li><p><span class="math inline">\(d[u]\)</span> diventa
+definitiva</p></li>
+<li><p>Aggiorna <span class="math inline">\(d[v]\)</span> per ogni <span
+class="math inline">\(v\)</span> adiacente a <span
+class="math inline">\(u\)</span></p></li>
+</ol></li>
+</ul>
+<p>È implementabile utilizzando liste di adiacenza o di incidenza per
+rappresentare il grafo e code con priorità. Il tempo di esecuzione è
+<span class="math inline">\(O(m \log n)\)</span></p>
+<figure>
+<img src="images/dijsktra_1.png" />
+</figure>
+<figure>
+<img src="images/dijsktra_2.png" />
+</figure>
+<h1 data-number="24" id="dizionari-e-tabelle-hash"><span
+class="header-section-number">24</span> Dizionari e tabelle hash</h1>
+<p>I <em>dizionari</em> sono una collezione di elementi identificati da
+una chiave. Le operazioni che vogliamo poter eseguire sono ricerca,
+inserimento e cancellazione. Le possibili implementazioni che abbiamo
+visto finora sono array e alberi. Vediamo un riepilogo dei tempi
+richiesti dalle tre operazioni nelle varie strutture.<br />
+</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;"><strong>Array non ordinato</strong></th>
+<th style="text-align: center;"><strong>Array ordinato</strong></th>
+<th style="text-align: center;"><strong>Alberi di ricerca</strong></th>
+<th style="text-align: center;"><strong>Alberi AVL e Alberi
+2-3</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Ricerca</strong></td>
+<td style="text-align: center;"><span
+class="math inline">\(\Theta(n)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\Theta(\log
+n)\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\Theta(n)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\Theta(\log
+n)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Inserimento</strong></td>
+<td style="text-align: center;"><span
+class="math inline">\(\Theta(1)\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\Theta(n)\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\Theta(n)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\Theta(\log
+n)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Cancellazione</strong></td>
+<td style="text-align: center;"><span
+class="math inline">\(\Theta(n)\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\Theta(n)\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\Theta(n)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\Theta(\log
+n)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><br />
+Non è sempre vero che tenere le cose in ordine ci permette di trovarle
+più velocemente. Infatti esistono alcune strutture che disordinano i
+dati di proposito, ovvero le <em>tabelle hash</em>.</p>
+<h2 data-number="24.1" id="funzioni-hash"><span
+class="header-section-number">24.1</span> Funzioni hash</h2>
+<p>Siano</p>
+<ul>
+<li><p><span class="math inline">\(U\)</span> = universo delle
+chiavi</p></li>
+<li><p><span class="math inline">\(\lbrace 0 ... m-1\rbrace\)</span>
+spazio degli indici</p></li>
+</ul>
+<p>Funzioni hash h: <span class="math inline">\(U \rightarrow\)</span>
+<span class="math inline">\(\lbrace 0 ... m-1\rbrace\)</span>
+trasformazioni di chiavi in indici</p>
+<h2 data-number="24.2" id="fattore-di-carico"><span
+class="header-section-number">24.2</span> Fattore di carico</h2>
+<p><span class="math inline">\(\alpha = \frac{n}{m}\)</span><br />
+</p>
+<ul>
+<li><p><span class="math inline">\(n\)</span> = numero di elementi
+memorizzati nella tabella</p></li>
+<li><p><span class="math inline">\(m\)</span> = posizioni disponibili
+nella tabella</p></li>
+<li><p>Se <span class="math inline">\(\alpha\)</span> = 1 la tabella è
+piena</p></li>
+<li><p>Se <span class="math inline">\(\alpha\)</span> = 0 la tabella è
+vuota</p></li>
+</ul>
+<p>Quando mi avvicino allo 0 sto "sprecando" la tabella. Una
+<em>funzione hash perfetta (o iniettiva)</em> è una funzione hash tale
+che:</p>
+<div class="center">
+<p>se <span class="math inline">\(m \neq v \Rightarrow h(m) \neq
+h(v)\)</span></p>
+</div>
+<p>Nella pratica, salvo in casi particolari:</p>
+<ul>
+<li><p>Il numero di chiavi possibili è molto più grande del numero di
+chiavi attese</p></li>
+<li><p>La dimensione della tabella è scelta paragonabile al numero di
+chiavi attese</p></li>
+</ul>
+<h2 data-number="24.3" id="gestione-delle-collisioni"><span
+class="header-section-number">24.3</span> Gestione delle collisioni</h2>
+<p>Supponiamo di voler catalogare 20 persone in una tabella di 26
+posizioni e che la nostra funzione di hash sia la prima lettera del
+cognome. È una funzione perfetta? No, perchè esistono lettere più
+diffuse di altre per i cognomi e rischiamo che due persone vadano a
+finire nella stessa posizione della tabella, creando una
+<em>collisione</em>. Dobbiamo quindi fare in modo che le collisioni
+avvengano raramente e, nel caso avvengano, avere una strategia per
+gestirle. Per quanto riguarda il fare in modo che le collisioni
+avvengano il meno possibile introduciamo i concetti di
+<em>sparpagliamento e uniformità</em>. Siano:</p>
+<ul>
+<li><p>h: <span class="math inline">\(U \rightarrow\)</span> <span
+class="math inline">\(\lbrace 0 ... m-1\rbrace\)</span> una funzione
+hash</p></li>
+<li><p>P(<span class="math inline">\(x\)</span>) la probabilità che
+scegliendo a caso una chiave da <span class="math inline">\(U\)</span>
+si scelga <span class="math inline">\(x\)</span></p></li>
+<li><p>Q(<span class="math inline">\(i\)</span>) = <span
+class="math inline">\(\sum_{x | h(x) = i} P(x)\)</span> probabilità che
+una chiave scelta a caso da <span class="math inline">\(U\)</span> abbia
+valore hash <span class="math inline">\(i\)</span></p></li>
+</ul>
+<p>La funzione hash è uniforme se Q(<span
+class="math inline">\(i\)</span>) è la stessa per ogni <span
+class="math inline">\(i\)</span>, cioè Q(<span
+class="math inline">\(i\)</span>) = <span
+class="math inline">\(\frac{1}{m}\)</span><br />
+Alcuni esempi di funzioni hash sono il <em>metodo della divisione</em> e
+il <em>metodo del ripiegamento</em>.<br />
+Esistono due categorie di tecniche per gestire le collisioni:
+<em>interne</em> ed <em>esterne</em>.</p>
+<h2 data-number="24.4" id="gestione-esterna"><span
+class="header-section-number">24.4</span> Gestione esterna</h2>
+<p>Una tecnica di gestione esterna delle collisioni sono le <em>liste di
+collisione</em>.<br />
+</p>
+<figure>
+<img src="images/lista_di_collisione.png" />
+</figure>
+<p><br />
+In posizione <span class="math inline">\(i\)</span> troviamo ogni record
+la cui chiave <span class="math inline">\(x\)</span> ha valore hash
+<span class="math inline">\(i\)</span>. La struttura consiste in un
+array di liste di coppie &lt;elemento, chiave&gt;. Ogni volta che un
+nuovo elemento deve essere inserito viene messo esterno alla tabella
+hash vera e propria ma collegato alla posizione corretta. Nel momento in
+cui arriva un nuovo elemento che collide con uno già presente viene
+aggiunto alla lista in testa e senza ordinamento. I tempi delle
+operazioni sono:</p>
+<ul>
+<li><p><strong>Inserimento</strong>: <span
+class="math inline">\(O(1)\)</span></p></li>
+<li><p><strong>Ricerca</strong>: <span
+class="math inline">\(O(m)\)</span></p></li>
+<li><p><strong>Cancellazione</strong>: <span
+class="math inline">\(O(n)\)</span></p></li>
+</ul>
+<p>Il tempo medio è <span class="math inline">\(O(1+\alpha)\)</span>,
+dipende dalla lunghezza della lista.<br />
+Quando una lista si riempie troppo si parla di <em>agglomerazione</em>
+ed è un problema che dobbiamo cercare di evitare. Se si verifica
+significa che la funzione scelta non è adeguata dal punto di vista
+dell’uniformità.</p>
+<h2 data-number="24.5" id="gestione-interna"><span
+class="header-section-number">24.5</span> Gestione interna</h2>
+<p>Esistono diverse metodologie interne per la gestione delle
+collisioni. Vedremo l’indirizzamento aperto. A grandi linee, possiamo
+dire che memorizziamo tutto nella tabella e in caso di collisione
+troviamo un altro posto libero scegliendo una delle possibili strategie.
+La prima strategia è cercare il primo posto vuoto disponibile e se
+arrivo in fondo riparto dalla cima. Questo sistema è afflitto dal tipo
+peggiore di agglomerazione, detta agglomerazione primaria, che si
+verifica quando ho valori con chiavi di diversi valori di hash che si
+mescolano. Formalmente questa metodologia si chiama <em>funzione
+ausiliaria</em>, nello specifico <em>scansione lineare</em> <span
+class="math inline">\(C(k,i)\)</span>, dove <span
+class="math inline">\(k\)</span> è la chiave, <span
+class="math inline">\(i \ge 0\)</span>, <span
+class="math inline">\(C(k,i) = (h(k)+i) \mod{m}\)</span>.</p>
+<h3 data-number="24.5.1" id="scansione-quadratica"><span
+class="header-section-number">24.5.1</span> Scansione quadratica</h3>
+<p><span class="math inline">\(C(k,i) = \lfloor h(k)+C_{1}i+C_{2}i^2
+\rfloor \mod{m}\)</span><br />
+Questa funzione ausiliaria ci permette di evitare l’agglomerazione
+primaria ma non interviene su quella secondaria (meno grave ma comunque
+fastidiosa).</p>
+<h3 data-number="24.5.2" id="hashing-doppio"><span
+class="header-section-number">24.5.2</span> Hashing doppio</h3>
+<p><span class="math inline">\(C(k,i) = [h(k)+ih&#39;(k)]
+\mod{m}\)</span> dove <span class="math inline">\(h&#39;\)</span> è una
+seconda funzione hash. La situazione ideale sarebbe <span
+class="math inline">\(h(k_{1}) = h(k_2) \Rightarrow h&#39;(k_{1}) \neq
+h&#39;(k_2)\)</span><br />
+In parole povere significa che se trovo un posto occupato provo ad usare
+una differente funzione (la stessa cosa con l’incremento di <span
+class="math inline">\(i\)</span>).</p>
+<h3 data-number="24.5.3" id="operazioni-3"><span
+class="header-section-number">24.5.3</span> Operazioni</h3>
+<img src="images/hash_inserimento.png" />
+</figure>
+<img src="images/hash_ricerca.png" />
+</figure>
+<p>Per quanto riguarda la cancellazione, questa è più insidiosa perchè,
+ogni volta che si cancella un elemento, andrebbe ristrutturata la
+tabella, in quanto si perderebbero i legami impliciti tra le celle che
+vengono usati nelle ricerche. Per questo motivo non avviene mai una
+cancellazione vera e propria ma una "virtuale": introduciamo un flag
+booleano che indichi se il dato contenuto in quella posizione è
+cancellato o meno. Quando ci sarà un nuovo inserimento il dato vecchio
+sarà sovrascritto e il flag riportato a "non cancellato".</p>
+<h3 data-number="24.5.4" id="numero-di-confronti-8"><span
+class="header-section-number">24.5.4</span> Numero di confronti</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;"><strong>Scansione lineare</strong></th>
+<th style="text-align: center;"><strong>Scansione quadratica e hashing
+doppio</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Chiave trovata</strong></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{1}{2}
++ \frac{1}{2(1-\alpha)}\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\frac{1}{\alpha} \log
+\log_2(1-\alpha)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Chiave non trovata</strong></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{1}{2}
++ \frac{1}{2(1-\alpha)^2}\)</span></td>
+<td style="text-align: center;"><span
+class="math inline">\(\frac{1}{1-\alpha}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><br />
+Ricordiamo che <span class="math inline">\(\alpha\)</span> è il fattore
+di carico della tabella. Se <span class="math inline">\(\alpha &lt;
+1\)</span> i confronti saranno sempre in numero molto limitato. Questo
+significa che le funzioni ausiliarie da noi esposte sono efficienti più
+la tabella è vuota. Questa considerazione ci porterà alla ricerca di
+alcuni metodi (<em>re-hashing</em>) atti al mantenimento di un minimo di
+posti liberi ridimensionando la tabella.</p>
+<h3 data-number="24.5.5" id="re-hashing"><span
+class="header-section-number">24.5.5</span> Re-hashing</h3>
+<p>Si tratta della sostituzione della tabella con una nuova. È
+un’operazione molto dispendiosa in termini di tempo. Occorre inoltre una
+funzione hash adatta alla nuova tabella. Per quanto riguarda lo
+spostamento degli elementi dalla tabella vecchia a quella nuova occorre
+scandire l’intera tabella e inserire ogni suo elemento nella nuova
+tabella, calcolandone la posizione in base alla nuova funzione di hash e
+risolvendo eventuali collisioni. Pertanto il re-hashing richiede un
+numero minimo di passi pari almeno alla dimensione della vecchia
+tabella. Sebbene appaia molto dispendioso in termini di tempo, se
+gestito bene ha un costo ammortizzato basso. Supponiamo di procedere
+come segue:</p>
+<ul>
+<li><p>Fissiamo il valore massimo del fattore di carico ad <span
+class="math inline">\(\alpha_{max} = \frac{1}{2}\)</span></p></li>
+<li><p>Ogni volta che il fattore di carico raggiunge il valore massimo
+al momento del successivo inserimento effettueremo il re-hashing
+sostituendo la tabella con una nuova di capacità doppia.</p></li>
+</ul>
+<p>Immaginiamo di avere una tabella <span
+class="math inline">\(T_0\)</span> di dimensione <span
+class="math inline">\(m\)</span> e di effettuare una serie di
+inserimenti, sostituendo, quando necessario, una tabella <span
+class="math inline">\(T_i\)</span> con una tabella <span
+class="math inline">\(T_i+1\)</span> mediante re-hashing.</p>
+<figure>
+<img src="images/rehashing.png" />
+</figure>
+<p>Il numero totale di operazioni di inserimento che si effettuano a
+causa dei re-hashing è <span class="math inline">\(\frac{m}{2}(2^{k} -
+1)\)</span><br />
+Possiamo concludere che se efffettuiamo <span
+class="math inline">\(N\)</span> operazioni di inserimento in una
+tabella hash, a causa del re-hashing effettuiamo in totale <span
+class="math inline">\(O(N)\)</span> ulteriori inserimenti. Se ogni
+operazione di inserimento utilizza un numero di passi costante, il
+numero di passi totali tenendo conto anche del re-hashing è <span
+class="math inline">\(O(n)\)</span>. Pertanto, dividendo per il numero
+<span class="math inline">\(N\)</span> di inserimenti "effettivi",
+otteniamo che il tempo ammortizzato è <span
+class="math inline">\(\frac{O(n)}{N} = O(1)\)</span>. Quindi, anche
+effettuando il re-hashing nel modo indicato sopra, il costo medio delle
+operazioni di inserimento resta costante.</p>
+<h1 data-number="25"
+id="classificazione-dei-problemi-e-complessità-computazionale"><span
+class="header-section-number">25</span> Classificazione dei problemi e
+complessità computazionale</h1>
+<p>Abbiamo un problema e vogliamo progettare uno o più algoritmi per
+risolverlo. Quando analizzo l’algoritmo e sono certo che funzioni vado a
+fare una stima delle risorse, solitamente tempo e spazio, ma non solo.
+Useremo il simbolo <span class="math inline">\(\pi\)</span> per
+riferirci ad un problema.<br />
+</p>
+<ul>
+<li><p><strong>Limitazione superiore</strong> (upper bound) f: <span
+class="math inline">\(\mathbb{N} \rightarrow \mathbb{N}\)</span><br />
+<span class="math inline">\(f(n)\)</span> risorsa <span
+class="math inline">\(r\)</span> è <em>sufficiente</em> per risolvere
+<span class="math inline">\(\pi\)</span> se esiste un algoritmo <span
+class="math inline">\(\mathcal{A}\)</span> che risolve <span
+class="math inline">\(\pi\)</span> utilizzando su ogni input di
+lunghezza <span class="math inline">\(n\)</span> al più <span
+class="math inline">\(f(n)\)</span> risorsa <span
+class="math inline">\(r\)</span>.<br />
+</p></li>
+<li><p><strong>Limitazione inferiore</strong> (lower bound) g: <span
+class="math inline">\(\mathbb{N} \rightarrow \mathbb{N}\)</span><br />
+<span class="math inline">\(g(n)\)</span> risorsa <span
+class="math inline">\(r\)</span> è <em>necessaria</em> per risolvere
+<span class="math inline">\(\pi\)</span> se per ogni algoritmo <span
+class="math inline">\(\mathcal{A}\)</span> che risolve <span
+class="math inline">\(\pi\)</span> esiste un input di lunghezza <span
+class="math inline">\(n\)</span> su cui <span
+class="math inline">\(\mathcal{A}\)</span> utilizza almeno <span
+class="math inline">\(g(n)\)</span> risorsa <span
+class="math inline">\(r\)</span>.<br />
+</p></li>
+</ul>
+<p>Per fare un esempio, tra gli algoritmi di ordinamento <span
+class="math inline">\(\Theta(n^2)\)</span> rappresenta un upper bound
+(<code>insertionSort</code>) e <span class="math inline">\(\Theta(n \log
+n)\)</span> rappresenta un lower bound.</p>
+<p>Un algoritmo è ottimale quando lower bound ed upper bound
+coincidono.</p>
+<h2 data-number="25.1" id="classi-di-complessità"><span
+class="header-section-number">25.1</span> Classi di complessità</h2>
+<p>Siano<br />
+s,t : <span class="math inline">\(\mathbb{N} \rightarrow
+\mathbb{N}\)</span> due funzioni.<br />
+Una <em>classe di complessità</em> è l’insieme dei problemi che possono
+essere risolti utilizzando la "stessa" quantità di una determinata
+risorsa. (stessa è tra virgolette perchè non ci basiamo su un valore
+preciso ma su una categoria più ampia). Abbiamo innanzitutto la classe
+<strong>P</strong>, che è una classe di problemi <span
+class="math inline">\(\pi\)</span> che ammettono un algoritmo risolutivo
+che utilizza tempo polinomiale (<span
+class="math inline">\(n^{O(1)}\)</span>). Un esempio di un problema che
+non appartiene alla classe <strong>P</strong> è quello del commesso
+viaggiatore, ma la maggior parte di quelli che abbiamo visto appartiene
+a questa classe. Questo ci fa capire che una classe può contenere
+problemi di tipologie molto diverse. Troviamo per esempio problemi di
+ricerca (albero ricoprente), problemi di ottimizzazione (albero
+ricoprente minimo), e problemi di decisione. Un problema di decisione si
+può risolvere tramite un problema di ottimizzazione. I problemi di
+decisione ci permettono di confrontare in maniera molto semplice
+problemi apparentemente diversi. Spesso poi il problema di decisione ci
+permette di risolvere senza troppa fatica il problema di ottimizzazione
+associato.<br />
+Per esempio:</p>
+<ul>
+<li><p>Ottimizzazione: dato un grafo trovare l’albero ricoprente
+minimo</p></li>
+<li><p>Decisione: dato un grafo, esiste l’albero ricoprente del grafo di
+peso <span class="math inline">\(\le K\)</span>?</p></li>
+</ul>
+<p>Se <span class="math inline">\(\pi\)</span> è un problema di
+decisione e <span class="math inline">\(\mathcal{A}\)</span> è un
+algoritmo, <span class="math inline">\(\mathcal{A}\)</span> risolve
+<span class="math inline">\(\pi\)</span> quando su input <span
+class="math inline">\(x\)</span> <span
+class="math inline">\(\mathcal{A}\)</span> restituisce 1 se e solo se
+<span class="math inline">\(\pi(x) = 1\)</span>.<br />
+<span class="math inline">\(\mathcal{A}\)</span> risolve <span
+class="math inline">\(\pi\)</span> in tempo <span
+class="math inline">\(t(n)\)</span> e spazio <span
+class="math inline">\(s(n)\)</span> se e solo se <span
+class="math inline">\(\mathcal{A}\)</span> risolve <span
+class="math inline">\(\pi\)</span> utilizzando al più tempo <span
+class="math inline">\(t(n)\)</span> e al più spazio <span
+class="math inline">\(s(n)\)</span> su ogni input di lunghezza <span
+class="math inline">\(n\)</span>.<br />
+Possiamo formalizzare questi concetti e vedere alcune classi di
+complessità:</p>
+<ul>
+<li><p><strong>TIME</strong>(<span class="math inline">\(t(n)\)</span>)
+= classe di problemi di decisione risolvibili in tempo <span
+class="math inline">\(O(t(n))\)</span></p></li>
+<li><p><strong>SPACE</strong>(<span class="math inline">\(t(n)\)</span>)
+= classe di problemi di decisione risolvibili in spazio <span
+class="math inline">\(O(s(n))\)</span></p></li>
+<li><p><strong>CLASSE P</strong> = <span class="math inline">\(U_{c =
+0}^{\infty}\)</span> <strong>TIME</strong>(<span
+class="math inline">\(n^c\)</span>) (classe considerata risolvibile a
+tutti gli effetti)</p></li>
+<li><p><strong>PSPACE</strong> = <span class="math inline">\(U_{c =
+0}^{\infty}\)</span> <strong>SPACE</strong>(<span
+class="math inline">\(n^c\)</span>) spazio polinomiale</p></li>
+<li><p><strong>EXPTIME</strong> = <span class="math inline">\(U_{c =
+0}^{\infty}\)</span> <strong>TIME</strong>(<span
+class="math inline">\(2^{n^c}\)</span>) tempo esponenziale</p></li>
+</ul>
+<p>Esistono alcune relazioni tra lo spazio utilizzato ed il tempo
+utilizzato da un algoritmo:</p>
+<ul>
+<li><p>tempo polinomiale <span
+class="math inline">\(\Rightarrow\)</span> spazio polinomiale, quindi
+<strong>P</strong> <span class="math inline">\(\subseteq\)</span>
+<strong>PSPACE</strong></p></li>
+<li><p>spazio polinomiale <span
+class="math inline">\(\Rightarrow\)</span> tempo esponenziale, quindi
+<strong>PSPACE</strong> <span class="math inline">\(\subseteq\)</span>
+<strong>EXPTIME</strong></p></li>
+</ul>
+<p>Da queste due considerazioni deduco che <strong>P</strong> <span
+class="math inline">\(\subseteq\)</span> <strong>PSPACE</strong> <span
+class="math inline">\(\subseteq\)</span> <strong>EXPTIME</strong></p>
+<h2 data-number="25.2" id="problemi-np-completi"><span
+class="header-section-number">25.2</span> Problemi NP-completi</h2>
+<p>Sono i problemi più difficili nella classe <strong>NP</strong>
+(problemi non deterministici in tempo polinomiale). Vediamo alcuni
+esempi:</p>
+<h3 class="unnumbered" id="problema-delle-partizioni">Problema delle
+partizioni</h3>
+<p>Dato un insieme finito di oggetti, trovare due sottoinsiemi tali che
+la somma degli elementi dei due sottoinsiemi sia uguale. Il tempo
+necessario per il calcolo delle partizioni è circa <span
+class="math inline">\(2^n\)</span> quindi ricade in
+<strong>EXPTIME</strong></p>
+<h3 class="unnumbered" id="problema-delle-cricche">Problema delle
+cricche</h3>
+<p>Dato un grafo non orientato e un intero <span
+class="math inline">\(k\)</span>, stabilire se esiste un sottografo
+completo con <span class="math inline">\(k\)</span> vertici. La verifica
+avviene in tempo polinomiale, ma il costo della ricerca effettiva è
+<span class="math inline">\(\binom{n}{k}\)</span> che può essere anche
+esponenziale.</p>
+<h3 data-number="25.2.1" id="problema-soddisfacibilità-sodd"><span
+class="header-section-number">25.2.1</span> Problema soddisfacibilità
+(SODD)</h3>
+<p>Istanza: Formula booleana <span class="math inline">\(\Phi\)</span>
+in forma normale congiuntiva con insieme di variabili <span
+class="math inline">\(V\)</span>.<br />
+Questione: Esiste un assegnamento alle variabili in <span
+class="math inline">\(V\)</span> che rende vera <span
+class="math inline">\(\Phi\)</span>, cioè tale che <span
+class="math inline">\(\Phi(f) = 1\)</span>.<br />
+Per decidere se <span class="math inline">\(\Phi\)</span> è
+soddisfacibile proviamo tutti i possibili assegnamenti di valori alle
+variabili. Quando si dice che la questione è vera e la clausola è
+soddisfacibile, bisogna portare il certificato, cioè la soluzione che
+risolve la formula. Anche in questo caso verificare il problema è
+piuttosto semplice ma trovare la soluzione richiede tempo esponenziale.
+Introduciamo il termine <em>non deterministico</em>, ovvero un concetto
+utilizzato negli automi per definire la scelta di soluzione
+"indovinata".<br />
+</p>
+<img src="images/sodd.png" />
+</figure>
+<p><br />
+La verifica è polinomiale, ma cosa possiamo dire della computazione non
+deterministica di <em>indovina</em>? Introduciamo la classe
+<strong>NP</strong> in cui abbiamo certificati verificabili in tempo
+polinomiale (ricordiamo che stiamo sempre parlando di problemi di
+decisione).<br />
+Chiamiamo <strong>NTIME</strong> di <span
+class="math inline">\(f(n)\)</span> la classe dei problemi che possono
+essere risolti da algoritmi non deterministici in tempo <span
+class="math inline">\(V(f(n))\)</span>.<br />
+(<strong>NP</strong> sta per "Non Deterministic P" e
+<strong>NON</strong> "Non Polinomiale"!)<br />
+<strong>NP</strong> = <span class="math inline">\(U^{\infty}_{c =
+0}\)</span> <strong>NTIME</strong>(<span
+class="math inline">\(n^c\)</span>)<br />
+</p>
+<h2 data-number="25.3" id="relazioni-tra-classi-di-complessità"><span
+class="header-section-number">25.3</span> Relazioni tra classi di
+complessità</h2>
+<p>Anche i problemi della partizione e della cricca sono risolvibili con
+un algoritmo <strong>NP</strong> in tempo <span
+class="math inline">\(O(n)\)</span> e <span
+class="math inline">\(O(n^2)\)</span>, hanno le stesse caratteristiche
+di SODD e quindi appartengono alla classe <strong>NP</strong>.<br />
+Lo stesso discorso fatto per <strong>NSPACE</strong> potremmo
+riprenderlo per <strong>NPSPACE</strong>.</p>
+<div class="center">
+<p>Ogni algoritmo deterministico è un caso particolare di un algoritmo
+non deterministico</p>
+</div>
+<p>Possiamo quindi concludere che</p>
+<div class="center">
+<p><strong>P</strong> <span class="math inline">\(\subseteq\)</span>
+<strong>NP</strong> <span class="math inline">\(\subseteq\)</span>
+<strong>PSPACE</strong> <span class="math inline">\(\subseteq\)</span>
+<strong>EXPTIME</strong></p>
+</div>
+<p>Vogliamo ora dimostrare che <strong>P</strong> <span
+class="math inline">\(\neq\)</span> <strong>NP</strong>. Esiste qualcosa
+che sta in <strong>NP</strong> ma non in <strong>P</strong>? Questi
+problemi sono detti NP-completi.<br />
+Supponiamo di avere due problemi <span class="math inline">\(\pi_1 : I_1
+\rightarrow \lbrace 0,1 \rbrace\)</span> e <span
+class="math inline">\(\pi_2 : I_2 \rightarrow \lbrace 0,1
+\rbrace\)</span>.<br />
+<span class="math inline">\(\pi_1\)</span> è <em>riconducibile</em> a
+<span class="math inline">\(\pi_2\)</span> se esiste f: <span
+class="math inline">\(I_1 \rightarrow I_2\)</span> tale che:</p>
+<ul>
+<li><p>Per ogni <span class="math inline">\(x \in I_1\)</span> <span
+class="math inline">\(\pi_1(x) = 1\)</span> se e solo se <span
+class="math inline">\(\pi_2(f(x)) = 1\)</span></p></li>
+<li><p><span class="math inline">\(F\)</span> è calcolabile in tempo
+polinomiale (nella lunghezza dell’input) da un algoritmo
+deterministico</p></li>
+</ul>
+<p>La funzione <span class="math inline">\(f\)</span> è detta
+<em>riduzione polinomiale</em>.<br />
+La riduzione trasforma un problema in un problema di un altro tipo,
+purchè se la risposta a <span class="math inline">\(\pi_1\)</span> è 1
+anche la risposta a <span class="math inline">\(\pi_2\)</span> è 1, in
+tempo di soluzione polinomiale.<br />
+<strong>Proprietà fondamentale</strong>:</p>
+<div class="center">
+<p>Se <span class="math inline">\(\pi_1 \le \pi_2\)</span> (è riduzione
+polinomiale) e <span class="math inline">\(\pi_2 \in P\)</span> allora
+<span class="math inline">\(\pi_1 \in P\)</span>.</p>
+</div>
+<p>Ora possiamo definire formalmente i problemi NP-completi:</p>
+<ol>
+<li><p><span class="math inline">\(\pi\)</span> problema di decisione è
+<strong>NP-HARD</strong> se per ogni <span
+class="math inline">\(\pi&#39; \in NP \rightarrow \pi&#39; \le_p
+\pi\)</span></p></li>
+<li><p><span class="math inline">\(\pi\)</span> è NP-completo se è
+<strong>NP-HARD</strong> e <span class="math inline">\(\in\)</span>
+<strong>NP</strong></p></li>
+</ol>
+<p>Qualcuno è riuscito a dimostrare che SODD non è NP-completo.<br />
+Alcuni esempi di problemi NP-completi sono:</p>
+<ul>
+<li><p>Cammino Hamiltoniano</p></li>
+<li><p>SODD3 (clausole grandi solo 3)</p></li>
+<li><p>Partizione</p></li>
+<li><p>Commesso viaggiatore</p></li>
+<li><p>Cammino massimo</p></li>
+</ul>
+</body>
+</html>
