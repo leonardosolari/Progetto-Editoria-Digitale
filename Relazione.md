@@ -20,7 +20,17 @@ Per il formato del prodotto finale ho scelto un PDF, poichè di facile consultaz
 
 L'obiettivo principale di queste dispense è quello di fornire a tutti gli studenti del corso uno strumento che possa rendere più agevole la preparazione dell'esame.
 
-I **destinatari** sono quindi tutti i colleghi che come me apprezzano avere un unico documento che fornisca nel modo più esaustivo possibile tutte le informazioni necessarie a raggiungere una padronanza sufficiente degli argomenti trattati nel corso. 
+I **destinatari** sono quindi tutti i colleghi che come me apprezzano avere un unico documento che fornisca nel modo più esaustivo possibile tutte le informazioni necessarie a raggiungere una padronanza sufficiente degli argomenti trattati nel corso.
+
+Tale documento deve integrare il più possibile tutti i materiali disponibili e presentare alcune caratteristiche tra cui:
+
+
+* Codice sorgente diviso per capitoli, per facilitare le revisioni e l'aggiunta o la rimozione di materiale
+* Indice dei contenuti interattivo per cercare e raggiungere velocemente sezioni di interesse
+* In ogni capitolo, in base alla necessità, tabelle, grafi, formule e immagini che arricchiscano e rendano più agevole la fruizione del contenuto
+* Grafica ordinata, pulita e senza elementi di distrazione
+* Essere facilmente consultabile su PC e dispositivi mobili ma anche in un formato adatto alla stampa, per coloro che preferiscono studiare tramite materiale cartaceo.
+
 
 
 ## Processo di produzione
