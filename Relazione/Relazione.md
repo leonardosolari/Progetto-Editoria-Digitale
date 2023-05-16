@@ -60,9 +60,9 @@ Il materiale che ho utilizzato per la stesura del documento proviene principalme
 * #### Definizione dei formati
 La scelta dei formati è ricaduta su:
 
-	* **LaTeX** per il codice sorgente, in quanto adatto al contenuto ricco di formule matematiche e per l'ottimo risultato prodotto in termini grafici una volta compilato
-	* **PDF** come formato principale per il prodotto finale, in quanto consultabile da praticamente qualsiasi dispositivo fisso e portatile e già pronto alla stampa
-	* **HTML** come ulteriore formato del prodotto finale per favorire la consultazione del prodotto da web browser. Il documento in tale formato è stato ottenuto tramite una conversione del sorgente LaTeX grazie al tool **Pandoc**.
+	* **LaTeX** per il codice sorgente, in quanto adatto al contenuto ricco di 	formule matematiche e per l'ottimo risultato prodotto in termini grafici 	una volta compilato
+	* **PDF** come formato principale per il prodotto finale, in quanto 	consultabile da praticamente qualsiasi dispositivo fisso e portatile e già 	pronto alla stampa
+	* **HTML** come ulteriore formato del prodotto finale per favorire la 	consultazione del prodotto da web browser. Il documento in tale formato è 	stato ottenuto tramite una conversione del sorgente LaTeX grazie al tool 	**Pandoc**.
 
 ### Stesura bozza e revisione dei contenuti
 	
