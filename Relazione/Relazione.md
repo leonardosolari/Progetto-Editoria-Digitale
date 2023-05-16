@@ -64,25 +64,25 @@ La scelta dei formati è ricaduta su:
 * **PDF** come formato principale per il prodotto finale, in quanto consultabile da praticamente qualsiasi dispositivo fisso e portatile e già pronto alla stampa
 * **HTML** come ulteriore formato del prodotto finale per favorire la consultazione del prodotto da web browser. Il documento in tale formato è stato ottenuto tramite una conversione del sorgente LaTeX grazie al tool **Pandoc**.
 
-* ### Stesura bozza e revisione dei contenuti
+### Stesura bozza e revisione dei contenuti
 	
-	* #### Punti da trattare
+* #### Punti da trattare
 	La prima fase riguardante la vera e propria stesura del documento è consistita nello stilare una lista degli argomenti trattati nel corso e della loro divisione in capitoli e paragrafi. Per fare ciò mi sono servito dei materiali a mia disposizione già elencati nella fase di identificazione delle fonti, e per dare loro un'ordine ho seguito la cronologia delle lezioni caricate sulla pagina Ariel del corso.
 	
-	* #### Sviluppo dei contenuti
+* #### Sviluppo dei contenuti
 	Successivamente sono passato ad una trattazione più esaustiva possibile di ogni argomento integrando tutte le informazioni in mio possesso tratte dalle fonti che avevo a disposizione. In tale fase ho già provveduto a inserire codice sorgente e formule matematiche ove necessario grazie agli appositi pacchetti del linguaggio LaTeX.
 	
-	* #### Identificazione degli elementi multimediali
-	Ove necessario sono state inserite immagini, grafici e tabelle che arricchissero la trattazione degli argomenti.
+* #### Identificazione degli elementi multimediali
+	Ove necessario sono state inserite immagini, pseudocodice grafici e tabelle che arricchissero la trattazione degli argomenti. Tutti gli elementi multimediali sono stati gestiti tramite gli appositi pacchetti offerti dal linguaggio LaTeX
 	
-	* #### Revisione
+* #### Revisione
 	Il documento è stato infine revisionato manualmente in cerca di errori di battitura o impaginazione e imprecisioni.
 	
-* ### Definizione dello stile grafico
+### Definizione dello stile grafico
 La formattazione del testo, l'impaginazione e in generale la maggior parte di tutto ciò che riguarda l'aspetto grafico del documento sono gestiti in modo automatico da LaTeX. La scelta del linguaggio è ricaduta appunto su LaTeX proprio per via della pulizia, dell'ordine e della rigorosità dei documenti ottenuti tramite tale tecnologia. È ottima la gestione degli elementi matematici come formule e simboli, presenti in grande quantità in questo progetto. Inoltre Lo stile del prodotto finale è consono ad un utilizzo in ambito accademico e coerente con i doumenti ufficiali del corso.
 Sono stati aggiunti alcuni elementi grafici come la numerazione delle pagine e la presenza di un header per rendere ancor più gradevole il risultato.
 
-* ### Creazione del formato di distribuzione
+### Creazione del formato di distribuzione
 Una volta terminata la fase di stesura effettiva del documento, per ottenere il PDF finale è stato sufficiente compilare il sorgente LaTeX tramite il motore XeTeX e sistemare alcuni errori o imprecisioni nell'impaginazione del documento o nel posizionamento delle immagini. 
 Per quanto riguarda il file HTML, tramite l'utilizzo del tool Pandoc è stato possibile convertire il codice sorgente nel formato desiderato. È stato poi necessario intervenire manualmente sul prodotto per renderlo il più possibile simile al formato PDF.
 	 
@@ -90,16 +90,7 @@ Per quanto riguarda il file HTML, tramite l'utilizzo del tool Pandoc è stato po
 
 ## Gestione documentale
 
-Descrivere il *flusso di gestione documentale* definito per il progetto. Ad esempio, la raccolta delle fonti, la revisione dei contenuti, la trasformazione dei formati, la strutturazione dei contenuti, la definizione dello stile grafico.
-> Il flusso può essere descritto utilizzando BPMN, lezione 5, slide 9. In alternativa, se si preferisce restare su un formato di puro testo è possibile usare il linguaggio Mermaid, supportato da alcuni editor Markdown. 
-
-```mermaid
-graph LR
-A[Square Rect] -- Link text --> B((Circle))
-A --> C(Round Rect)
-B --> D{Rhombus}
-C --> D
-```
+![Diagramma](./diagram.svg)
 
 ## Tecnologie adottate
 
