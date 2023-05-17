@@ -124,7 +124,7 @@ Particolarmente degno di nota per questo progetto è l'utilizzo dei pacchetti:
 * ```algorithm2e``` per lo pseudocodice degli algoritmi
 * ```fancyhdr``` per l'utilizzo di un header che migliora l'aspetto grafico del documento
 
-> Ritengo corretto sottolineare che la maggior parte (non tutto) dello pseudocodice presente nelle dispense è stato inserito non tramite il pacchetto algorithm2e bensì come immagine tratta direttamente dai documenti ufficiali del prof. Pighizzini. Questo per via del grande risparmio di tempo apportato e per via del fatto che, come dirò in seguito nella parte relativa ad HTML, risultava una scelta migliore per la conversione in tale formato. 
+> Ritengo corretto sottolineare che la maggior parte (non tutto) dello pseudocodice presente nelle dispense è stato inserito non tramite il pacchetto algorithm2e bensì come immagine tratta direttamente dai documenti ufficiali del prof. Pighizzini. Questo per via del grande risparmio di tempo apportato e per via del fatto che, come dirò in seguito nella parte relativa alle tecnologie utilizzate, risultava una scelta migliore per la conversione in tale formato. 
 
 Per quanto riguarda la compilazione del codice sorgente, ovvero l'effettiva produzione del file PDF finale, è stato utilizzato il motore XeTeX, e in particolare il comando
 
