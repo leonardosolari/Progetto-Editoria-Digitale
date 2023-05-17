@@ -51,11 +51,11 @@ Idealmente il prodotto nasce con l'intento di essere sotto licenza libera. Tutta
 #### Identificazione delle fonti
 Il materiale che ho utilizzato per la stesura del documento proviene principalmente da:
 
-	* Documenti PDF ufficiali del corso forniti dal prof. Pighizzini. Tali documenti contengono diagrammi e pseudocodice degli algoritmi trattati e la loro spiegazione
-	* Slide prodotte dal prof. Pighizzini durante le lezioni
-	* Appunti presi personalmente a lezione
-	* Appunti di altri colleghi
-	* Informazioni reperite sul web o su libri di testo
+* Documenti PDF ufficiali del corso forniti dal prof. Pighizzini. Tali documenti contengono diagrammi e pseudocodice degli algoritmi trattati e la loro spiegazione
+* Slide prodotte dal prof. Pighizzini durante le lezioni
+* Appunti presi personalmente a lezione
+* Appunti di altri colleghi
+* Informazioni reperite sul web o su libri di testo
 
 #### Definizione dei formati
 La scelta dei formati è ricaduta su:
@@ -96,28 +96,109 @@ Per quanto riguarda il file HTML, tramite l'utilizzo del tool Pandoc è stato po
 
 ## Tecnologie adottate
 
-Descrivere le tecnologie addottate e discuterne il contributo in termini di riduzione dei tempi di gestione documentale, riduzione degli errori o miglioramento della qualità dei documenti.
+Di seguito sono elencate le tecnologie utilizzate per questo progetto. Seguirà poi una trattazione dei dettagli di come sono state utilizzate.
 
-> Per presentare il contributo delle diverse tecnologie addottate è possibile elencarle in una tabella. Può anche essere utili confrontare una versione ASIS del flusso di gestione, senza la tecnologia adottata, e una TOBE che include la tecnologia adottata.
-> Includere nella relazione o in appendice gli script e le configurazioni adottati, possibilmente con riferimento ad un repository documentale.  
+* LaTeX
+* Pandoc
+* HTML
+* make
+* GitHub
 
-|                |Riduzione dei tempi di gestione                          |Miglioramento della qualità dei documenti                         |
-|----------------|-------------------------------|-----------------------------|
-|Markdown |`'Isn't this fun?'`            |'Isn't this fun?'            |
-|XSLT       |`"Isn't this fun?"`            |"Isn't this fun?"            |
-|ePud         |`-- is en-dash, --- is em-dash`|-- is en-dash, --- is em-dash|
+### LaTeX
+I motivi che mi hanno portato a scegliere LaTeX come linguaggio per sviluppare queste dispense sono stati molteplici, tra cui:
+
+* È gratuito e multipiattaforma
+* È un linguaggio ampiamente usato, in particolar modo nel mondo accademico, per la scrittura di testi contenenti formule, di cui questo progetto è ricco. È inoltre un linguaggio ottimo per disegnare grafici, tabelle e molto altro
+* Anche con settaggi di base genera documenti caratterizzati da un alto livello di professionalità, qualità e rigore
+* Si occupa della tipografia del documento, lasciando all'utente il compito di gestire la struttura e il contenuto
+* Gestisce bene riferimenti e bibliografia
+
+Lo sviluppo di questo progetto è avvenuto in ambiente MacOS tramite una distribuzione MacTeX.
+
+La struttura del codice è stata organizzata nel seguente modo: è presente un file principale ```Algoritmi.tex```, il quale contiene il codice necessario a gestire la schermata del titolo, l'indice dei contenuti, e nel quale sono inseriti grazie al comando ```\input``` i file dei vari capitoli. Sono inoltre presenti i metadati del documento e tutte le impostazioni necessarie a ottenere il risultato desiderato in termini grafici.
+
+Particolarmente degno di nota per questo progetto è l'utilizzo dei pacchetti:
+
+* ```hyperref``` per gestire i metadati e l'indice dei contenuti con riferimenti
+* ```amsmath``` e ```amsfonts``` per i simboli matematici
+* ```algorithm2e``` per lo pseudocodice degli algoritmi
+* ```fancyhdr``` per l'utilizzo di un header che migliora l'aspetto grafico del documento
+
+> Ritengo corretto sottolineare che la maggior parte (non tutto) dello pseudocodice presente nelle dispense è stato inserito non tramite il pacchetto algorithm2e bensì come immagine tratta direttamente dai documenti ufficiali del prof. Pighizzini. Questo per via del grande risparmio di tempo apportato e per via del fatto che, come dirò in seguito nella parte relativa ad HTML, risultava una scelta migliore per la conversione in tale formato. 
+
+Per quanto riguarda la compilazione del codice sorgente, ovvero l'effettiva produzione del file PDF finale, è stato utilizzato il motore XeTeX, e in particolare il comando
+
+```bash
+xelatex -interaction=nonstopmode -output-driver='xdvipdfmx -z3' Algoritmi.tex
+```
+Per quanto riguarda i flags:
+
+* ```-interaction=nonstopmode``` dice al compilatore di continuare senza interazione con l'utente anche qualora dovesse incontrare degli errori, tranne nel caso di errori "gravi" dove la compilazione viene arrestata
+* ```-output-driver='xdvipdfmx -z3``` serve per impostare il fattore di compressione. Ho cercato un buon compromesso tra velocità di compilazione e dimensione del file finale
+
+È importante sottolineare che per ottenere la table of contents è necessario eseguire due volte il comando per la compilazione. Questo perchè durante la prima compilazione il compilatore non sa ancora l'ordine delle varie sezioni del documento, ma genera un file .toc che verrà utilizzato dal compilatore nella seconda esecuzione per generare la table of contents.
+
+### Pandoc
+Pandoc è un tool che permette la conversione tra vari linguaggi di markup. In questo progetto è stato utilizzato per convertire il codice sorgente LaTeX in un file HTML.
+Il comando utilizzato è stato:
+
+```bash
+pandoc Algoritmi.tex --toc -s --number-sections --mathjax --resource-path='./images' --extract-media=images -o Algoritmi.html
+```
+
+* ```--toc``` serve per generare la table of contents
+* ```-s``` dice a Pandoc di generare un file HTML standalone 
+* ```--number-sections``` serve per numerare le sezioni del documento
+* ```--mathjax``` serve per poter visualizzare correttamente le formule matematiche scritte in LaTeX
+* ```--resource-path='./images' --extract-media=images``` servono per visualizzare correttamente le immagini senza la necessità di intervenire sul codice HTML
+* ```-o``` serve per indicare il nome del file output
+
+Grazie all'utilizzo dei flag sopra elencati la conversione da LaTeX ad HTML risulta rapida e quasi automatizzata.
+Le uniche modifiche apportate manualmente sono state:
+
+* Modifica di alcuni elementi grafici
+* Modifica della pagina del titolo che non veniva visualizzata correttamente
+* Modifica e aggiunta di alcune immagini
+
+In particolare, per quanto riguarda le immagini è importante precisare che tutte le immagini che in LaTeX erano "wrapfigure", non sono state gestite in modo corretto nella conversione e quindi sono state sistemate manualmente.
+
+Inoltre, tutte le porzioni di pseudocodice generate tramite il pacchetto ```algorithm2e``` non erano graficamente accettabili una volta convertite. La soluzione più semplice è stata quindi rimpiazzarle con delle immagini tratte dal file PDF.
+
+### make
+Citando direttamente da Wikipedia:
+
+> Il make è un'utility, sviluppata sui sistemi operativi della famiglia UNIX, ma disponibile su un'ampia gamma di sistemi, che automatizza il processo di creazione di file che dipendono da altri file, risolvendo le dipendenze e invocando programmi esterni per il lavoro necessario. [^fn1]
+
+Nella repository del progetto è presente un ```Makefile``` che è stato utilizzato per velocizzare e automatizzare le fasi di compilazione del codice sorgente e della conversione. Tale file ha reso possibile l'esecuzione dei comandi:
+
+* ```make pdf```, che esegue due volte il comando per la compilazione del codice sorgente LaTeX
+* ```make html```, che esegue il comando per la conversione tramite Pandoc. Non gestisce le modifiche eseguite manualmente elencate in precedenza
+* ```make clean```, che rimuove i file ausiliari generati durante la compilazione LaTeX
+* ```make``` o ```make all``` che esegue tutti i comandi precedentemente elencati
+
+
+
+
 
 ## Conclusioni
 
-Discutere i risultati ottenuti, verificando se gli obiettivi siano pienamente o parzialmente raggiunti. Evidenziare gli aspetti nei quali si sono raggiunti i risultati più soddisfacenti e le limitazioni emerse (impossibilità di accesso ad alcune tecnologie o fasi del flusso di gestione documentale, limiti nella automazione di alcune passi di trasformazione dei formati o di integrazione delle sorgenti). 
+I risultati ottenuti sono in linea con gli obiettivi di partenza e quindi abbastanza soddisfacenti, soprattutto per quanto riguarda il documento PDF.
+
+Il documento ottenuto rappresenta a mio parere una buona fonte di informazioni per la preparazione dell'esame di Algoritmi e Strutture dati, ed è esteticamente gradevole e ordinato e coerente con i documenti uffciciali del corso. La navigazione e la ricerca di determinati argomenti risultano agevoli grazie all'indice dei contenuti con collegamenti interattivi e riferimento al numero di pagina. 
+
+Sicuramente molti aspetti possono essere ancora migliorati.
+Innanzitutto, come già accennato in precedenza, è risultato meglio in termini pratici inserire gran parte dello pseudocodice sotto forma di immagine e non di codice vero e proprio. Avendo accesso al codice sorgente dei documenti prodotti dal prof. Pighizzini sarebbe possibile sicuramente ottenere un risultato migliore, almeno per quanto riguarda il documento PDF.
+
+Lato conversione in HTML invece, un possibile miglioramento futuro potrebbe essere quello di automatizzare le modifiche manuali delle immagini e degli elementi grafici tramite per esempio uno script python, in modo tale da facilitare un lavoro che ora risulta tedioso ogni volta che il codice sorgente viene modificato in modo sostanzioso.
+Sarebbe inoltre molto utile migliorare la conversione dello pseudocodice. Ciò potrebbe avvenire tramite un Lua Filter [^fn2] di Pandoc appositamente scritto per convertire le opportune sezioni di codice LaTeX in immagini.
 
 ## Bibliografia e sitografia
 
-Elencare i riferimenti bibliografici e risorse online che hanno maggiormente contribuito alla realizzazione del progetto.
+* [Sito Ariel di Algoritmi e Strutture Dati](https://gpighizziniasd.ariel.ctu.unimi.it/v5/Home/)
+* [LaTeX](https://www.latex-project.org)
+* [Pandoc](https://pandoc.org)
+* [Tool per il diagramma di gestione documentale](https://bpmn.io)
 
-> Ci possono essere diversi modi di gestire le citazioni in markdown, uno di questi è attraverso le note
+[^fn1]: [make](https://it.wikipedia.org/wiki/Make)
+[^fn2]: [Lua Filters](https://pandoc.org/lua-filters.html)
 
-Esempio di nota [^fn1]. Altro testo. Altra citazione[^fn2].
-
-[^fn1]: Citazione con nota.
-[^fn2]: Altra citazione.

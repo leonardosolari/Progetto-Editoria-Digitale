@@ -12,8 +12,8 @@ pdf: $(PRINCIPALE_PDF)
 html: $(PRINCIPALE_HTML)
 
 $(PRINCIPALE_PDF): $(PRINCIPALE_TEX)
-	xelatex --shell-escape -interaction=nonstopmode -output-driver='xdvipdfmx -z3' $(PRINCIPALE)
-	xelatex --shell-escape -interaction=nonstopmode -output-driver='xdvipdfmx -z3' $(PRINCIPALE)
+	xelatex -interaction=nonstopmode -output-driver='xdvipdfmx -z3' $(PRINCIPALE)
+	xelatex -interaction=nonstopmode -output-driver='xdvipdfmx -z3' $(PRINCIPALE)
 
 $(PRINCIPALE_HTML): $(PRINCIPALE_TEX)
 	pandoc --toc $(PRINCIPALE_TEX) -s --number-sections --mathjax --resource-path='./images' --extract-media=images -o $(PRINCIPALE_HTML)
