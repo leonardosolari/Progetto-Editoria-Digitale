@@ -36,7 +36,7 @@ Tale documento deve integrare il più possibile tutti i materiali disponibili e 
 ## Processo di produzione
 
 ### Studio e analisi del tema
-Il corso di Algoritmi e strutture Dati tenuto dal prof. Pighizzini è caratterizzato da una grande mole di contenuti e di conseguenza il materialemdisponibile per lo studio è molto, ma tuttavia "sparso". Preparando l'esame mi sono infatti reso conto che per studiare ogni argomento dovevo consultare diversi documenti per raccogliere tutte le informazioni necessarie e la cosa risultava spesso fastidiosa. Da qui nasce l'idea di creare un prodotto che raccogliesse e integrasse tutti questi contenuti e che potesse essere utile per me e per i colleghi del corso.
+Il corso di Algoritmi e strutture Dati tenuto dal prof. Pighizzini è caratterizzato da una grande mole di contenuti e di conseguenza il materiale disponibile per lo studio è molto, ma tuttavia "sparso". Preparando l'esame mi sono infatti reso conto che per studiare ogni argomento dovevo consultare diversi documenti per raccogliere tutte le informazioni necessarie e la cosa risultava spesso fastidiosa. Da qui nasce l'idea di creare un prodotto che raccogliesse e integrasse tutti questi contenuti e che potesse essere utile per me e per i colleghi del corso.
 
 #### Definizione del target
 Come già accennato i possibili fruitori di questo progetto sono gli studenti del corso di Algoritmi che come me apprezzano studiare da un'unica fonte che raccolga tutto il materiale disponibile e fornisca una panoramica completa sugli argomenti trattati. Per quanto sia importante sviluppare la capacità di ricerca autonoma dei materiali tra le varie fonti disponibili, trovo che spesso questo processo possa portare facilmente a difficoltà o distrazioni, soprattutto nella prima fase dello studio per la preparazione di un esame, durante la quale non si ha ancora una conoscenza solida degli argomenti.
@@ -46,7 +46,7 @@ Come già accennato i possibili fruitori di questo progetto sono gli studenti de
 In questa fase del lavoro mi sono innanzitutto assicurato che non esistesse già un progetto simile a quello che avevo in mente. Ho trovato alcuni materiali prodotti da altri colleghi ma questi non avevano la completezza e l'ordine che desideravo.
 
 #### Definizione dei canali e licenze di distribuzione
-Idealmente il prodotto nasce con l'intento di essere sotto licenza libera. Tuttavia alcuni materiali sono tratti da documenti ufficiali del corso forniti dal prof. Pighizzini e sono protetti da copyright. L'utilizzo che ho effettuato di tali materiali per questo progetto rispetta le condizioni poste dall'autore in quanto rientra nell'utilizzo per scopi accademici. È tuttavia importante che chiunque effettui successive modifiche e distribuzioni del prodotto rispetti la nota di copyright riportata per intero nella prefazione del documento finale.
+Idealmente il prodotto nasce con l'intento di essere sotto licenza libera. Tuttavia alcuni materiali sono tratti da documenti ufficiali del corso forniti dal prof. Pighizzini e sono protetti da copyright. L'utilizzo che ho effettuato di tali materiali per questo progetto rispetta le condizioni poste dall'autore in quanto rientra nell'utilizzo per scopi accademici. È tuttavia importante che chiunque effettui successive modifiche e distribuzioni del prodotto rispetti e riporti la nota di copyright riportata per intero nella prefazione del documento finale, come indicato nella nota stessa.
 
 #### Identificazione delle fonti
 Il materiale che ho utilizzato per la stesura del documento proviene principalmente da:
@@ -69,7 +69,7 @@ La scelta dei formati è ricaduta su:
 ### Stesura bozza e revisione dei contenuti
 	
 * #### Punti da trattare
-	La prima fase riguardante la vera e propria stesura del documento è consistita nello stilare una lista degli argomenti trattati nel corso e della loro divisione in capitoli e paragrafi. Per fare ciò mi sono servito dei materiali a mia disposizione già elencati nella fase di identificazione delle fonti, e per dare loro un'ordine ho seguito la cronologia delle lezioni caricate sulla pagina Ariel del corso.
+	La prima fase riguardante la vera e propria stesura del documento è consistita nello stilare una lista degli argomenti trattati nel corso e della loro divisione in capitoli e paragrafi. Per fare ciò mi sono servito dei materiali a mia disposizione già elencati nella fase di identificazione delle fonti, e per dare loro un ordine ho seguito la cronologia delle lezioni caricate sulla pagina Ariel del corso.
 	
 * #### Sviluppo dei contenuti
 	Successivamente sono passato ad una trattazione più esaustiva possibile di ogni argomento integrando tutte le informazioni in mio possesso tratte dalle fonti che avevo a disposizione. In tale fase ho già provveduto a inserire codice sorgente e formule matematiche ove necessario grazie agli appositi pacchetti del linguaggio LaTeX.
@@ -124,7 +124,7 @@ Particolarmente degno di nota per questo progetto è l'utilizzo dei pacchetti:
 * ```algorithm2e``` per lo pseudocodice degli algoritmi
 * ```fancyhdr``` per l'utilizzo di un header che migliora l'aspetto grafico del documento
 
-> Ritengo corretto sottolineare che la maggior parte (non tutto) dello pseudocodice presente nelle dispense è stato inserito non tramite il pacchetto algorithm2e bensì come immagine tratta direttamente dai documenti ufficiali del prof. Pighizzini. Questo per via del grande risparmio di tempo apportato e per via del fatto che, come dirò in seguito nella parte relativa alle tecnologie utilizzate, risultava una scelta migliore per la conversione in tale formato. 
+> Ritengo corretto sottolineare che la maggior parte (non tutto) dello pseudocodice presente nelle dispense è stato inserito non tramite il pacchetto algorithm2e bensì sotto forma di  immagini tratte direttamente dai documenti ufficiali del prof. Pighizzini. Questo per via del grande risparmio di tempo apportato e per via del fatto che, come dirò in seguito nella parte relativa alle tecnologie utilizzate, risultava una scelta migliore per la conversione in tale formato. 
 
 Per quanto riguarda la compilazione del codice sorgente, ovvero l'effettiva produzione del file PDF finale, è stato utilizzato il motore XeTeX, e in particolare il comando
 
@@ -136,7 +136,7 @@ Per quanto riguarda i flags:
 * ```-interaction=nonstopmode``` dice al compilatore di continuare senza interazione con l'utente anche qualora dovesse incontrare degli errori, tranne nel caso di errori "gravi" dove la compilazione viene arrestata
 * ```-output-driver='xdvipdfmx -z3``` serve per impostare il fattore di compressione. Ho cercato un buon compromesso tra velocità di compilazione e dimensione del file finale
 
-È importante sottolineare che per ottenere la table of contents è necessario eseguire due volte il comando per la compilazione. Questo perchè durante la prima compilazione il compilatore non sa ancora l'ordine delle varie sezioni del documento, ma genera un file .toc che verrà utilizzato dal compilatore nella seconda esecuzione per generare la table of contents.
+È importante sottolineare che per ottenere la *table of contents* è necessario eseguire due volte il comando per la compilazione. Questo perchè durante la prima compilazione il compilatore non sa ancora l'ordine delle varie sezioni del documento, ma genera un file .toc che verrà utilizzato dal compilatore nella seconda esecuzione per generare appunto l'indice.
 
 ### Pandoc
 Pandoc è un tool che permette la conversione tra vari linguaggi di markup. In questo progetto è stato utilizzato per convertire il codice sorgente LaTeX in un file HTML.
