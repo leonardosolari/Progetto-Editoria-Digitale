@@ -6,11 +6,11 @@
 
 # Dispense non ufficiali di Algoritmi e Strutture Dati
   
-
+[Link alla repository del progetto](https://github.com/leonardosolari/Progetto-Editoria-Digitale)
 
 ## Introduzione
 
-Questo progetto nasce dalla volontà di fornire agli studenti del corso un documento che tratti in modo conciso tutti gli argomenti toccati nelle lezioni del corso di Algoritmi e Strutture Dati dell'Università degli Studi di Milano, tenuto dal prof. Pighizzini.
+Questo progetto nasce dalla volontà di fornire agli studenti un documento che tratti in modo conciso tutti gli argomenti toccati nelle lezioni del corso di Algoritmi e Strutture Dati dell'Università degli Studi di Milano, tenuto dal prof. Pighizzini.
 
 L'intento è quello di raccogliere e integrare tra loro i vari materiali presenti riguardanti il corso (tra cui documenti ufficiali forniti dal professore e appunti presi a lezione personalmente e da altri colleghi) e di fornirli ai colleghi nella forma di un'unica dispensa in modo da facilitare lo studio e la preparazione dell'esame.
 
@@ -27,7 +27,7 @@ Tale documento deve integrare il più possibile tutti i materiali disponibili e 
 
 * Codice sorgente diviso per capitoli, per facilitare le revisioni e l'aggiunta o la rimozione di materiale
 * Indice dei contenuti interattivo per cercare e raggiungere velocemente sezioni di interesse
-* In ogni capitolo, in base alla necessità, tabelle, grafi, formule e immagini che arricchiscano e rendano più agevole la fruizione del contenuto
+* In ogni capitolo, in base alla necessità, tabelle, grafi, codice, formule e immagini che arricchiscano e rendano più agevole la fruizione del contenuto
 * Grafica ordinata, pulita e senza elementi di distrazione
 * Essere facilmente consultabile su PC e dispositivi mobili ma anche in un formato adatto alla stampa, per coloro che preferiscono studiare tramite materiale cartaceo.
 
@@ -107,11 +107,11 @@ Di seguito sono elencate le tecnologie utilizzate per questo progetto. Seguirà 
 ### LaTeX
 I motivi che mi hanno portato a scegliere LaTeX come linguaggio per sviluppare queste dispense sono stati molteplici, tra cui:
 
-* È gratuito e multipiattaforma
-* È un linguaggio ampiamente usato, in particolar modo nel mondo accademico, per la scrittura di testi contenenti formule, di cui questo progetto è ricco. È inoltre un linguaggio ottimo per disegnare grafici, tabelle e molto altro
+* È un software libero, gratuito e multipiattaforma
+* È un linguaggio ampiamente usato, in particolar modo nel mondo accademico per le caratteristiche di gestione dell'impaginazione. È ottimo per la scrittura di testi contenenti formule, di cui questo progetto è ricco. È inoltre un linguaggio ottimo per disegnare grafici, tabelle e molto altro
 * Anche con settaggi di base genera documenti caratterizzati da un alto livello di professionalità, qualità e rigore
-* Si occupa della tipografia del documento, lasciando all'utente il compito di gestire la struttura e il contenuto
-* Gestisce bene riferimenti e bibliografia
+* Spinge l'utente a pensare e occuparsi anche della tipografia del documento permettendo di ottenere un risultato adatto ad ogni tipo di esigenza
+* Gestisce bene riferimenti incrociati, bibliografia ed è in grado di generare automaticamente gli indici degli elementi
 
 Lo sviluppo di questo progetto è avvenuto in ambiente MacOS tramite una distribuzione MacTeX.
 
@@ -120,11 +120,12 @@ La struttura del codice è stata organizzata nel seguente modo: è presente un f
 Particolarmente degno di nota per questo progetto è l'utilizzo dei pacchetti:
 
 * ```hyperref``` per gestire i metadati e l'indice dei contenuti con riferimenti
+* ```graphicx``` per la gestione delle immagini
 * ```amsmath``` e ```amsfonts``` per i simboli matematici
 * ```algorithm2e``` per lo pseudocodice degli algoritmi
 * ```fancyhdr``` per l'utilizzo di un header che migliora l'aspetto grafico del documento
 
-> Ritengo corretto sottolineare che la maggior parte (non tutto) dello pseudocodice presente nelle dispense è stato inserito non tramite il pacchetto algorithm2e bensì sotto forma di  immagini tratte direttamente dai documenti ufficiali del prof. Pighizzini. Questo per via del grande risparmio di tempo apportato e per via del fatto che, come dirò in seguito nella parte relativa alle tecnologie utilizzate, risultava una scelta migliore per la conversione in tale formato. 
+> Ritengo corretto sottolineare che la maggior parte (non la totalità) dello pseudocodice presente nelle dispense è stato inserito non tramite il pacchetto algorithm2e bensì sotto forma di  immagini tratte direttamente dai documenti ufficiali del prof. Pighizzini. Questo per via del grande risparmio di tempo apportato e per via del fatto che, come dirò in seguito nella parte relativa alle tecnologie utilizzate, risultava una scelta migliore per la conversione in tale formato. 
 
 Per quanto riguarda la compilazione del codice sorgente, ovvero l'effettiva produzione del file PDF finale, è stato utilizzato il motore XeTeX, e in particolare il comando
 
@@ -184,7 +185,7 @@ Nella repository del progetto è presente un ```Makefile``` che è stato utilizz
 
 I risultati ottenuti sono in linea con gli obiettivi di partenza e quindi abbastanza soddisfacenti, soprattutto per quanto riguarda il documento PDF.
 
-Il documento ottenuto rappresenta a mio parere una buona fonte di informazioni per la preparazione dell'esame di Algoritmi e Strutture dati, ed è esteticamente gradevole e ordinato e coerente con i documenti uffciciali del corso. La navigazione e la ricerca di determinati argomenti risultano agevoli grazie all'indice dei contenuti con collegamenti interattivi e riferimento al numero di pagina. 
+Il prodotto ottenuto rappresenta a mio parere una buona fonte di informazioni per la preparazione dell'esame di Algoritmi e Strutture Dati, ed è esteticamente gradevole e ordinato e coerente con i documenti uffciciali del corso. La navigazione e la ricerca di determinati argomenti risultano agevoli grazie all'indice dei contenuti con collegamenti interattivi e riferimento al numero di pagina. 
 
 Sicuramente molti aspetti possono essere ancora migliorati.
 Innanzitutto, come già accennato in precedenza, è risultato meglio in termini pratici inserire gran parte dello pseudocodice sotto forma di immagine e non di codice vero e proprio. Avendo accesso al codice sorgente dei documenti prodotti dal prof. Pighizzini sarebbe possibile sicuramente ottenere un risultato migliore, almeno per quanto riguarda il documento PDF.
